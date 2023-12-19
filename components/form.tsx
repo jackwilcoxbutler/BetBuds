@@ -21,7 +21,7 @@ export default function Form({ type }: { type: "login" | "register" }) {
             redirect: false,
             email: e.currentTarget.email.value,
             password: e.currentTarget.password.value,
-            // @ts-ignore
+            //@ts-ignore
           }).then(({ error }) => {
             if (error) {
               setLoading(false);
