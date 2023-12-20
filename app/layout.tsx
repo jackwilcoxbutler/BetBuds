@@ -25,20 +25,16 @@ export const metadata: Metadata = {
     description,
   },
   metadataBase: new URL("https://nextjs-postgres-auth.vercel.app"),
-  themeColor: "#FFF",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
-    <html lang='en'>
-      <div className={inter.variable}>
-        <Toaster />
-        <body>{children}</body>
-      </div>
-      </html>
-  );
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  )
 }
