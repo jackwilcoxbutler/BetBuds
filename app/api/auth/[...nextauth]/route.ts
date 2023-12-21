@@ -28,6 +28,21 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
+  callbacks:{
+    async session({ session, token, user }) {
+      return { ...session,
+        user: { ...session.user,
+          id: token.id,
+        }
+      }
+    },
+    async jwt({ token, user, account, profile }) {
+      if (user) {
+        token.id = user.id
+      }
+      return token
+    },
+  }
 };
 
 const handler = NextAuth(authOptions);

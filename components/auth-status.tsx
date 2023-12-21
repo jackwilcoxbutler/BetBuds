@@ -5,12 +5,12 @@ export default async function AuthStatus() {
   return (
     <div>
       {session && (
-        <p className="text-white text-sm">
+        <p className="text-black text-sm">
           Signed in as {session.user?.email}
         </p>
       )}
       {!session && (
-        <p className="text-white text-sm">
+        <p className="text-black text-sm">
           Logged out
         </p>
       )}

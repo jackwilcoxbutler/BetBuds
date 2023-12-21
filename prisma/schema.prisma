@@ -12,6 +12,29 @@ datasource db {
 
 model User {
   id        Int     @id @default(autoincrement())
+  username  String @unique
   email     String  @unique
   password  String
+  leagues League[]
+  receivedInvites Invitation[] @relation(name: "received")//incoming and outcoming
+  sentInvites Invitation[] @relation(name: "sent")
+}
+
+model League {
+  id    Int      @id @default(autoincrement())
+  league_name  String
+  users        User[]
+}
+
+// Define the UserLeagues junction table
+
+
+model Invitation{
+  id  Int @id @default(autoincrement())
+  sender User  @relation(name: "sent",fields: [sender_id], references: [id])
+  sender_id Int
+  receiver User @relation(name: "received",fields: [receiver_id], references: [id])
+  receiver_id Int
+  timeSent DateTime @default(now())
+  accepted Boolean
 }

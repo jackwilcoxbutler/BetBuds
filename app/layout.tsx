@@ -6,6 +6,7 @@ import { Toaster } from "react-hot-toast";
 import AuthStatus from "@/components/auth-status";
 import { Suspense } from "react";
 import Head from "next/head";
+import NextAuth from "next-auth/next";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -34,7 +35,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+\        <Suspense fallback="Loading...">
+          {/* @ts-expect-error Async Server Component */}
+          <AuthStatus />
+        </Suspense>
+      {children}
+      </body>
     </html>
   )
 }
