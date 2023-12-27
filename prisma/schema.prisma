@@ -15,7 +15,7 @@ model User {
   username  String @unique
   email     String  @unique
   password  String
-  leagues League[]
+  leagueID League[]
   receivedInvites Invitation[] @relation(name: "received")//incoming and outcoming
   sentInvites Invitation[] @relation(name: "sent")
 }

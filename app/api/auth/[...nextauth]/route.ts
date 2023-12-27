@@ -42,7 +42,7 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token }) {
       if (session?.user && token.sub) {
         session.user.id = token.sub;// token.uid or token.sub both work
-      }      
+      }    
       return session;
     },
     jwt: async ({ user, token }) => {

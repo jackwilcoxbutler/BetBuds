@@ -2,6 +2,7 @@
 "use client";
 
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 const CreateLeagueForm: React.FC = () => {
@@ -10,6 +11,7 @@ const CreateLeagueForm: React.FC = () => {
   const [leagueName, setLeagueName] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,7 +22,7 @@ const CreateLeagueForm: React.FC = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ league_name: leagueName, id : session_id},),
+        body: JSON.stringify({ league_name: leagueName},),
       });
       if (response.ok) {
         // League created successfully
@@ -37,6 +39,7 @@ const CreateLeagueForm: React.FC = () => {
       setError('Internal Server Error');
       setLoading(false);
     }
+    
   };
 
   return (
