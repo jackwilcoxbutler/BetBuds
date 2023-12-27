@@ -39,9 +39,9 @@ export default async function RootLayout({
     <html lang="en">
       <body>
         <Provider session={session}>
-\        <Suspense fallback="Loading...">
+        <Suspense fallback="Loading...">
           {/* @ts-expect-error Async Server Component */}
-          <AuthStatus />
+          {/*<AuthStatus />*/}
         </Suspense>
       {children}
       </Provider>

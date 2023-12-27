@@ -1,8 +1,7 @@
 import SignOut from "@/components/signout_button";
-import Head from "next/head";
-import AuthStatus from "@/components/auth-status";
-import { Suspense } from "react";
 import CreateLeagueForm from "@/components/CreateLeagueForm";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
 export default function Home() {
   return (
@@ -12,10 +11,7 @@ export default function Home() {
       <h1 className="text-2xl font-bold">BetBuds</h1>
       <SignOut/>
     </header>
-    <div className="flex h-screen justify-center bg-white">
-          <div className="w-screen h-screen flex flex-col space-y-5 justify-center items-center bg-black">
-          Hello World
-          </div>
+    <div className=" h-screen w-screen flex flex-col items-center justify-center bg-white">
           <CreateLeagueForm/>
       </div>
     </div>
