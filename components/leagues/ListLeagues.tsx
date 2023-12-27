@@ -45,9 +45,9 @@ export const ListLeagues: React.FC = () => {
 
 
     return(
-        <div className="flex flex-col space-y-4 rounded my-4">
+        <div className="w-screen flex items-center grid grid-cols-3 space-x-8 space-y-8 my-4">
             {leagues.map((league) => (
-                  <LeagueBox key={league.id} league={league} />
+                  <LeagueBox key={league.id} league={league}/>
             ))}
         </div>
     )
@@ -61,8 +61,9 @@ const LeagueBox: React.FC<leagueBoxProps> = ({league}) => {
   const url = "/protected/league/" + league.id;
   return (
           <a
-          href={url}>
-            <div className="border p-3 rounded-md ">
+          href={url}
+          className="border p-3 rounded-md m-10 ">
+            <div>
               <h1
               className="bold text-xl">
                 {league.league_name}

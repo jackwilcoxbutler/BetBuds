@@ -6,13 +6,19 @@ export default function Page({
     params: { id: string }
   }) {
     return (
-        <div>
-        <header className="flex items-center justify-between p-4">
-            {/*replace with homebutton component*/}
-            <h1 className="text-2xl font-bold">BetBuds</h1>
+    <div>
+        <header 
+        className="flex items-center justify-between p-4 bg-blue-400"
+        >
+            <a 
+            href="/protected"
+            className="text-2xl font-bold"
+            >
+            BetBuds
+            </a>
             <SignOut/>
         </header>
         <h1>{params.id}</h1>
-        </div>
+    </div>
     );
   }

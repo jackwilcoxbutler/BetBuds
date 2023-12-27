@@ -8,12 +8,17 @@ import { Suspense } from "react";
 export default function Home() {
   return (
   <div>
-    <header className="flex items-center justify-between p-4">
+    <header className="flex items-center justify-between p-4 bg-blue-400">
       {/*replace with homebutton component*/}
-      <h1 className="text-2xl font-bold">BetBuds</h1>
+      <a 
+      href="/protected"
+      className="text-2xl font-bold"
+      >
+        BetBuds
+        </a>
       <SignOut/>
     </header>
-    <div className="h-screen w-screen flex flex-col flex-grow items-center justify-center bg-blue p-10">
+    <div className="h-screen w-screen flex flex-col flex-grow items-center justify-center bg-blue-200">
       <Suspense fallback={<p>Loading feed...</p>}>
         <ListLeagues />
       </Suspense>
