@@ -1,9 +1,13 @@
 // CreateLeagueForm.tsx
 "use client";
 
+import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 
 const CreateLeagueForm: React.FC = () => {
+  const {data : session} =  useSession();
+  const session_id = session?.user.id;
+  console.log(session_id);
   const [leagueName, setLeagueName] = useState('');
   const [error, setError] = useState<string | null>(null);
 
@@ -11,13 +15,12 @@ const CreateLeagueForm: React.FC = () => {
     e.preventDefault();
 
     try {
-      
        const response = await fetch('/api/league', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ league_name: leagueName }),
+        body: JSON.stringify({ league_name: leagueName, id : session_id},),
       });
 
 

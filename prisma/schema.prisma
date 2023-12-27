@@ -7,11 +7,11 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  url = env("DATABASE_URL") // uses connection pooling
 }
 
 model User {
-  id        Int     @id @default(autoincrement())
+  id        String     @id @default(cuid())
   username  String @unique
   email     String  @unique
   password  String
@@ -21,7 +21,7 @@ model User {
 }
 
 model League {
-  id    Int      @id @default(autoincrement())
+  id    String      @id @default(cuid())
   league_name  String
   users        User[]
 }
@@ -32,9 +32,9 @@ model League {
 model Invitation{
   id  Int @id @default(autoincrement())
   sender User  @relation(name: "sent",fields: [sender_id], references: [id])
-  sender_id Int
+  sender_id String
   receiver User @relation(name: "received",fields: [receiver_id], references: [id])
-  receiver_id Int
+  receiver_id String
   timeSent DateTime @default(now())
   accepted Boolean
 }

@@ -6,8 +6,9 @@ import { Toaster } from "react-hot-toast";
 import AuthStatus from "@/components/auth-status";
 import { Suspense } from "react";
 import Head from "next/head";
-import NextAuth from "next-auth/next";
-
+import NextAuth, { getServerSession } from "next-auth/next";
+import Provider from "./context/client-provider";
+import { authOptions } from "./api/auth/[...nextauth]/route";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -28,19 +29,22 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://nextjs-postgres-auth.vercel.app"),
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const session = await getServerSession(authOptions);
   return (
     <html lang="en">
       <body>
+        <Provider session={session}>
 \        <Suspense fallback="Loading...">
           {/* @ts-expect-error Async Server Component */}
           <AuthStatus />
         </Suspense>
       {children}
+      </Provider>
       </body>
     </html>
   )

@@ -64,7 +64,7 @@ export default function Form({ type }: { type: "login" | "register" }) {
           htmlFor="username"
           className="block text-xs text-gray-600 uppercase"
         >
-          Email Address
+          Username
         </label>
         <input
           id="username"

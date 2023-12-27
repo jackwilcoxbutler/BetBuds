@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '@/lib/prisma';
-import { getSession } from 'next-auth/react';
 import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
@@ -14,14 +13,14 @@ export async function POST(req: Request) {
       //  return  NextResponse.json({ error: "No User Logged In" }, { status: 400 });
       //}
 
-      const {league_name} = await req.json();
+      const {league_name,id} = await req.json();
 
       // Create a new league with the user making the API call as the only user
       const newLeague = await prisma.league.create({
         data: {
           league_name,
           users: {
-            connect: { id: 1 },
+            connect: { id:  id },
           },
         },
       });
