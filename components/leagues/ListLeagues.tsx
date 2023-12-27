@@ -18,6 +18,7 @@ interface League {
 
 export const ListLeagues: React.FC = () => {
     const findLeagues = async () => {
+        setLoading(true);
         const response = await fetch('/api/league', {
             method: 'GET',
             headers: {
@@ -36,6 +37,7 @@ export const ListLeagues: React.FC = () => {
     }
 
     const [leagues, setLeagues] = useState<League[]>([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         findLeagues().then((leagues) => setLeagues(leagues));
@@ -43,7 +45,7 @@ export const ListLeagues: React.FC = () => {
 
 
     return(
-        <div>
+        <div className="flex flex-col space-y-4 rounded my-4">
             {leagues.map((league) => (
                 <LeagueBox key={league.id} league={league} />
             ))}
@@ -57,11 +59,11 @@ type leagueBoxProps = {
 
 const LeagueBox: React.FC<leagueBoxProps> = ({league}) => {
     return (
-            <div style={{ border: '1px solid black', padding: '10px' }}>
-              <text
+            <div className="border p-3 rounded ">
+              <h1
               className="bold text-xl">
                 {league.league_name}
-              </text>
+              </h1>
               <ul>
                 {league.users.map((user) => (
                   <li 
