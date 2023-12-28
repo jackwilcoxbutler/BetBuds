@@ -53,7 +53,7 @@ export const ListLeagues: React.FC = async () => {
     }
 
     return(
-        <div className="w-screen grid grid-cols-3 mx-5">
+        <div className="w-5/6 justify-center mx-30 grid grid-cols-3">
             {leagues.map((league) => (
                   <LeagueBox key={league.id} league={league}/>
             ))}
@@ -72,7 +72,7 @@ const LeagueBox: React.FC<leagueBoxProps> = ({league}) => {
   return (
           <a
           href={url}
-          className="size-1/4 border-t-6 border-t-light-blue p-3 rounded-md m-10 bg-t-grey">
+          className="size-1/4 border-t-6 border-t-light-blue p-3 rounded-md m-3 bg-t-grey">
             <div>
               <h1
               className="bold text-3xl text-t-dark-blue pb-2">

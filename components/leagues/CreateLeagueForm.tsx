@@ -45,9 +45,10 @@ const CreateLeagueForm: React.FC = () => {
   return (
     <form 
     onSubmit={handleSubmit}
-    className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 sm:px-16"
+    className="flex flex-col space-y-4 bg-t-light-blue px-4 py-8 sm:px-16 rounded-md"
     >
-      <h2>Create a League</h2>
+      <h2
+      className='text-xl text-t-orange'>Create a League</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <label
         className="block text-xs text-gray-600 uppercase"
