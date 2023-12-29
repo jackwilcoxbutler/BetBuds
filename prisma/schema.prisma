@@ -24,6 +24,15 @@ model League {
   id    String      @id @default(cuid())
   league_name  String
   users        User[]
+  scoring_mode String
+  number_bets Int
+  number_periods Int
+  period_mode String
+  is_private Boolean
+  max_number_users Int
+  max_odds Int
+  min_odds Int
+  bet_types String[]
 }
 
 // Define the UserLeagues junction table

@@ -18,8 +18,8 @@ export default function Home() {
           </div>
         </header>
         <div className="flex w-screen h-screen bg-t-orange justify-center">
-          <div className="flex w-2/3 justify-center">
-            <ListLeagues/>
+          <div className="flex flex-col h-2/3 w-2/3 justify-center">
+            <CreateLeagueForm/>
           </div>
         </div>
   </div>
