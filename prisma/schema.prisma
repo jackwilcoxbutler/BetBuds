@@ -32,7 +32,9 @@ model League {
   max_number_users Int
   max_odds Int
   min_odds Int
-  bet_types String[]
+  allow_ml Boolean
+  allow_spread Boolean
+  allow_total Boolean
 }
 
 // Define the UserLeagues junction table
