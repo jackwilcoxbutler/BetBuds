@@ -2,7 +2,7 @@
 "use client";
 
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const CreateLeagueForm: React.FC = () => {
@@ -14,7 +14,7 @@ const CreateLeagueForm: React.FC = () => {
     
     return `${year}-${month}-${day}`;
   }
-
+  const router = useRouter();
   const [league_name, setLeagueName] = useState('');
   const [record_type,setrecord_type] = useState('none');
   const [is_private,setIsPrivate] = useState(true);
@@ -118,6 +118,13 @@ const CreateLeagueForm: React.FC = () => {
       onSubmit={handleSubmit}
       className="flex flex-col space-y-4 bg-t-light-blue px-4 py-8 sm:px-16 rounded-md"
     >
+      <div className='justify-left'>
+        <button 
+        onClick={() => {router.back()}}
+        className='text-lg text-t-grey'>
+          Exit
+        </button>
+      </div>
       <h2
         className='text-3xl text-bold text-t-orange'>Create a League</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
