@@ -120,7 +120,7 @@ const CreateLeagueForm: React.FC = () => {
     >
       <div className='justify-left'>
         <button 
-        onClick={() => {router.back()}}
+        onClick={() => {router.push('/protected');}}
         className='text-lg text-t-grey'>
           Exit
         </button>
