@@ -53,7 +53,7 @@ export const ListLeagues: React.FC = async () => {
     }
 
     return(
-        <div className="w-full justify-center grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 justify-items-center gap-x-4 ">
+        <div className="w-full justify-center grid grid-cols-1 justify-items-center gap-x-4 ">
             {leagues.map((league) => (
                   <LeagueBox key={league.id} league={league}/>
             ))}

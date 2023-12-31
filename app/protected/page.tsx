@@ -17,11 +17,11 @@ export default function Home() {
             <SignOut/>
           </div>
         </header>
-        <div className="flex w-screen h-screen bg-t-orange justify-center">
-          <div className="flex flex-col h-2/3 w-5/6 justify-center space-y-4">
-            <ListLeagues/>
-            <OpenLeagueFormButton/>
-          </div>
+        <div className="flex w-screen h-screen justify-end bg-t-orange">
+            <div className="flex flex-col w-1/3 justify-start ">
+              <ListLeagues/>
+              <OpenLeagueFormButton/>
+            </div>
         </div>
   </div>
   );
