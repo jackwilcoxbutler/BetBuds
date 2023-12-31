@@ -6,10 +6,18 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 const CreateLeagueForm: React.FC = () => {
-  const { data: session } = useSession();
-  const session_id = session?.user.id;
+  function getTodayDate(): string {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // Add 1 to month because months are 0-indexed
+    const day = String(today.getDate()).padStart(2, '0');
+    
+    return `${year}-${month}-${day}`;
+  }
+
   const [league_name, setLeagueName] = useState('');
   const [record_type,setrecord_type] = useState('none');
+  const [is_private,setIsPrivate] = useState(true);
   const [number_bets, setnumber_bets] = useState(1);
   const [number_periods, setnumber_periods] = useState(1);
   const [max_users, setmax_users] = useState(10);
@@ -18,33 +26,75 @@ const CreateLeagueForm: React.FC = () => {
   const [allow_ml, set_ml] = useState(true);
   const [allow_spread, set_spread] = useState(true);
   const [allow_total, set_total] = useState(true);
-  const isUnitsChecked = true;
-  const isWLChecked = false;
-
-
   const [period_type, setperiod_type] = useState("Day(s)");
-
+  const [start_date,setstart_date] = useState(new Date())
+  const [end_date,setend_date] = useState(new Date())
 
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
+  const today = getTodayDate();
+
+  const handleStartDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedDate = new Date(event.target.value);
+    setstart_date(selectedDate);
+  };
+  const handleEndDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedDate = new Date(event.target.value);
+    setend_date(selectedDate);
+  };
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    
     e.preventDefault();
-    //setLoading(true);
-    console.log(record_type);
-    /*if(!allow_ml && !allow_spread && !allow_total){
+    setLoading(true);
+    console.log(is_private);
+    
+    if(!allow_ml && !allow_spread && !allow_total){
       setError('At least one bet type must be allowed');
       setLoading(false);
       return;
+    }else if(number_bets <= 0 || number_periods <= 0 || max_users <= 0){
+      setError('Number of bets, periods, and max users must be greater than 0');
+      setLoading(false);
+      return;
+    }else if(max_odds < min_odds){
+      setError('Max odds must be greater than minimum');
+      setLoading(false);
+      return;
+    }else if(end_date <= start_date){
+      setError('Invalid Start and end date');
+      setLoading(false);
+      return;
+    }else if(record_type === 'none'){
+      setError('Please choose a scoring type');
+      setLoading(false);
+      return;
     }
+
     try {
       const response = await fetch('/api/league', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ league_name: league_name },),
+        body: JSON.stringify({
+          league_name : league_name ,
+          scoring_type : record_type,
+          number_bets : number_bets,
+          number_periods : number_periods,
+          period_type : period_type,
+          is_private : is_private,
+          max_number_users : max_users,
+          max_odds : max_odds,
+          min_odds : min_odds,
+          allow_ml : allow_ml,
+          allow_spread : allow_spread,
+          allow_total : allow_total,
+          startDate : start_date.toISOString(),
+          endDate : end_date.toISOString()
+        },),
       });
       if (response.ok) {
         // League created successfully
@@ -61,7 +111,6 @@ const CreateLeagueForm: React.FC = () => {
       setError('Internal Server Error');
       setLoading(false);
     }
-      */
   };
 
   return (
@@ -72,7 +121,7 @@ const CreateLeagueForm: React.FC = () => {
       <h2
         className='text-3xl text-bold text-t-orange'>Create a League</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <label
+      <div
         className="block text-md text-t-grey uppercase"
       >
         League Name:
@@ -83,31 +132,31 @@ const CreateLeagueForm: React.FC = () => {
           required
           className="text-t-dark-blue mt-1 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
         />
-      </label>
+      </div>
       <div className='flex flex-row justify-between'>
-        <label
+        <div
           className=" space-x-2 text-md text-t-grey uppercase"
         >
-          Record Type :
+          Scoring Type :
           <br />
           <input type="radio" id="UNITS" name="record_type" onChange={() => {setrecord_type("UNITS")}}/>
           <label htmlFor="UNITS">Units </label>
           <input type="radio" id="W/L" name="record_type" onChange={() => {setrecord_type("W/L")}}/>
           <label htmlFor="W/L">Wins/Losses</label>
-        </label>
-        <label
+        </div>
+        <div
           className=" space-x-2 text-md text-t-grey uppercase"
         >
-          Joinability
+          Joinability :
           <br />
-          <input type="radio" id="private" name="isPrivate" value="private" />
+          <input type="radio" id="private" name="isPrivate" value="private" checked={is_private} onChange={() => {setIsPrivate(true)}} />
           <label htmlFor="private">Private </label>
-          <input type="radio" id="public" name="isPrivate" value="public" />
+          <input type="radio" id="public" name="isPrivate" value="public" onChange={() => {setIsPrivate(false)}}/>
           <label htmlFor="public">Public</label>
-        </label>
+        </div>
       </div>
       <div>
-        <label
+        <div
           className="block text-md text-t-grey uppercase"
         >
           Number of bets per time period :
@@ -139,9 +188,9 @@ const CreateLeagueForm: React.FC = () => {
               <option value="Year(s)">Year(s)</option>
             </select>
           </div>
-        </label>
+        </div>
         <br />
-        <label
+        <div
           className="block text-md text-t-grey uppercase"
         >
           Max number of players :
@@ -153,12 +202,12 @@ const CreateLeagueForm: React.FC = () => {
             required
             className="w-14 text-t-dark-blue mt-1 block appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
           />
-        </label>
+        </div>
         <br />
-        <label
-          className="block text-md text-t-grey uppercase"
+        <div
+          className="block text-md text-t-grey"
         >
-          Odds range :
+          ODDS RANGE :
           <br />
           <text className='text-xs'> Example : -130 to +150 means that any bet placed must be between -130 and +150</text>
           <div className='flex flex-row space-x-2'>
@@ -182,9 +231,9 @@ const CreateLeagueForm: React.FC = () => {
               className="w-20 text-t-dark-blue mt-1 block appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
             />
           </div>
-        </label>
+        </div>
         <br/>
-        <label
+        <div
           className="block text-md text-t-grey uppercase"
         >
           Bet Types Allowed :
@@ -197,7 +246,41 @@ const CreateLeagueForm: React.FC = () => {
           <input type="checkbox" id="Total" name="Total" checked={allow_total}  onChange={() => {if(allow_total){set_total(false);} else {set_total(true);}}}/>
           <label htmlFor="vehicle3">Total</label>
           </div>
-        </label>
+        </div>
+        <br/>
+        <div className='flex flex-row space-x-16'>
+          <div          
+          className="block text-md text-t-grey uppercase"
+          >
+            START DATE :
+            <br/>
+            <input
+              type="date"
+              id="start_date"
+              name="start_date"
+              value={start_date.toISOString().split('T')[0]}
+              min={today}
+              onChange={handleStartDateChange}
+              max="2025-06-14" 
+              className='text-t-dark-blue bg-t-light-blue'/>
+          </div>
+          <br/>
+          <div          
+          className="block text-md text-t-grey uppercase"
+          >
+            END DATE :
+            <br/>
+            <input
+              type="date"
+              id="end_date"
+              name="end_date"
+              value={end_date.toISOString().split('T')[0]}
+              min={today}
+              onChange={handleEndDateChange}
+              max="2025-06-14" 
+              className='text-t-dark-blue bg-t-light-blue'/>
+          </div>
+        </div>
       </div >
       <button
         type="submit"

@@ -18,10 +18,25 @@ export async function POST(req: Request) {
 
   if (req.method === 'POST') {
     try {
-      const {league_name} = await req.json();
+      const {league_name,scoring_type,number_bets,number_periods,period_type,is_private,
+      max_number_users,max_odds,min_odds,allow_ml,allow_spread,allow_total,
+    startDate,endDate} = await req.json();
       const newLeague = await prisma.league.create({
         data: {
           league_name,
+          scoring_type,
+          number_bets,
+          number_periods,
+          period_type,
+          is_private,
+          max_number_users,
+          max_odds,
+          min_odds,
+          allow_ml,
+          allow_spread,
+          allow_total,
+          startDate,
+          endDate,
           users: {
             connect: { id:  user_id },
           },

@@ -18,16 +18,17 @@ model User {
   leagues League[]
   receivedInvites Invitation[] @relation(name: "received")//incoming and outcoming
   sentInvites Invitation[] @relation(name: "sent")
+  createdAt DateTime @default(now())
 }
 
 model League {
   id    String      @id @default(cuid())
   league_name  String
   users        User[]
-  scoring_mode String
+  scoring_type String
   number_bets Int
   number_periods Int
-  period_mode String
+  period_type String
   is_private Boolean
   max_number_users Int
   max_odds Int
@@ -35,6 +36,9 @@ model League {
   allow_ml Boolean
   allow_spread Boolean
   allow_total Boolean
+  startDate DateTime
+  endDate DateTime
+  createdAt DateTime @default(now())
 }
 
 // Define the UserLeagues junction table
