@@ -1,3 +1,5 @@
+const { url } = require("inspector");
+
 module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
@@ -5,7 +7,17 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage:{
+        'tiles' : "url('/radiant-gradient.svg')",
+        'stairs' : "url('/cornered-stairs.svg')",
+        'squares' : "url('/protruding-squares.svg')",
+        'squares-2' : "url('/light-squares.svg')",
+        'squares-3' : "url('/white-square.svg')",
+        'min' : "url('/minimal.svg')",
+        'min-blue' : "url('/minimal-blue.svg')"
+      }
+    },
     colors:{
       't-grey' : '#BFC0C0',
       't-light-blue' : '#4F5D75',

@@ -1,10 +1,12 @@
 import SignOut from "@/components/signout_button";
 import { ListLeagues } from "@/components/leagues/ListLeagues";
 import OpenLeagueFormButton from "@/components/leagues/CreateLeagueButton";
+import mySvg from '@components/radiant-gradient.svg';
+import { url } from "inspector";
 
 export default function Home() {
   return (
-  <div className="h-screen w-screen bg-t-white">
+  <div className="h-screen w-screen bg-min">
     <header className="bg-t-dark-blue sticky top-0 flex justify-center">
           <div className="flex w-5/6 items-center justify-between py-4">
             <a 
