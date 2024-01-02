@@ -72,10 +72,10 @@ const LeagueBox: React.FC<leagueBoxProps> = ({league}) => {
   return (
           <a
           href={url}
-          className="w-full size-1/4 border-t-6 border-t-light-blue p-3 rounded-md m-3 bg-t-grey">
+          className="w-full border-2 rounded-tr-lg border-t-orange p-3 m-3 bg-t-light-blue">
             <div>
               <h1
-              className="bold text-3xl text-t-dark-blue pb-2">
+              className="bold text-3xl text-t-white pb-2">
                 {league.league_name}
               </h1>
               <ul>
@@ -85,7 +85,7 @@ const LeagueBox: React.FC<leagueBoxProps> = ({league}) => {
                   return (
                     <li 
                     key={user.id}
-                    className="text-sm">
+                    className="text-sm text-t-white">
                       {iter}. {user.username}   +{units}u
                     </li>
                 )})}
