@@ -4,24 +4,25 @@ import OpenLeagueFormButton from "@/components/leagues/CreateLeagueButton";
 
 export default function Home() {
   return (
-  <div>
-    <header className="bg-t-dark-blue sticky top-0">
-        {/*replace with homebutton component*/}
-          <div className="flex items-center justify-between p-4 bg-t-dark-blue mx-32">
+  <div className="h-screen w-screen bg-t-white">
+    <header className="bg-t-dark-blue sticky top-0 flex justify-center">
+          <div className="flex w-5/6 items-center justify-between py-4">
             <a 
             href="/protected"
-            className="text-2xl font-bold text-t-orange"
+            className="text-3xl font-bold text-t-orange"
             >
             BetBuds
             </a>
             <SignOut/>
           </div>
         </header>
-        <div className="flex w-screen h-screen justify-end bg-t-orange">
-            <div className="flex flex-col w-1/3 justify-start ">
-              <ListLeagues/>
-              <OpenLeagueFormButton/>
-            </div>
+        <div className="w-full flex justify-center">
+          <div className="flex flex-row w-5/6 h-screen justify-end space-x-4">
+              <div className="flex flex-col w-1/3 h-screen justify-start pl-4 border-l-4 border-dotted">
+                <ListLeagues/>
+                <OpenLeagueFormButton/>
+              </div>
+        </div>
         </div>
   </div>
   );
