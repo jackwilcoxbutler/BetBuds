@@ -44,13 +44,13 @@ export default async function Page({
           </div>
         </header>
 
-        <div className="flex flex-col">
+        <div className="flex  flex-col">
           <div className="overflow-x-auto shadow-md sm:rounded-lg">
               <div className="inline-block min-w-full align-middle">
                   <div className="overflow-hidden ">
             {leagueWithLatestBets && (
               <table className="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
-              <thead className="bg-gray-100 dark:bg-gray-700">
+              <thead className="bg-t-grey dark:bg-gray-700">
               <tr>
                 <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
                   Standing
@@ -59,7 +59,7 @@ export default async function Page({
                   Username
                 </th>
                 <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                  Score
+                  {leagueWithLatestBets.scoring_type === "UNITS" ? (<div>Units</div>) : (<div>Record</div>) }
                 </th>
                 <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
                   Current Bet
