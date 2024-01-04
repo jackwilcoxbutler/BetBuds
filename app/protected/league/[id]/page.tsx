@@ -30,6 +30,7 @@ export default async function Page({
       }
     }
   );
+  let iter = 0; 
 
     return (
       <div>
@@ -46,13 +47,46 @@ export default async function Page({
           </div>
         </header>
 
-        <div className="flex w-screen h-screen bg-t-orange justify-center">
-          <div className="flex w-2/3 justify-center">
+        <div className="flex flex-col">
+          <div className="overflow-x-auto shadow-md sm:rounded-lg">
+              <div className="inline-block min-w-full align-middle">
+                  <div className="overflow-hidden ">
             {league && (
-              league.league_name
+              <table className="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
+              <thead className="bg-gray-100 dark:bg-gray-700">
+              <tr>
+                <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                  Standing
+                </th>
+                <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                  Username
+                </th>
+                <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                  Score
+                </th>
+                <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                  Current Bet
+                </th>
+              </tr> 
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+              {league.users.map((user) => {
+                iter++;
+                return (
+                  <tr key={user.id} className="hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{iter}.</td>
+                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.username}</td>
+                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">-4.3u</td>
+                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">Titans (-4) @ Colts, Mon @ 7:30pm</td>
+                  </tr> 
+              )})}
+              </tbody>
+              </table>
               )}
+              </div>
           </div>
         </div>
+      </div>
       </div>
     );
   }
