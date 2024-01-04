@@ -7,49 +7,64 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url = env("DATABASE_URL") // uses connection pooling
+  url      = env("DATABASE_URL") // uses connection pooling
 }
 
 model User {
-  id        String     @id @default(cuid())
-  username  String @unique
-  email     String  @unique
-  password  String
-  leagues League[]
-  receivedInvites Invitation[] @relation(name: "received")//incoming and outcoming
-  sentInvites Invitation[] @relation(name: "sent")
-  createdAt DateTime @default(now())
+  id              String          @id @default(cuid())
+  username        String          @unique
+  email           String          @unique
+  password        String
+  leagues         League[]
+  user_bets       UserLeagueBet[]
+  receivedInvites Invitation[]    @relation(name: "received") //incoming and outcoming
+  sentInvites     Invitation[]    @relation(name: "sent")
+  createdAt       DateTime        @default(now())
 }
 
 model League {
-  id    String      @id @default(cuid())
-  league_name  String
-  users        User[]
-  scoring_type String
-  number_bets Int
-  number_periods Int
-  period_type String
-  is_private Boolean
+  id               String          @id @default(cuid())
+  league_name      String
+  users            User[]
+  user_bets        UserLeagueBet[]
+  scoring_type     String
+  number_bets      Int
+  number_periods   Int
+  period_type      String
+  is_private       Boolean
   max_number_users Int
-  max_odds Int
-  min_odds Int
-  allow_ml Boolean
-  allow_spread Boolean
-  allow_total Boolean
-  startDate DateTime
-  endDate DateTime
+  max_odds         Int
+  min_odds         Int
+  allow_ml         Boolean
+  allow_spread     Boolean
+  allow_total      Boolean
+  startDate        DateTime
+  endDate          DateTime
+  createdAt        DateTime        @default(now())
+}
+
+model UserLeagueBet {
+  id        String  @id @default(cuid())
+  user      User    @relation(fields: [userID], references: [id])
+  userID    String
+  league    League  @relation(fields: [leagueID], references: [id])
+  leagueID  String
+  team_name String
+  bet_type  String
+  line      Decimal
+  result    Decimal
   createdAt DateTime @default(now())
+  start_date DateTime
 }
 
 // Define the UserLeagues junction table
 
-
-model Invitation{
-  id  Int @id @default(autoincrement())
-  sender User  @relation(name: "sent",fields: [sender_id], references: [id])
-  sender_id String
-  receiver User @relation(name: "received",fields: [receiver_id], references: [id])
+model Invitation {
+  id          Int      @id @default(autoincrement())
+  sender      User     @relation(name: "sent", fields: [sender_id], references: [id])
+  sender_id   String
+  receiver    User     @relation(name: "received", fields: [receiver_id], references: [id])
   receiver_id String
-  timeSent DateTime @default(now())
-  accepted Boolean
+  timeSent    DateTime @default(now())
+  accepted    Boolean
 }

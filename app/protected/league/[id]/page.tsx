@@ -9,27 +9,24 @@ export default async function Page({
     params: { id: string }
   }) {
 
-    const league = await prisma.league.findUniqueOrThrow(
-      {
-        select: {
-        id: true,
-        league_name: true,
+    const leagueWithLatestBets = await prisma.league.findUnique({
+      where: {
+        id: params.id,
+      },
+      include: {
         users: {
-          select: {
-            id: true,
-            username: true,
-            email: true,
-            password: false,
-            leagues: false,
-            receivedInvites: false,
-            sentInvites: false,
+          include: {
+            user_bets: {
+              orderBy: {
+                createdAt: 'desc',
+              },
+              take: 1,
+            },
           },
         },
-      },where : {
-        id : params.id
-      }
-    }
-  );
+      },
+    });
+  
   let iter = 0; 
 
     return (
@@ -51,7 +48,7 @@ export default async function Page({
           <div className="overflow-x-auto shadow-md sm:rounded-lg">
               <div className="inline-block min-w-full align-middle">
                   <div className="overflow-hidden ">
-            {league && (
+            {leagueWithLatestBets && (
               <table className="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
               <thead className="bg-gray-100 dark:bg-gray-700">
               <tr>
@@ -70,15 +67,22 @@ export default async function Page({
               </tr> 
               </thead>
               <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
-              {league.users.map((user) => {
+              {leagueWithLatestBets.users.map((user) => {
                 iter++;
+                if(user.user_bets[0]){
+                  const bet = user.user_bets[0];
+                }
                 return (
                   <tr key={user.id} className="hover:bg-gray-100 dark:hover:bg-gray-700">
                     <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{iter}.</td>
                     <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.username}</td>
                     <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">-4.3u</td>
-                    <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">Titans (-4) @ Colts, Mon @ 7:30pm</td>
-                  </tr> 
+                    {user.user_bets[0] ? (
+                       <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.user_bets[0].team_name} {user.user_bets[0].line.toString()},{user.user_bets[0].start_date.toDateString()}</td>
+                    ) : (
+                      <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">No Current Bet</td>
+                    )}
+                    </tr> 
               )})}
               </tbody>
               </table>
