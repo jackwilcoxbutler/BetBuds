@@ -3,6 +3,7 @@ import ViewRules from "@/components/leagues/ViewRulesButton";
 import SignOut from "@/components/signout_button";
 import prisma from '@/lib/prisma';
 import { League, UserLeagueBet } from "@prisma/client";
+import { InboxButton } from "@/components/Invitations/ViewInboxButton";
 
 export default async function Page({
   params,
@@ -82,14 +83,17 @@ export default async function Page({
     <div>
       <header className="bg-t-dark-blue sticky top-0">
         {/*replace with homebutton component*/}
-        <div className="flex items-center justify-between p-4 bg-t-dark-blue mx-32">
+        <div className="flex items-center justify-between p-4 bg-t-dark-blue mx-20">
           <a
             href="/protected"
             className="text-2xl font-bold text-t-orange"
           >
             BetBuds
           </a>
-          <SignOut />
+          <div className="flex space-x-8 items-center">
+            <InboxButton notificationCount={3} />
+            <SignOut />
+          </div>
         </div>
       </header>
 
