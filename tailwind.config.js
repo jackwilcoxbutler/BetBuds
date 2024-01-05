@@ -23,7 +23,8 @@ module.exports = {
       't-light-blue' : '#4F5D75',
       't-dark-blue' : '#2D3142',
       't-white' : '#FFFFFF',
-      't-orange' : '#EF8354'
+      't-orange' : '#EF8354',
+      't-orange-200' : '#D5602E'
     }
   },
   plugins: [],

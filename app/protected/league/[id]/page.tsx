@@ -4,6 +4,7 @@ import SignOut from "@/components/signout_button";
 import prisma from '@/lib/prisma';
 import { League, UserLeagueBet } from "@prisma/client";
 import { InboxButton } from "@/components/Invitations/ViewInboxButton";
+import PlusButton from "@/components/Invitations/PlusButton";
 
 export default async function Page({
   params,
@@ -144,6 +145,9 @@ export default async function Page({
                 )}
               </div>
             </div>
+          </div>
+          <div className="pt-12 flex w-full justify-center">
+            <PlusButton/>
           </div>
         </div>
       </div>
