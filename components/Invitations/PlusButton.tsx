@@ -1,10 +1,15 @@
 import React from 'react';
 
-export const PlusButton: React.FC = () => {
+interface PlusButtonProps {
+  onClick : () => void
+}
+
+export const PlusButton: React.FC<PlusButtonProps> = ({onClick}) => {
   return (
     <button
       className="bg-t-orange hover:bg-t-orange-200 text-white font-bold p-2 rounded-full shadow-lg flex items-center justify-center w-16 h-16"
       aria-label="Add"
+      onClick={onClick}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

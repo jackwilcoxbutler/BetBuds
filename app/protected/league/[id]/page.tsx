@@ -5,6 +5,7 @@ import prisma from '@/lib/prisma';
 import { League, UserLeagueBet } from "@prisma/client";
 import { InboxButton } from "@/components/Invitations/ViewInboxButton";
 import PlusButton from "@/components/Invitations/PlusButton";
+import AddUserFormModal from "@/components/Invitations/AddUserFormModal";
 
 export default async function Page({
   params,
@@ -147,7 +148,7 @@ export default async function Page({
             </div>
           </div>
           <div className="pt-12 flex w-full justify-center">
-            <PlusButton/>
+            <AddUserFormModal/>
           </div>
         </div>
       </div>
