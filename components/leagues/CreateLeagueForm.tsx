@@ -101,10 +101,12 @@ const CreateLeagueForm: React.FC = () => {
         setLeagueName('');
         setError(null);
         setLoading(false);
+
       } else {
         const data = await response.json();
         setError(data.error || 'Failed to create league');
         setLoading(false);
+        router.push("/protected");
       }
     } catch (error) {
       console.error('Error creating league:', error);

@@ -70,4 +70,5 @@ model Invitation {
   receiver_id String
   timeSent    DateTime @default(now())
   accepted    Boolean
+  status      Int? @default(0)
 }

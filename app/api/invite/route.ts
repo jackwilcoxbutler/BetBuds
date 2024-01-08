@@ -58,3 +58,48 @@ export async function POST(req: Request) {
         }
     }
 }
+
+
+export async function GET(req: Request) {
+    let user_id :string;
+    const session = await getServerSession(authOptions);
+        
+    if(session?.user?.id){
+      user_id = session?.user?.id;
+    }else{
+      return NextResponse.json({ error: "User not authenticated" }, { status: 401 });
+    }
+    if (req.method === "GET") {
+      try {
+        const invites = await prisma.invitation.findMany({
+          select: {
+            id : true,
+            league : {
+                select : {
+                    id : true,
+                    league_name : true,
+                }
+            },
+            sender : {
+                select : {
+                    username : true,
+                }
+            },
+            status : true,
+          },where : {
+            receiver_id : user_id
+          }
+        });
+        
+        // Return the created league
+        return NextResponse.json(invites);
+      } catch (error) {
+        console.error('Error creating league:', error);
+        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+      }
+    }
+    else{
+      return NextResponse.json({ error: "Method not allowed" }, { status: 405 });
+    }
+  }
+  

@@ -6,6 +6,7 @@ import { League, UserLeagueBet } from "@prisma/client";
 import { InboxButton } from "@/components/Invitations/ViewInboxButton";
 import PlusButton from "@/components/Invitations/PlusButton";
 import AddUserFormModal from "@/components/Invitations/AddUserFormModal";
+import InboxModal from "@/components/Invitations/InboxModal";
 
 export default async function Page({
   params,
@@ -80,7 +81,7 @@ export default async function Page({
             BetBuds
           </a>
           <div className="flex space-x-8 items-center">
-            <InboxButton notificationCount={3} />
+            <InboxModal/>
             <SignOut />
           </div>
         </div>
@@ -89,7 +90,7 @@ export default async function Page({
       <div className="flex justify-center pt-8">
         <div className="flex w-5/6 flex-col">
           <div className="flex justify-end mx-6 pb-4">
-                <ViewRules/>
+                {/*<ViewRules/>*/}
           </div>
           <div className="min-w-full overflow-x-auto shadow-md sm:rounded-lg">
             <div className="inline-block min-w-full">
