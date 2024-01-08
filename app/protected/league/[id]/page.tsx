@@ -13,19 +13,6 @@ export default async function Page({
   params: { id: string }
 }) {
 
-  function getLatestBetForEachUser(userLeagueBets: UserLeagueBet[]): UserLeagueBet[] {
-    const latestBets: { [userId: string]: UserLeagueBet } = {};
-
-    userLeagueBets.forEach(bet => {
-      // Check if this is the first bet for the user or if it's more recent than the current latest
-      if (!latestBets[bet.userID] || latestBets[bet.userID].createdAt < bet.createdAt) {
-        latestBets[bet.userID] = bet;
-      }
-    });
-
-    return Object.values(latestBets);
-  }
-
   const leagueId = params.id; // Replace with the actual league ID
 
   // First, get the league and extract user IDs
@@ -148,7 +135,7 @@ export default async function Page({
             </div>
           </div>
           <div className="pt-12 flex w-full justify-center">
-            <AddUserFormModal/>
+            <AddUserFormModal league_id={params.id}/>
           </div>
         </div>
       </div>

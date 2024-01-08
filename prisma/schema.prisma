@@ -27,6 +27,7 @@ model League {
   league_name      String
   users            User[]
   user_bets        UserLeagueBet[]
+  Invitations      Invitation[]
   scoring_type     String
   number_bets      Int
   number_periods   Int
@@ -61,6 +62,8 @@ model UserLeagueBet {
 
 model Invitation {
   id          String      @id @default(cuid())
+  league      League    @relation(fields: [league_id], references: [id])
+  league_id   String 
   sender      User     @relation(name: "sent", fields: [sender_id], references: [id])
   sender_id   String
   receiver    User     @relation(name: "received", fields: [receiver_id], references: [id])

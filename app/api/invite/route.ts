@@ -19,7 +19,7 @@ export async function POST(req: Request) {
                 return NextResponse.json({ error: "User not authenticated" }, { status: 401 });
             }
 
-            const { receiverUsername } = await req.json(); 
+            const { receiver_username,league_id } = await req.json(); 
 
 
             const receiver_id = await prisma.user.findUniqueOrThrow({
@@ -27,7 +27,7 @@ export async function POST(req: Request) {
                     id : true
                 },
                 where : {
-                    username : receiverUsername
+                    username : receiver_username
                 }
             });
 
@@ -38,7 +38,8 @@ export async function POST(req: Request) {
             const invitation = await prisma.invitation.create({
                 data: {
                   sender: { connect: { id: user_id } },
-                  receiver: { connect: { username: receiverUsername } },
+                  receiver: { connect: { username: receiver_username } },
+                  league : {connect : { id : league_id}},
                   // Set other fields as needed, for example:
                   accepted: false,
                 },

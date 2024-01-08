@@ -2,38 +2,38 @@
 import React, { useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { Cross2Icon } from '@radix-ui/react-icons';
-import toast from "react-hot-toast";
+import toast,{Toaster} from "react-hot-toast";
 
-const AddUserFormModal = () => {
+interface AddUserFormModalProps {
+  league_id : string,
+}
+
+const AddUserFormModal = ({league_id} : AddUserFormModalProps) => {
 
   const [username,setUsername] = useState("username");
   const [loading,setLoading] = useState(false);
 
   async function handleSubmit(){
-    try {
-      const response = await fetch('/api/invite', {
+      fetch('/api/invite', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          receiverUsername : username,
+          receiver_username : username,
+          league_id : league_id
         },),
+      }).then(async (res) => {
+        setLoading(false);
+        if (res.status === 200) {
+          toast.success("User Invited!");
+          Dialog.DialogClose;
+        } else {
+          const { error } = await res.json();
+          toast.error(error);
+        }
       });
-      if (response.ok) {
-        // League created successfully
-        setUsername('');
-        setLoading(false);
-      } else {
-        const data = await response.json();
-        setLoading(false);
-      }
-    } catch (error : any) {
-      toast.error(error);
-      console.error('Error creating league:', error);
-      setLoading(false);
     }
-  }
 
   return(
   <Dialog.Root>
@@ -62,14 +62,13 @@ const AddUserFormModal = () => {
             onChange={(e) => {setUsername(e.target.value)}}
           />
         </fieldset>
+        <Toaster />
         <div className="mt-[25px] flex justify-end">
-          <Dialog.Close asChild>
-            <button 
+          <button 
             className="bg-t-light-blue text-t-orange hover:bg-t-dark-blue inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none"
             onClick={handleSubmit}>
               Send Invite
-            </button>
-          </Dialog.Close>
+          </button>
         </div>
         <Dialog.Close asChild>
           <button
