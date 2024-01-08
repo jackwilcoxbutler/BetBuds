@@ -63,8 +63,8 @@ model Invitation {
   id          String      @id @default(cuid())
   sender      User     @relation(name: "sent", fields: [sender_id], references: [id])
   sender_id   String
-  receiver    User     @relation(name: "received", fields: [receiver_username], references: [username])
-  receiver_username String
+  receiver    User     @relation(name: "received", fields: [receiver_id], references: [id])
+  receiver_id String
   timeSent    DateTime @default(now())
   accepted    Boolean
 }

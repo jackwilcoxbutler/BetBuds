@@ -1,10 +1,8 @@
 'use client';
-import React, { use, useState } from 'react';
+import React, { useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { Cross2Icon } from '@radix-ui/react-icons';
-import PlusButton from './PlusButton';
-import { sendInvite } from '@/lib/server/SendInvite';
-import { useSession } from 'next-auth/react';
+import toast from "react-hot-toast";
 
 const AddUserFormModal = () => {
 
@@ -30,7 +28,8 @@ const AddUserFormModal = () => {
         const data = await response.json();
         setLoading(false);
       }
-    } catch (error) {
+    } catch (error : any) {
+      toast.error(error);
       console.error('Error creating league:', error);
       setLoading(false);
     }
@@ -39,7 +38,7 @@ const AddUserFormModal = () => {
   return(
   <Dialog.Root>
     <Dialog.Trigger asChild>
-      <button className="text-violet11 shadow-blackA4 hover:bg-mauve3 inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none">
+      <button className="text-t-dark-blue shadow-blackA4 hover:bg-mauve3 inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black outline outline-t-dark-blue">
         Add User
       </button>
     </Dialog.Trigger>
@@ -57,7 +56,7 @@ const AddUserFormModal = () => {
             Username
           </label>
           <input
-            className="text-t-dark-blue shadow-violet7 focus:shadow-violet8 inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
+            className="text-t-dark-blue shadow-t-dark-blue focus:shadow-t-light-blue inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
             id="name"
             value={username}
             onChange={(e) => {setUsername(e.target.value)}}
@@ -66,9 +65,8 @@ const AddUserFormModal = () => {
         <div className="mt-[25px] flex justify-end">
           <Dialog.Close asChild>
             <button 
-            className="bg-green4 text-green11 hover:bg-green5 focus:shadow-green7 inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none"
+            className="bg-t-light-blue text-t-orange hover:bg-t-dark-blue inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none"
             onClick={handleSubmit}>
-            
               Send Invite
             </button>
           </Dialog.Close>
