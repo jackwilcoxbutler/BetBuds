@@ -1,4 +1,4 @@
-const { violet, blackA, mauve, green } = require('@radix-ui/colors');
+const { violet, blackA, mauve, green,red } = require('@radix-ui/colors');
 
 
 module.exports = {
@@ -30,6 +30,7 @@ module.exports = {
         ...violet,
         ...green,
         ...blackA,
+        ...red,
     },
     keyframes: {
       overlayShow: {

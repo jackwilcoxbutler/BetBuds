@@ -85,6 +85,11 @@ export async function GET(req: Request) {
                     username : true,
                 }
             },
+            receiver : {
+              select : {
+                id : true
+              }
+            },
             status : true,
           },where : {
             receiver_id : user_id
