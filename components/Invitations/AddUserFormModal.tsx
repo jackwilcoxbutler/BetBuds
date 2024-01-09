@@ -31,6 +31,7 @@ const AddUserFormModal = ({league_id} : AddUserFormModalProps) => {
         } else {
           const { error } = await res.json();
           toast.error(error);
+          setUsername('');
         }
       });
     }
