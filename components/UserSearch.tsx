@@ -1,8 +1,9 @@
 // pages/searchUser.tsx
 'use client';
-import { useState, useEffect, ChangeEvent } from 'react';
+import { useState, useEffect, ChangeEvent, createContext, useContext } from 'react';
 var debounce = require('lodash.debounce');
 import * as ScrollArea from '@radix-ui/react-scroll-area';
+import { UsernameContext } from './Invitations/AddUserFormModal';
 
 
 
@@ -11,9 +12,12 @@ interface User {
   username: string,
 }
 
+
+
 export default function SearchUser() {
-  const [username, setUsername] = useState<string>('');
   const [searchResults, setSearchResults] = useState<User[] | null>(null);
+  const context = useContext(UsernameContext);
+
 
   const fetchSearchResults = async (username: string) => {
     const response = await fetch('/api/invite/searchUser', {
@@ -37,8 +41,8 @@ export default function SearchUser() {
   }, 300); // 300ms delay
 
   useEffect(() => {
-    if (username) {
-      debouncedSearch(username);
+    if (context?.username) {
+      debouncedSearch(context?.username);
     } else {
       setSearchResults(null);
     }
@@ -47,10 +51,10 @@ export default function SearchUser() {
     return () => {
       debouncedSearch.cancel();
     };
-  }, [username]);
+  }, [context?.username]);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setUsername(event.target.value);
+    context?.setUsername(event.target.value);
   };
 
   return (
@@ -58,7 +62,7 @@ export default function SearchUser() {
       <input
         className="text-t-dark-blue shadow-t-dark-blue focus:shadow-t-light-blue inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
         type="text"
-        value={username}
+        value={context?.username ?? ""}
         onChange={handleInputChange}
         placeholder="Search for a username"
       />
@@ -67,11 +71,10 @@ export default function SearchUser() {
         <ScrollArea.Viewport className="w-full h-full rounded">
           <div className="py-[15px] px-5">
             {searchResults.map((user) => (
-              <div>
+              <div key={user.id}>
                 <button
                 className="text-mauve12 text-[13px] leading-[18px] mt-2.5 pt-2.5 border-t border-t-mauve6"
-                key={user.id}
-                onClick={() => {setUsername(user.username); setSearchResults(null);debouncedSearch.cancel();}}
+                onClick={() => {context?.setUsername(user.username); setSearchResults(null);debouncedSearch.cancel();}}
               >
                 {user.username}
               </button>
