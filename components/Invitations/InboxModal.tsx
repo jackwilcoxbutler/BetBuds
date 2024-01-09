@@ -4,6 +4,7 @@ import * as Dialog from '@radix-ui/react-dialog';
 import { Cross2Icon, EnvelopeClosedIcon, CrossCircledIcon } from '@radix-ui/react-icons';
 import toast, {  } from "react-hot-toast";
 import AcceptInviteButon from './AcceptInviteButton';
+import InviteActionButton from './AcceptInviteButton';
 
 type InboxInvite = {
     id: string,
@@ -83,14 +84,14 @@ const InboxModal = () => {
                         <table className='min-w-full'>
                             <thead className="bg-t-grey dark:bg-gray-700">
                                 <tr>
-                                    <th scope="col" className="py-3 px-8 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                    <th scope="col" className="py-3 px-8 text-sm font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
                                         League Name
                                     </th>
-                                    <th scope="col" className="py-3 px-8 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                    <th scope="col" className="py-3 px-8 text-sm font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
                                         From
                                     </th>
-                                    <th scope="col" className="py-3 px-8 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                        Status
+                                    <th scope="col" className="py-3 px-8 text-sm font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                        Accept
                                     </th>
                                 </tr>
                             </thead>
@@ -103,15 +104,20 @@ const InboxModal = () => {
                                             <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{invite.sender}</td>
                                             <td>
                                                 <div className='flex px-10 space-x-10 justify-start'>
-                                                    <AcceptInviteButon
+                                                    <InviteActionButton
                                                     receiver_id={invite.receiver_id}
                                                     league_id={invite.league_id}
                                                     invite_id={invite.id}
+                                                    is_accept={true}
                                                     onRefresh={fetchInvites}
                                                     />
-                                                    <button>
-                                                        <CrossCircledIcon className='w-6 h-6 text-red10  hover:text-red12'/>
-                                                    </button>
+                                                    <InviteActionButton
+                                                    receiver_id={invite.receiver_id}
+                                                    league_id={invite.league_id}
+                                                    invite_id={invite.id}
+                                                    is_accept={false}
+                                                    onRefresh={fetchInvites}
+                                                    />
                                                 </div>
                                             </td>
                                         </tr>
