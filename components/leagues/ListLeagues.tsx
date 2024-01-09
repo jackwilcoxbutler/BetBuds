@@ -72,7 +72,7 @@ const LeagueBox: React.FC<leagueBoxProps> = ({league}) => {
   return (
           <a
           href={url}
-          className="w-full border-2 rounded-tr-lg border-t-orange p-3 m-3 bg-min-blue">
+          className="w-full border-2 rounded-tr-lg border-t-grey p-3 m-3 bg-t-light-blue hover:bg-t-dark-blue">
             <div>
               <h1
               className="bold text-3xl text-t-white pb-2">

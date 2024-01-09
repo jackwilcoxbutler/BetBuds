@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { Cross2Icon } from '@radix-ui/react-icons';
 import toast,{Toaster} from "react-hot-toast";
+import SearchUser from '../UserSearch';
+
 
 interface AddUserFormModalProps {
   league_id : string,
@@ -13,7 +15,8 @@ const AddUserFormModal = ({league_id} : AddUserFormModalProps) => {
   const [username,setUsername] = useState("username");
   const [loading,setLoading] = useState(false);
 
-  async function handleSubmit(){
+
+  /*async function handleSubmit(){
       fetch('/api/invite', {
         method: 'POST',
         headers: {
@@ -34,6 +37,10 @@ const AddUserFormModal = ({league_id} : AddUserFormModalProps) => {
           setUsername('');
         }
       });
+    }*/
+
+    function handleSubmit(){
+      console.log("Username : ",username);
     }
 
   return(
@@ -56,12 +63,7 @@ const AddUserFormModal = ({league_id} : AddUserFormModalProps) => {
           <label className="text-t-dark-blue w-[90px] text-right text-[15px]" htmlFor="name">
             Username
           </label>
-          <input
-            className="text-t-dark-blue shadow-t-dark-blue focus:shadow-t-light-blue inline-flex h-[35px] w-full flex-1 items-center justify-center rounded-[4px] px-[10px] text-[15px] leading-none shadow-[0_0_0_1px] outline-none focus:shadow-[0_0_0_2px]"
-            id="name"
-            value={username}
-            onChange={(e) => {setUsername(e.target.value)}}
-          />
+          <SearchUser />
         </fieldset>
         <Toaster />
         <div className="mt-[25px] flex justify-end">
