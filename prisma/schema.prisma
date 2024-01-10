@@ -52,11 +52,32 @@ model UserLeagueBet {
   leagueID  String
   team_name String
   bet_type  String
-  line      Decimal
+  price      Decimal
+  point Decimal?
   result    Decimal
   createdAt DateTime @default(now())
   start_date DateTime
 }
+
+model Bet {
+    id                String      @id
+    sportTitle             String
+    sportKey         String
+    homeTeam          String
+    awayTeam          String
+    lastUpdate       DateTime @default(now())
+    awayML            Int?
+    homeML            Int?
+    awaySpreadPoint   Float?
+    homeSpreadPoint   Float?
+    awaySpreadPrice   Int?
+    homeSpreadPrice   Int?
+    totalPoint        Float?
+    overPrice         Int?
+    underPrice        Int?
+    startDate         DateTime
+}
+
 
 // Define the UserLeagues junction table
 

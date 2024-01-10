@@ -53,6 +53,8 @@ homeSpreadPrice?
 totalPoint?
 overPrice?
 underPrice?
+startDate
+lastUpdate
 
 
 */

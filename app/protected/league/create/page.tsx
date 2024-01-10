@@ -1,6 +1,4 @@
-import SignOut from "@/components/signout_button";
 import CreateLeagueForm from "@/components/leagues/CreateLeagueForm";
-import InboxModal from "@/components/Invitations/InboxModal";
 import DefaultHeader from "@/components/header";
 
 export default function Home() {
