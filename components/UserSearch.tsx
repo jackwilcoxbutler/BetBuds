@@ -66,16 +66,18 @@ export default function SearchUser() {
         onChange={handleInputChange}
         placeholder="Search for a username"
       />
-      {searchResults && (
+      {searchResults && (searchResults?.length > 0) && (
       <ScrollArea.Root className="w-[200px] h-[100px] rounded overflow-hidden shadow-[0_2px_10px] shadow-blackA4 bg-white">
         <ScrollArea.Viewport className="w-full h-full rounded">
           <div className="py-[5px] px-5">
             {searchResults.map((user) => (
-              <div key={user.id}>
-                <button
-                className="text-mauve12 text-[13px] leading-[18px] mt-1 pt-1 border-t border-t-mauve6"
-                onClick={() => {context?.setUsername(user.username); setSearchResults(null);debouncedSearch.cancel();}}
+              <div 
+              key={user.id}
               >
+                <button
+                className="text-mauve12 text-md leading-[15px] mt-1 pt-1 hover:text-lg"
+                onClick={() => {context?.setUsername(user.username); setSearchResults(null);debouncedSearch.cancel();}}
+                >
                 {user.username}
               </button>
               </div>

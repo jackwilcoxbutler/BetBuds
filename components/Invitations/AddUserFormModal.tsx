@@ -67,9 +67,10 @@ const AddUserFormModal = ({ league_id }: AddUserFormModalProps) => {
               Invite user by username
             </Dialog.Description>
             <fieldset className="mb-[15px] flex items-center gap-5">
-              <label className="text-t-dark-blue w-[90px] text-right text-[15px]" htmlFor="name">
+              <div 
+              className="text-t-dark-blue w-[90px] text-right text-[15px]">
                 Username
-              </label>
+              </div>
               <SearchUser />
             </fieldset>
             <Toaster />
