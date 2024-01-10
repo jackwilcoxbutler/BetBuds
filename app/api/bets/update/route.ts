@@ -6,7 +6,7 @@ import { Bet,Outcome,Market } from "@/lib/betTypes";
 
 
 
-async function fetchBetsBySport(sport_key : string) {
+async function fetchBetsBySport(sport_key : string ) {
     try {
         const url = "https://api.the-odds-api.com/v4/sports/" + sport_key + "/odds?apiKey=fdbb99959a10b219f4351a17167d7f0e&oddsFormat=american&regions=us&markets=h2h,spreads,totals&dateFormat=iso&bookmakers=fanduel"
         const response = await axios.get(url);
@@ -50,8 +50,26 @@ async function fetchBetsBySport(sport_key : string) {
                 };
 
 
-                prisma.bet.create({ data: eventData })
-                console.log(eventData);
+
+
+
+                const newBet = await prisma.bet.create({ data: {
+                    id  : eventData.id,
+                    sportTitle : eventData.sportTitle,
+                    sportKey : eventData.sportKey,
+                    homeTeam : eventData.homeTeam,
+                    awayTeam : eventData.awayTeam,
+                    awayML : eventData.awayML || null,
+                    homeML : eventData.homeML || null,
+                    awaySpreadPoint : eventData.awaySpreadPoint || null,
+                    awaySpreadPrice : eventData.awaySpreadPrice || null,
+                    homeSpreadPoint : eventData.homeSpreadPoint || null,
+                    homeSpreadPrice : eventData.homeSpreadPrice || null,
+                    totalPoint : eventData.totalPoint || null,
+                    underPrice : eventData.underPrice || null,
+                    overPrice : eventData.overPrice || null,
+                    startDate : eventData.startDate
+                } })
             }else{
                 console.log("can't find bookmaker");
             }
