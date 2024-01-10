@@ -1,7 +1,7 @@
 'use client'
-import { getSports, getSportName, removeDuplicates } from '@/lib/betService';
+import { getSports, getSportNames, removeDuplicates } from '@/lib/betService';
 import * as Tabs from '@radix-ui/react-tabs';
-import { useEffect, useState } from 'react';
+import { SportTabContent } from './SportTab';
 
 
 export const BetsList: React.FC = () => {
@@ -15,7 +15,7 @@ export const BetsList: React.FC = () => {
             <div className="flex w-full h-full items-start justify-center text-t-dark-blue">
                 <Tabs.Root
                     className="flex flex-col w-full"
-                    defaultValue="tab1"
+                    defaultValue="Basketball"
                 >
                     <Tabs.List className="shrink-0 flex  border-mauve6">
                         {tab_names.map((sport) => {
@@ -35,17 +35,17 @@ export const BetsList: React.FC = () => {
                         })}
                     </Tabs.List>
                     {tab_names.map((sport) => {
-                        //getSportName(sport)
+                        const sportKeys = getSportNames(sport);
                         return (
-                        <Tabs.Content
-                            className="w-full h-screen bg-t-white"
-                            value={sport}
-                            key={sport}
-                        >
-                            <div className='flex w-full h-full items-center justify-center bg-t-orange'>
-                                {sport}
-                            </div>
-                        </Tabs.Content>
+                            <Tabs.Content
+                                className="w-full h-screen bg-t-white"
+                                value={sport}
+                                key={sport}
+                            >
+                                <div className='flex h-full w-full items-center justify-center'>
+                                    <SportTabContent sport_key={sport} />
+                                </div>
+                            </Tabs.Content>
                         )
                     })}
                 </Tabs.Root>

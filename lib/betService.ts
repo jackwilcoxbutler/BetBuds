@@ -35,18 +35,17 @@ export async function getSports(): Promise<string[]> {
     }
 };
 
-export function getSportName(a : string){
-    if(a === "americanfootball_nfl"){
-        return "Football";
-    }else if(a === 'basketball_nba' || a === 'basketball_ncaab'){
-        return "Basketball";
-    }else if(a === 'icehockey_nhl'){
-        return "Hockey";
-    }else if(a === 'soccer_epl'){
-        return "Soccer";
+export function getSportNames(a : string){
+    if(a === "Football"){
+        return ["americanfootball_nfl"];
+    }else if(a === 'Basketball'){
+        return ["basketball_nba","basketball_ncaab"];
+    }else if(a === 'Hockey'){
+        return ["icehockey_nhl"];
+    }else if(a === 'Soccer'){
+        return ["soccer_epl"];
     }else{
-        return "Unknown";
+        return [];
     }
-
 };
 
