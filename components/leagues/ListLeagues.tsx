@@ -1,9 +1,7 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
-import { useEffect, useState } from "react";
 import prisma from '@/lib/prisma';
 
-//import { League,User } from "@prisma/client";
 
 interface User{
     id : string,

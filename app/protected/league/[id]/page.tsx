@@ -1,12 +1,6 @@
-import { ListLeagues } from "@/components/leagues/ListLeagues";
-import ViewRules from "@/components/leagues/ViewRulesButton";
-import SignOut from "@/components/signout_button";
+
 import prisma from '@/lib/prisma';
-import { League, UserLeagueBet } from "@prisma/client";
-import { InboxButton } from "@/components/Invitations/ViewInboxButton";
-import PlusButton from "@/components/Invitations/PlusButton";
 import AddUserFormModal from "@/components/Invitations/AddUserFormModal";
-import InboxModal from "@/components/Invitations/InboxModal";
 import DefaultHeader from "@/components/header";
 
 
