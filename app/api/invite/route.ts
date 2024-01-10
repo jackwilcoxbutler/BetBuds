@@ -21,18 +21,27 @@ export async function POST(req: Request) {
 
             const { receiver_username,league_id } = await req.json(); 
 
-
             const receiver_id = await prisma.user.findUniqueOrThrow({
                 select : {
-                    id : true
+                    id : true,
+                    leagues : {
+                      select : {
+                        id : true
+                    }
+                  }
                 },
                 where : {
                     username : receiver_username
                 }
             });
 
+            const leagueExists = receiver_id.leagues.some(league => league.id === league_id);
+
+
             if(receiver_id.id === user_id){
                 return NextResponse.json({ error: "Can not invite yourself" }, { status: 500 });
+            }else if(leagueExists){
+                return NextResponse.json({ error: "User is already in this league" }, { status: 500 });
             }
 
             const invitation = await prisma.invitation.create({

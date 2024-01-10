@@ -7,6 +7,8 @@ import { InboxButton } from "@/components/Invitations/ViewInboxButton";
 import PlusButton from "@/components/Invitations/PlusButton";
 import AddUserFormModal from "@/components/Invitations/AddUserFormModal";
 import InboxModal from "@/components/Invitations/InboxModal";
+import DefaultHeader from "@/components/header";
+
 
 export default async function Page({
   params,
@@ -71,21 +73,7 @@ export default async function Page({
 
   return (
     <div>
-      <header className="bg-t-dark-blue sticky top-0">
-        {/*replace with homebutton component*/}
-        <div className="flex items-center justify-between p-4 bg-t-dark-blue mx-20">
-          <a
-            href="/protected"
-            className="text-2xl font-bold text-t-orange"
-          >
-            BetBuds
-          </a>
-          <div className="flex space-x-8 items-center">
-            <InboxModal/>
-            <SignOut />
-          </div>
-        </div>
-      </header>
+      <DefaultHeader/>
 
       <div className="flex justify-center pt-8">
         <div className="flex w-5/6 flex-col">
