@@ -10,7 +10,7 @@ export const DefaultHeader = () => {
             href="/protected"
             className="text-2xl font-bold text-t-orange"
           >
-            BetBuds
+            Wager Wars
           </a>
           <div className="flex space-x-8 items-center">
             <InboxModal/>
