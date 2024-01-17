@@ -25,7 +25,8 @@ export async function getSports(): Promise<string[]> {
                 'basketball_nba',
                 'basketball_ncaab',
                 'icehockey_nhl',
-                'soccer_epl'
+                'soccer_epl',
+                'baseball_mlb'
             ].includes(key));
     } catch (error) {
         if (error instanceof Error) {

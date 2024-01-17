@@ -14,10 +14,9 @@ export async function POST(req: Request) {
             const bets = await prisma.bet.findMany({
                 where: {
                     sportKey: sport_key,
-                    // startDate: {
-                    //     gte: todayStart,
-                    //     lte: todayEnd,
-                    // },
+                     startDate: {
+                         gte: new Date(),
+                     },
                 },
             });
             //search all bets
