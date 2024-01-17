@@ -8,7 +8,7 @@ import { Bet,Outcome,Market } from "@/lib/betTypes";
 
 async function fetchBetsBySport(sport_key : string ) {
     try {
-        const url = "https://api.the-odds-api.com/v4/sports/" + sport_key + "/odds?apiKey=fdbb99959a10b219f4351a17167d7f0e&oddsFormat=american&regions=us&markets=h2h,spreads,totals&dateFormat=iso&bookmakers=fanduel"
+        const url = "https://api.the-odds-api.com/v4/sports/" + sport_key + "/odds?apiKey=" + process.env.ODDS_API + "&oddsFormat=american&regions=us&markets=h2h,spreads,totals&dateFormat=iso&bookmakers=fanduel"
         const response = await axios.get(url);
         //console.log(response.data);
                 
