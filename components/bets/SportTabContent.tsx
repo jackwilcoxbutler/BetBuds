@@ -44,13 +44,14 @@ export const SportTabContent: React.FC<SportTabProps> = ({ sport }: SportTabProp
         }
     }
 
-    const formatOdds = (a : number | null | undefined): string => {
-        if(a){
-            if(a > 0){
-            return ("+" +a.toString()) 
-        }else{
-            return a.toString()
-        }}else{
+    const formatOdds = (a: number | null | undefined): string => {
+        if (a) {
+            if (a > 0) {
+                return ("+" + a.toString())
+            } else {
+                return a.toString()
+            }
+        } else {
             return "-"
         }
     }
@@ -77,12 +78,33 @@ export const SportTabContent: React.FC<SportTabProps> = ({ sport }: SportTabProp
                                 <div className="flex flex-row space-x-5" >
                                     <button
                                         className="border w-18 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-dark-blue hover:text-t-white"
-                                        onClick={() => {context?.setBet({team_name : bet.homeTeam,bet_type : "ML", price : bet.homeML ?? 0, start_date : bet.startDate,other_team : bet.awayTeam})}}
+                                        onClick={() => {
+                                            context?.setBet({
+                                                event_id: bet.id,
+                                                team_name: bet.homeTeam,
+                                                bet_type: "ML",
+                                                price: bet.homeML ?? 0,
+                                                start_date: bet.startDate,
+                                                other_team: bet.awayTeam
+                                            })
+                                        }}
                                     >
                                         {formatOdds(bet.homeML)}
                                     </button>
                                     <button
                                         className="border w-18 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-dark-blue hover:text-t-white"
+                                        onClick={() => {
+                                            context?.setBet({
+                                                event_id: bet.id,
+
+                                                team_name: bet.homeTeam,
+                                                other_team:bet.awayTeam,
+                                                bet_type: "SPREAD",
+                                                point: bet.homeSpreadPoint ?? 0,
+                                                price: bet.homeSpreadPrice ?? 0,
+                                                start_date: bet.startDate,
+                                            })
+                                        }}
                                     >
                                         <div className="flex flex-col">
                                             <div className="text-xl">{formatOdds(bet.homeSpreadPoint)}</div>
@@ -91,8 +113,17 @@ export const SportTabContent: React.FC<SportTabProps> = ({ sport }: SportTabProp
                                     </button>
                                     <button
                                         className="border w-18 content-center rounded-md bg-t-grey  px-3 py-1 hover:bg-t-dark-blue hover:text-t-white"
+                                        onClick={() => {
+                                            context?.setBet({
+                                                event_id: bet.id,
+                                                bet_type: "OVER",
+                                                point: bet.totalPoint ?? 0,
+                                                price: bet.overPrice ?? 0,
+                                                start_date: bet.startDate,
+                                            })
+                                        }}
                                     >
-                                       
+
                                         <div className="flex flex-col">
                                             <div className="text-xl">o{bet.totalPoint}</div>
                                             <div className="text-md">{formatOdds(bet.overPrice)}</div>
@@ -106,13 +137,34 @@ export const SportTabContent: React.FC<SportTabProps> = ({ sport }: SportTabProp
                                 <div className="flex flex-row space-x-5">
                                     <button
                                         className="border content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-dark-blue hover:text-t-white"
+                                        onClick={() => {
+                                            context?.setBet({
+                                                event_id: bet.id,
+                                                team_name: bet.awayTeam,
+                                                other_team: bet.homeTeam,
+                                                bet_type: "ML",
+                                                price: bet.awayML ?? 0,
+                                                start_date: bet.startDate,
+                                            })
+                                        }}
                                     >
                                         {formatOdds(bet.awayML)}
                                     </button>
                                     <button
                                         className="border w-18 content-center  rounded-md bg-t-grey px-3 py-1 hover:bg-t-dark-blue hover:text-t-white"
+                                        onClick={() => {
+                                            context?.setBet({
+                                                event_id: bet.id,
+                                                team_name: bet.awayTeam,
+                                                other_team: bet.homeTeam,
+                                                bet_type: "SPREAD",
+                                                point: bet.awaySpreadPoint ?? 0,
+                                                price: bet.awaySpreadPrice ?? 0,
+                                                start_date: bet.startDate,
+                                            })
+                                        }}
                                     >
-                                        
+
                                         <div className="flex flex-col">
                                             <div className="text-xl">{formatOdds(bet.awaySpreadPoint)}</div>
                                             <div className="text-md">{formatOdds(bet.awaySpreadPrice)}</div>
@@ -120,6 +172,15 @@ export const SportTabContent: React.FC<SportTabProps> = ({ sport }: SportTabProp
                                     </button>
                                     <button
                                         className="border w-18 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-dark-blue hover:text-t-white"
+                                        onClick={() => {
+                                            context?.setBet({
+                                                event_id: bet.id,
+                                                bet_type: "UNDER",
+                                                point: bet.totalPoint ?? 0,
+                                                price: bet.underPrice ?? 0,
+                                                start_date: bet.startDate,
+                                            })
+                                        }}
                                     >
                                         <div className="flex flex-col">
                                             <div className="text-xl">u{bet.totalPoint}</div>
@@ -136,7 +197,7 @@ export const SportTabContent: React.FC<SportTabProps> = ({ sport }: SportTabProp
                     <div className="flex w-full h-full justify-center pt-11">
                         <div className="w-[400px] h-[400px] rounded bg-t-grey">
                             <div className="flex h-full justify-center items-center text-2xl">
-                        No bets for {sport} today!
+                                No bets for {sport} today!
                             </div>
                         </div>
                     </div>

@@ -50,8 +50,8 @@ model UserLeagueBet {
   userID     String
   league     League   @relation(fields: [leagueID], references: [id])
   leagueID   String
-  team_name  String
-  Opponent   String
+  team_name  String?
+  Opponent   String?
   bet_type   String
   price      Decimal
   point      Decimal?
