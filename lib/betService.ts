@@ -1,3 +1,5 @@
+import { Bet_Object } from "./betTypes";
+
 // sportsService.ts
 type Sport = {
     key: string;
@@ -47,3 +49,26 @@ export function getSportNames(a: string) {
         return [];
     }
 };
+
+
+export const mapJsonToBetObjects = (jsonData: any[]): Bet_Object[] => {
+    return jsonData.map((item) => ({
+      id: item.id,
+      sportTitle: item.sportTitle,
+      sportKey: item.sportKey,
+      homeTeam: item.homeTeam,
+      awayTeam: item.awayTeam,
+      lastUpdate: new Date(item.lastUpdate),
+      awayML: item.awayML ?? null,
+      homeML: item.homeML ?? null,
+      awaySpreadPoint: item.awaySpreadPoint ?? null,
+      homeSpreadPoint: item.homeSpreadPoint ?? null,
+      awaySpreadPrice: item.awaySpreadPrice ?? null,
+      homeSpreadPrice: item.homeSpreadPrice ?? null,
+      totalPoint: item.totalPoint ?? null,
+      overPrice: item.overPrice ?? null,
+      underPrice: item.underPrice ?? null,
+      startDate: new Date(item.startDate),
+    }));
+  };
+  

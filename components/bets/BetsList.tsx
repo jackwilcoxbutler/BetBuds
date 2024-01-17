@@ -1,7 +1,7 @@
 'use client'
 import { getSports, getSportNames, removeDuplicates } from '@/lib/betService';
 import * as Tabs from '@radix-ui/react-tabs';
-import { SportTabContent } from './SportTab';
+import { SportTabContent } from './SportTabContent';
 
 
 export const BetsList: React.FC = () => {
@@ -43,7 +43,7 @@ export const BetsList: React.FC = () => {
                                 key={sport}
                             >
                                 <div className='flex h-full w-full items-center justify-center'>
-                                    <SportTabContent sport_key={sport} />
+                                    <SportTabContent sport={sport} />
                                 </div>
                             </Tabs.Content>
                         )

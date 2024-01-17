@@ -26,4 +26,24 @@ export interface Bet {
     price: number;
     point?: number;
   }
+
+  export interface Bet_Object {
+    id: string;
+    sportTitle: string;
+    sportKey: string;
+    homeTeam: string;
+    awayTeam: string;
+    lastUpdate: Date;
+    awayML?: number | null; // '?' denotes an optional field, which can be undefined or null
+    homeML?: number | null;
+    awaySpreadPoint?: number | null; // Floats are represented as 'number' in TypeScript
+    homeSpreadPoint?: number | null;
+    awaySpreadPrice?: number | null;
+    homeSpreadPrice?: number | null;
+    totalPoint?: number | null;
+    overPrice?: number | null;
+    underPrice?: number | null;
+    startDate: Date;
+  }
+  
   
