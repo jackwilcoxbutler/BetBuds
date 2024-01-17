@@ -11,7 +11,7 @@ export async function POST(req: Request) {
                 return NextResponse.json({ error: "No sport key" }, { status: 500 });
             }
 
-            const bets = await prisma.bet.findMany({
+            const bets = await prisma.event.findMany({
                 where: {
                     sportKey: sport_key,
                      startDate: {

@@ -53,7 +53,7 @@ async function fetchBetsBySport(sport_key : string ) {
 
 
 
-                const newBet = await prisma.bet.create({ data: {
+                const newBet = await prisma.event.create({ data: {
                     id  : eventData.id,
                     sportTitle : eventData.sportTitle,
                     sportKey : eventData.sportKey,
