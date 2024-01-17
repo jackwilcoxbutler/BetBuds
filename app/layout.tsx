@@ -2,8 +2,11 @@
 import "@/styles/globals.css";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Toaster } from "react-hot-toast";
+import AuthStatus from "@/components/auth-status";
 import { Suspense } from "react";
-import { getServerSession } from "next-auth/next";
+import Head from "next/head";
+import NextAuth, { getServerSession } from "next-auth/next";
 import Provider from "./context/client-provider";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 const inter = Inter({
@@ -11,9 +14,9 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const title = "WagerWars - Bet against friends";
+const title = "Next.js Prisma Postgres Auth Starter";
 const description =
-  "A sports picks competition against your friends.";
+  "This is a Next.js starter kit that uses Next-Auth for simple email + password login and a Postgres database to persist the data.";
 
 export const metadata: Metadata = {
   title,
@@ -23,6 +26,7 @@ export const metadata: Metadata = {
     title,
     description,
   },
+  metadataBase: new URL("https://nextjs-postgres-auth.vercel.app"),
 };
 
 export default async function RootLayout({
