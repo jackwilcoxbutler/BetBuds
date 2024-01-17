@@ -8,6 +8,5 @@ export async function getBetsBySport(sport : string) {
         },
     });
 
-    return bets;
-      
+    return bets;   
 }

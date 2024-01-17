@@ -1,19 +1,23 @@
 'use client';
 import { getSportNames, mapJsonToBetObjects } from "@/lib/betService";
 import { Bet_Object } from "@/lib/betTypes";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { BetContext } from "./BetsList";
 
 interface SportTabProps {
-    sport: string
+    sport: string,
+    //setLoading: () => {}
 }
 
 export const SportTabContent: React.FC<SportTabProps> = ({ sport }: SportTabProps) => {
     const [bets, setBets] = useState<Bet_Object[]>([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const context = useContext(BetContext);
+
 
     async function fetchBets() {
-        setLoading(true); // Assuming you have a setLoading function to handle UI loading state
+        //setLoading(true); // Assuming you have a setLoading function to handle UI loading state
         try {
             fetch('/api/bets/getBySport', {
                 method: 'POST',
@@ -23,7 +27,6 @@ export const SportTabContent: React.FC<SportTabProps> = ({ sport }: SportTabProp
                     sport_key: keys[0],
                 },)
             }).then(async (res) => {
-                setLoading(false);
                 if (res.status === 200) {
                     const data = await res.json();
                     const temp_bets: Bet_Object[] = mapJsonToBetObjects(data);
@@ -55,13 +58,15 @@ export const SportTabContent: React.FC<SportTabProps> = ({ sport }: SportTabProp
     const keys = getSportNames(sport);
 
     useEffect(() => {
+        setLoading(true);
         fetchBets();
         //console.log(bets);
     }, [sport]);
 
     return (
         <>
-            <div className='flex flex-col w-full text-t-dark-blue rounded-md'>
+            {loading && (<div></div>)}
+            {!loading && (<div className='flex flex-col w-full text-t-dark-blue rounded-md bg-t'>
                 {(bets.length > 0) && bets.map((bet) => (
                     <div key={bet.id} className="flex border-b border-t-grey ml-3 mr-1 border-spacing-2 p-4">
                         <div
@@ -72,6 +77,7 @@ export const SportTabContent: React.FC<SportTabProps> = ({ sport }: SportTabProp
                                 <div className="flex flex-row space-x-5" >
                                     <button
                                         className="border w-18 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-dark-blue hover:text-t-white"
+                                        onClick={() => {context?.setBet({team_name : bet.homeTeam,bet_type : "ML", price : bet.homeML ?? 0, start_date : bet.startDate,other_team : bet.awayTeam})}}
                                     >
                                         {formatOdds(bet.homeML)}
                                     </button>
@@ -79,8 +85,8 @@ export const SportTabContent: React.FC<SportTabProps> = ({ sport }: SportTabProp
                                         className="border w-18 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-dark-blue hover:text-t-white"
                                     >
                                         <div className="flex flex-col">
-                                            <text className="text-xl">{formatOdds(bet.homeSpreadPoint)}</text>
-                                            <text className="text-md">{formatOdds(bet.homeSpreadPrice)}</text>
+                                            <div className="text-xl">{formatOdds(bet.homeSpreadPoint)}</div>
+                                            <div className="text-md">{formatOdds(bet.homeSpreadPrice)}</div>
                                         </div>
                                     </button>
                                     <button
@@ -88,8 +94,8 @@ export const SportTabContent: React.FC<SportTabProps> = ({ sport }: SportTabProp
                                     >
                                        
                                         <div className="flex flex-col">
-                                            <text className="text-xl">o{bet.totalPoint}</text>
-                                            <text className="text-md">{formatOdds(bet.overPrice)}</text>
+                                            <div className="text-xl">o{bet.totalPoint}</div>
+                                            <div className="text-md">{formatOdds(bet.overPrice)}</div>
                                         </div>
                                     </button>
                                 </div>
@@ -108,16 +114,16 @@ export const SportTabContent: React.FC<SportTabProps> = ({ sport }: SportTabProp
                                     >
                                         
                                         <div className="flex flex-col">
-                                            <text className="text-xl">{formatOdds(bet.awaySpreadPoint)}</text>
-                                            <text className="text-md">{formatOdds(bet.awaySpreadPrice)}</text>
+                                            <div className="text-xl">{formatOdds(bet.awaySpreadPoint)}</div>
+                                            <div className="text-md">{formatOdds(bet.awaySpreadPrice)}</div>
                                         </div>
                                     </button>
                                     <button
                                         className="border w-18 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-dark-blue hover:text-t-white"
                                     >
                                         <div className="flex flex-col">
-                                            <text className="text-xl">u{bet.totalPoint}</text>
-                                            <text className="text-md">{formatOdds(bet.underPrice)}</text>
+                                            <div className="text-xl">u{bet.totalPoint}</div>
+                                            <div className="text-md">{formatOdds(bet.underPrice)}</div>
                                         </div>
                                     </button>
                                 </div>
@@ -127,11 +133,15 @@ export const SportTabContent: React.FC<SportTabProps> = ({ sport }: SportTabProp
                     </div>
                 ))}
                 {(bets.length == 0) && (
-                    <div>
-                        No bets for {sport}, come back another time!
+                    <div className="flex w-full h-full justify-center pt-11">
+                        <div className="w-[400px] h-[400px] rounded bg-t-grey">
+                            <div className="flex h-full justify-center items-center text-2xl">
+                        No bets for {sport} today!
+                            </div>
+                        </div>
                     </div>
                 )}
-            </div>
+            </div>)}
         </>
     )
 }
