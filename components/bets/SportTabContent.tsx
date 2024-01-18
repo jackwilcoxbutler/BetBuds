@@ -77,7 +77,8 @@ export const SportTabContent: React.FC<SportTabProps> = ({ sport }: SportTabProp
                                 {/* Button bar */}
                                 <div className="flex flex-row space-x-5" >
                                     <button
-                                        className="border w-18 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-dark-blue hover:text-t-white"
+                                        className="border w-18 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-dark-blue hover:text-t-white
+                                        transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"
                                         onClick={() => {
                                             context?.setBet({
                                                 event_id: bet.id,
@@ -92,13 +93,13 @@ export const SportTabContent: React.FC<SportTabProps> = ({ sport }: SportTabProp
                                         {formatOdds(bet.homeML)}
                                     </button>
                                     <button
-                                        className="border w-18 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-dark-blue hover:text-t-white"
-                                        onClick={() => {
+                                        className="border w-18 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-dark-blue hover:text-t-white
+transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"                                        onClick={() => {
                                             context?.setBet({
                                                 event_id: bet.id,
 
                                                 team_name: bet.homeTeam,
-                                                other_team:bet.awayTeam,
+                                                other_team: bet.awayTeam,
                                                 bet_type: "SPREAD",
                                                 point: bet.homeSpreadPoint ?? 0,
                                                 price: bet.homeSpreadPrice ?? 0,
@@ -112,8 +113,8 @@ export const SportTabContent: React.FC<SportTabProps> = ({ sport }: SportTabProp
                                         </div>
                                     </button>
                                     <button
-                                        className="border w-18 content-center rounded-md bg-t-grey  px-3 py-1 hover:bg-t-dark-blue hover:text-t-white"
-                                        onClick={() => {
+                                        className="border w-18 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-dark-blue hover:text-t-white
+transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"                                        onClick={() => {
                                             context?.setBet({
                                                 event_id: bet.id,
                                                 bet_type: "OVER",
@@ -136,8 +137,8 @@ export const SportTabContent: React.FC<SportTabProps> = ({ sport }: SportTabProp
                                 {/* Button bar */}
                                 <div className="flex flex-row space-x-5">
                                     <button
-                                        className="border content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-dark-blue hover:text-t-white"
-                                        onClick={() => {
+                                        className="border w-18 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-dark-blue hover:text-t-white
+transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"                                        onClick={() => {
                                             context?.setBet({
                                                 event_id: bet.id,
                                                 team_name: bet.awayTeam,
@@ -151,8 +152,8 @@ export const SportTabContent: React.FC<SportTabProps> = ({ sport }: SportTabProp
                                         {formatOdds(bet.awayML)}
                                     </button>
                                     <button
-                                        className="border w-18 content-center  rounded-md bg-t-grey px-3 py-1 hover:bg-t-dark-blue hover:text-t-white"
-                                        onClick={() => {
+                                        className="border w-18 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-dark-blue hover:text-t-white
+transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"                                        onClick={() => {
                                             context?.setBet({
                                                 event_id: bet.id,
                                                 team_name: bet.awayTeam,
@@ -171,8 +172,8 @@ export const SportTabContent: React.FC<SportTabProps> = ({ sport }: SportTabProp
                                         </div>
                                     </button>
                                     <button
-                                        className="border w-18 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-dark-blue hover:text-t-white"
-                                        onClick={() => {
+                                        className="border w-18 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-dark-blue hover:text-t-white
+transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"                                        onClick={() => {
                                             context?.setBet({
                                                 event_id: bet.id,
                                                 bet_type: "UNDER",
