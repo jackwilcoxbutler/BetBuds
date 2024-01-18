@@ -7,12 +7,10 @@ interface BetSlipProps{
 export const BetSlip: React.FC<BetSlipProps> = ({bet}) => {
 
     return (
-        <div>
-            <div className="flex w-full border rounded justify-center">
+        <div className="flex w-full border rounded h-8 justify-center items-center">
                 {bet && (<div>
                     {bet.team_name} vs. {bet.other_team}, {bet.start_date.toLocaleDateString()}
                 </div>)}
-            </div>
         </div>
     )
 }

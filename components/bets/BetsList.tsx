@@ -55,8 +55,8 @@ export const BetsList: React.FC = () => {
                                     <div className='flex h-full w-full justify-center'>
                                         <div className='flex flex-col w-full'>
                                             <SportTabContent sport={sport} />
-                                            <div className='m-4'>
-                                            <BetSlip bet={bet} />
+                                            <div className="flex flex-col w-full p-4">
+                                                <BetSlip bet={bet} />
                                             </div>
                                         </div>
                                     </div>
