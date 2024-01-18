@@ -3,15 +3,10 @@ import { getSportNames } from '@/lib/betService';
 import * as Tabs from '@radix-ui/react-tabs';
 import { SportTabContent } from './SportTabContent';
 import { Bet, Bet_Choice, Bet_Object } from '@/lib/betTypes';
-import { createContext, useState } from 'react';
+import {  useState } from 'react';
 import { BetSlip } from './BetSlip';
 import BetButtonGrid from './BetButton';
 
-interface BetContextType {
-    bet: Bet_Choice | null;
-    setBet: React.Dispatch<React.SetStateAction<Bet_Choice | null>>;
-}
-export const BetContext = createContext<BetContextType | null>(null);
 
 interface BetsListProp{
     bets : Bet_Object[]
@@ -23,7 +18,6 @@ export const BetsList: React.FC<BetsListProp> = ({bets}) => {
 
     return (
         <>
-            <BetContext.Provider value={{ bet, setBet }}>
             <div className='flex flex-col w-full text-t-dark-blue rounded-md bg-t'>
                 {(bets.length > 0) && bets.map((bet) => (
                     <div key={bet.id} className="flex border-b border-t-grey ml-3 mr-1 border-spacing-2 p-4">
@@ -53,7 +47,6 @@ export const BetsList: React.FC<BetsListProp> = ({bets}) => {
                     </div>
                 )}
             </div>
-            </BetContext.Provider>
         </>
     )
 }

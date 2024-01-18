@@ -1,9 +1,9 @@
 'use client';
+import { BetContext } from "@/app/context/bet-provider";
 import { getSportNames, mapJsonToBetObjects } from "@/lib/betService";
 import { Bet_Object } from "@/lib/betTypes";
 import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { BetContext } from "./BetsList";
 
 interface SportTabProps {
     sport: string,

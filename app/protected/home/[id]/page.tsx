@@ -1,3 +1,4 @@
+import BetProvider from "@/app/context/bet-provider";
 import BetButtonGrid from "@/components/bets/BetButton";
 import { Bet_Object } from "@/lib/betTypes";
 import prisma from "@/lib/prisma";
