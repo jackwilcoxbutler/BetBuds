@@ -7,7 +7,7 @@ export const DefaultHeader = () => {
         {/*replace with homebutton component*/}
         <div className="flex items-center justify-between p-4 bg-t-dark-blue mx-20">
           <a
-            href="/protected"
+            href="/protected/home/americanfootball_nfl"
             className="text-2xl font-bold text-t-orange"
           >
             Wager Wars

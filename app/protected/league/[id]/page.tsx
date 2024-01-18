@@ -104,7 +104,8 @@ export default async function Page({
                             <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.username}</td>
                             <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">-4.3u</td>
                             {user.latestBet ? (
-                              <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.latestBet.team_name} {user.latestBet.line.toString()},{user.latestBet.start_date.toDateString()}</td>
+                              <div></div>
+                              // <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.latestBet.team_name} {user.latestBet.line.toString()},{user.latestBet.start_date.toDateString()}</td>
                             ) : (
                               <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">No Current Bet</td>
                             )}
