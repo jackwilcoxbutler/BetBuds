@@ -2,6 +2,8 @@ import { SportTab } from "@/components/bets/SportTab"
 import DefaultHeader from "@/components/header"
 import OpenLeagueFormButton from "@/components/leagues/CreateLeagueButton"
 import { ListLeagues } from "@/components/leagues/ListLeagues"
+import { Bet_Choice } from "@/lib/betTypes";
+
 
 export default async function ProtectedLayout({
   children,
