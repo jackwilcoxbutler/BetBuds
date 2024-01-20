@@ -1,7 +1,9 @@
 import InboxModal from "./Invitations/InboxModal"
-import SignOut from "./signout_button"
+import AuthButton from "./auth-status";
 
 export const DefaultHeader = () => {
+
+
     return(
         <header className="bg-t-dark-blue sticky top-0">
         {/*replace with homebutton component*/}
@@ -13,8 +15,7 @@ export const DefaultHeader = () => {
             Wager Wars
           </a>
           <div className="flex space-x-8 items-center">
-            <InboxModal/>
-            <SignOut />
+            <AuthButton/>
           </div>
         </div>
       </header>

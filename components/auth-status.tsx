@@ -1,19 +1,28 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth/next";
+import SignOut from "./signout_button";
+import Link from "next/link";
+import InboxModal from "./Invitations/InboxModal";
 
-export default async function AuthStatus() {
+export default async function ProtectedHeader() {
   const session = await getServerSession(authOptions);
   return (
     <div>
       {session && (
-        <p className="text-black text-sm">
-          Signed in as {session.user.id}
-        </p>
+        <div className="flex space-x-8">
+          <InboxModal/>
+          <SignOut/>
+        </div>
       )}
       {!session && (
-        <p className="text-black text-sm">
-          Logged out
-        </p>
+        <div>
+        <Link
+        className="text-t-grey hover:text-stone-800 "
+        href={"/login"}
+      >
+        Sign In
+      </Link>
+      </div>
       )}
     </div>
   );

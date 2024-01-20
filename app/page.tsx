@@ -1,79 +1,33 @@
+import DefaultHeader from "@/components/header";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <div className="flex h-screen bg-t-grey">
-      <div className="w-screen h-screen flex flex-col justify-center items-center">
-        <Image
-          width={512}
-          height={512}
-          src="/logo.png"
-          alt="Platforms on Vercel"
-          className="w-48 h-48"
-        />
-        <div className="text-center max-w-screen-sm mb-10">
-          <h1 className="text-t-dark-blue font-bold text-2xl">
-            Next.js Prisma PostgreSQL Auth Starter
-          </h1>
-          <p className="text-t-dark-blue mt-5">
-            This is a{" "}
-            <a
-              href="https://nextjs.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-t-dark-blue underline hover:text-stone-200 transition-all"
-            >
-              Next.js
-            </a>{" "}
-            starter kit that uses{" "}
-            <a
-              href="https://next-auth.js.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-t-dark-blue underline hover:text-stone-200 transition-all"
-            >
-              Next-Auth
-            </a>{" "}
-            for simple email + password login and a{" "}
-            <a
-              href="https://vercel.com/postgres"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-t-dark-blue underline hover:text-stone-200 transition-all"
-            >
-              Vercel Postgres
-            </a>{" "}
-            database to persist the data.
-          </p>
+      <div className="w-screen h-screen bg-t-white">
+       <DefaultHeader/>
+       <div className="h-screen flex flex-col justify-evenly text-t-dark-blue text-center">
+        <div>
+            <h1 className="text-5xl font-bold mb-6">Join the Ultimate Sports Betting Experience</h1>
+            <p className="text-xl mb-8">Compete with friends. Make daily picks. Win big.</p>
+            <Link href={"/login"} className="bg-t-orange hover:bg-t-orange-200 text-t-white font-bold py-2 px-4 rounded text-lg">Sign Up Now</Link>
         </div>
-        <div className="flex space-x-3">
-          <Link
-            href="/protected"
-            prefetch={true} // workaround until https://github.com/vercel/vercel/pull/8978 is deployed
-            className="text-t-dark-blue underline hover:text-stone-200 transition-all"
-          >
-            Protected Page
-          </Link>
-          <p className="text-white">·</p>
-          <a
-            href="https://github.com/steven-tey/nextjs-typescript-starter"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-t-dark-blue underline hover:text-stone-200 transition-all"
-          >
-            GitHub
-          </a>
-          <p className="text-white">·</p>
-          <a
-            href="https://vercel.com/templates/next.js/prisma-postgres-auth-starter"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-t-dark-blue underline hover:text-stone-200 transition-all"
-          >
-            1-click Deploy to Vercel
-          </a>
+        <div className="grid md:grid-cols-3 gap-8 text-center">
+            <div>
+                <h2 className="font-bold text-xl mb-4">Daily Picks</h2>
+                <p>Choose your bets daily and challenge your friends to see who comes out on top.</p>
+            </div>
+            <div>
+                <h2 className="font-bold text-xl mb-4">Compete & Win</h2>
+                <p>Track your progress and climb the leaderboard in your betting league.</p>
+            </div>
+            <div>
+                <h2 className="font-bold text-xl mb-4">Invite Friends</h2>
+                <p>Invite your friends to join the fun and see who knows their sports the best.</p>
+            </div>
         </div>
+    </div>
       </div>
     </div>
   );
