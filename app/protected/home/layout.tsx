@@ -23,7 +23,9 @@ export default async function ProtectedLayout({
                 <BetProvider>
                   <SportTab />
                 {children}
-                <BetSlip/>
+                <div className="p-4">
+                  <BetSlip/>
+                </div>
                 </BetProvider>
               </div>
               <div className="flex flex-col w-1/3 h-screen justify-start pl-4 border-l-4 border-dotted">
