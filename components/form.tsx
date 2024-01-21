@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import LoadingDots from "@/components/loading-dots";
-import toast from "react-hot-toast";
+import toast, { ToastBar, Toaster } from "react-hot-toast";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -63,7 +63,7 @@ export default function Form({ type }: { type: "login" | "register" }) {
         <div>
         <label
           htmlFor="username"
-          className="block text-xs text-gray-600 uppercase"
+          className="block text-xs text-t-white uppercase"
         >
           Username
         </label>
@@ -80,7 +80,7 @@ export default function Form({ type }: { type: "login" | "register" }) {
       <div>
         <label
           htmlFor="email"
-          className="block text-xs text-gray-600 uppercase"
+          className="block text-xs text-t-white uppercase"
         >
           Email Address
         </label>
@@ -97,7 +97,7 @@ export default function Form({ type }: { type: "login" | "register" }) {
       <div>
         <label
           htmlFor="password"
-          className="block text-xs text-gray-600 uppercase"
+          className="block text-xs text-t-white uppercase"
         >
           Password
         </label>
@@ -114,7 +114,7 @@ export default function Form({ type }: { type: "login" | "register" }) {
         className={`${
           loading
             ? "cursor-not-allowed border-gray-200 bg-gray-100"
-            : "border-black bg-black text-white hover:bg-white hover:text-black"
+            : "border-black bg-black text-t-white hover:bg-white hover:text-black"
         } flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none`}
       >
         {loading ? (
@@ -124,7 +124,7 @@ export default function Form({ type }: { type: "login" | "register" }) {
         )}
       </button>
       {type === "login" ? (
-        <p className="text-center text-sm text-gray-600">
+        <p className="text-center text-sm text-t-white">
           Don&apos;t have an account?{" "}
           <Link href="/register" className="font-semibold text-gray-800">
             Sign up
@@ -132,7 +132,7 @@ export default function Form({ type }: { type: "login" | "register" }) {
           for free.
         </p>
       ) : (
-        <p className="text-center text-sm text-gray-600">
+        <p className="text-center text-sm text-t-white">
           Already have an account?{" "}
           <Link href="/login" className="font-semibold text-gray-800">
             Sign in
@@ -140,6 +140,7 @@ export default function Form({ type }: { type: "login" | "register" }) {
           instead.
         </p>
       )}
+      <Toaster/>
     </form>
   );
 }

@@ -1,5 +1,4 @@
 import DefaultHeader from "@/components/header";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
@@ -7,7 +6,7 @@ export default function Home() {
     <div className="flex h-screen bg-t-grey">
       <div className="w-screen h-screen bg-t-white">
        <DefaultHeader/>
-       <div className="h-screen flex flex-col justify-evenly text-t-dark-blue text-center">
+       <div className="h-screen flex flex-col justify-evenly text-t-dark-blue text-center mx-32">
         <div>
             <h1 className="text-5xl font-bold mb-6">Join the Ultimate Sports Betting Experience</h1>
             <p className="text-xl mb-8">Compete with friends. Make daily picks. Win big.</p>
