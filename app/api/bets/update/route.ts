@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import axios from 'axios';
 import prisma from "@/lib/prisma";
 import { Bet,Outcome,Market } from "@/lib/betTypes";
+import { getSports } from "@/lib/betService";
 
 
 
@@ -81,7 +82,12 @@ async function fetchBetsBySport(sport_key : string ) {
 
 export async function GET() {
     try {
-        await fetchBetsBySport("americanfootball_nfl");
+        const sports = await getSports();
+
+        for(var val of sports){
+            await fetchBetsBySport(val);
+        }
+
         return NextResponse.json({ status: 200 });
     } catch (error) {
         return NextResponse.json({ error: error }, { status: 401 });

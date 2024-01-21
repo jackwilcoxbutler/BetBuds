@@ -35,6 +35,7 @@ export default async function Page({
             <div className='flex flex-col w-full text-t-dark-blue rounded-md bg-t'>
                 {(bets.length > 0) && bets.map((bet) => (
                     <div key={bet.id} className="flex border-b border-t-grey ml-3 mr-1 border-spacing-2 p-4">
+                    
                         <div
                             className="flex w-full flex-col ml-4 space-y-5 text-xl">
                             <div className="flex flex-row justify-between items-center">
