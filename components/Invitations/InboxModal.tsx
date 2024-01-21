@@ -1,9 +1,8 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
-import { Cross2Icon, EnvelopeClosedIcon, CrossCircledIcon } from '@radix-ui/react-icons';
+import { Cross2Icon, EnvelopeClosedIcon } from '@radix-ui/react-icons';
 import toast, {  } from "react-hot-toast";
-import AcceptInviteButon from './AcceptInviteButton';
 import InviteActionButton from './AcceptInviteButton';
 
 type InboxInvite = {
