@@ -113,9 +113,9 @@ export default function Form({ type }: { type: "login" | "register" }) {
         disabled={loading}
         className={`${
           loading
-            ? "cursor-not-allowed border-gray-200 bg-gray-100"
-            : "border-black bg-black text-t-white hover:bg-white hover:text-black"
-        } flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none`}
+            ? "cursor-not-allowed border-gray-200 bg-t-grey"
+            : "border-black bg-black  hover:bg-t-grey hover:text-t-dark-blue"
+        } text-t-dark-blue bg-t-white flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none`}
       >
         {loading ? (
           <LoadingDots color="#808080" />

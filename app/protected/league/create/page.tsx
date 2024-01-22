@@ -5,10 +5,12 @@ export default function Home() {
   return (
     <div>
       <DefaultHeader />
-      <div className="flex w-screen h-screen bg-t-orange justify-center items-center">
-        <div className="flex flex-col h-2/3 w-2/3 justify-center">
+      <div className="flex h-screen w-screen items-center justify-center bg-t-white">
+      <div className="z-10 w-full max-w-xl overflow-hidden rounded-2xl border border-t-dark-blue shadow-xl bg-t-dark-blue">
+      {/* <div className="flex flex-col items-center justify-center space-y-3 border-b border-gray-200 bg-white px-4 py-6 pt-8 text-center sm:px-16"> */}
           <CreateLeagueForm />
-        </div>
+        {/* </div> */}
+      </div>
       </div>
     </div>
   );

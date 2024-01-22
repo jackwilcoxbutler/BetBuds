@@ -32,7 +32,7 @@ export default async function Page({
 
     return (
         <>
-            <div className='flex flex-col h-full w-full text-t-dark-blue rounded-md bg-t'>
+            <div className='flex flex-col h-full w-full text-t-dark-blue rounded-md bg-t pt-2'>
                 {(bets.length > 0) && bets.map((bet) => (
                     <div key={bet.id} className="flex border-b border-t-grey ml-3 mr-1 border-spacing-2 p-4">
                     

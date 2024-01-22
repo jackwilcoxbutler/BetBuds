@@ -21,7 +21,7 @@ export default async function ProtectedLayout({
             <div className="flex flex-row w-full justify-end space-x-4 mx-32">
               <div className="flex flex-col w-full">
                 <BetProvider>
-                  <SportTab />
+                  <SportTab/>
                 {children}
                 <div className="sticky bottom-12 px-12">
                   <BetSlip/>
