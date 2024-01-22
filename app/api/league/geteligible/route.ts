@@ -18,7 +18,13 @@ export async function POST(req: Request) {
             }
 
             const today = new Date();
-  today.setHours(0, 0, 0, 0); // Set time to 00:00:00 for consistent date comparison
+const timezoneOffset = today.getTimezoneOffset() * 60000; // Timezone offset in milliseconds
+const localDate = new Date(today.getTime() - timezoneOffset);
+localDate.setHours(0, 0, 0, 0); // Set to the beginning of the day in local time
+const utcDate = new Date(localDate.getTime() + timezoneOffset);
+const tomorrow = new Date(utcDate);
+tomorrow.setUTCDate(utcDate.getUTCDate() + 1);
+
             const {odds} = await req.json();
 
             if(odds < 0){
@@ -52,12 +58,12 @@ export async function POST(req: Request) {
                             { userID: userId },
                             {
                               start_date: {
-                                gte: today,
+                                gte: utcDate,
                               },
                             },
                             {
                               start_date: {
-                                lt: new Date(today.setDate(today.getDate() + 1)),
+                                lt: tomorrow,
                               },
                             },
                           ],
@@ -69,6 +75,8 @@ export async function POST(req: Request) {
                   league_name : true,
                 },
               });
+              console.log(utcDate);
+              console.log(tomorrow)
             
             return NextResponse.json(leagues);
         } catch (error) {
