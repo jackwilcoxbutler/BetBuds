@@ -13,24 +13,24 @@ interface leagueName {
 
 const LeagueSelector: React.FC = () => {
     const [leagueChoices,setLeagueChoices] = useState<leagueName[]>([]);
-  const [selectedLeagues, setSelectedLeagues] = useState<string[]>([]);
+  const [selectedLeagues, setSelectedLeagues] = useState<leagueName[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const context = useContext(BetContext);
-  const [bet, setBet] = useState<Bet_Choice | null>();
 
 
 
-//   const toggleLeague = (league: string) => {
-//     setSelectedLeagues(prevSelectedLeagues => {
-//       if (prevSelectedLeagues.includes(league)) {
-//         return prevSelectedLeagues.filter(l => l !== league);
-//       } else {
-//         return [...prevSelectedLeagues, league];
-//       }
-//     });
-//   };
+   const toggleLeague = (league: leagueName) => {
+     setSelectedLeagues(prevSelectedLeagues => {
+      if (prevSelectedLeagues.includes(league)) {
+        return prevSelectedLeagues.filter(l => l !== league);
+      } else {
+        return [...prevSelectedLeagues, league];
+      }
+    });
+  };
 
   useEffect(() => {
+    setIsDropdownOpen(false);
     async function fetchLeagues() {
       try {
         const response = await fetch('/api/league/geteligible', {
@@ -46,7 +46,6 @@ const LeagueSelector: React.FC = () => {
         }
 
         const data = await response.json();
-        console.log("DATA : ", data);
         setLeagueChoices(data);
       } catch (error) {
         console.error('Failed to fetch leagues:', error);
@@ -75,7 +74,7 @@ const LeagueSelector: React.FC = () => {
           aria-haspopup="true"
           onClick={handleButtonClick}
         >
-          {(leagueChoices.length > 0) ? "Select Leagues " : "Not eligible for any leagues"}
+          {(leagueChoices.length > 0) ? "Select Leagues " : "No leagues"}
           <svg className={`${isDropdownOpen ? 'transform rotate-180' : ''} -mr-1 ml-2 h-5 w-5`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
             <path fillRule="evenodd" d="M5.292 7.292a1 1 0 011.414 0L10 10.586l3.294-3.294a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
           </svg>
@@ -97,8 +96,8 @@ const LeagueSelector: React.FC = () => {
                   type="checkbox"
                   className="form-checkbox"
                   value={league.league_name}
-                  //onChange={() => toggleLeague(league)}
-                  //checked={selectedLeagues.includes(league)}
+                  onChange={() => toggleLeague(league)}
+                  checked={selectedLeagues.includes(league)}
                 />
                 <span className="ml-2">{league.league_name}</span>
               </label>
@@ -108,6 +107,7 @@ const LeagueSelector: React.FC = () => {
       )}
     </div>
     <button
+    onClick={() => {}}
     //1. check if bet is valid for each league
     //  min odds max odds
     //  league is still active
