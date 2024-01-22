@@ -15,10 +15,10 @@ export default async function middleware(req: NextRequest) {
     secret: process.env.NEXTAUTH_SECRET,
   });
 
-  if (!session && path === "/protected") {
+  if (!session && path === "/protected/home/americanfootball_nfl") {
     return NextResponse.redirect(new URL("/login", req.url));
   } else if (session && (path === "/login" || path === "/register")) {
-    return NextResponse.redirect(new URL("/protected", req.url));
+    return NextResponse.redirect(new URL("/protected/home/americanfootball_nfl", req.url));
   }
   return NextResponse.next();
 }

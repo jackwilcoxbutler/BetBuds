@@ -34,7 +34,7 @@ export const BetSlip: React.FC = () => {
 
 
     return (
-        <div className="flex w-full border rounded h-8 justify-center items-center">
+        <div className="flex w-full border rounded h-16 justify-center items-center bg-t-white hover:bg-t-grey text-xl">
                 {!bet && (<div>
                     Select a bet
                 </div>)}

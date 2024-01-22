@@ -17,18 +17,18 @@ export default async function ProtectedLayout({
       <body>
         <div className="h-screen w-screen bg-t-white">
           <DefaultHeader />
-          <div className="w-full flex justify-center">
+          <div className="h-screen w-full flex justify-center">
             <div className="flex flex-row w-full justify-end space-x-4 mx-32">
               <div className="flex flex-col w-full">
                 <BetProvider>
                   <SportTab />
                 {children}
-                <div className="p-4">
+                <div className="sticky bottom-12 px-12">
                   <BetSlip/>
                 </div>
                 </BetProvider>
               </div>
-              <div className="flex flex-col w-1/3 h-screen justify-start pl-4 border-l-4 border-dotted">
+              <div className="flex flex-col w-1/3 h-full justify-start pl-4 border-l-4 border-dotted">
                 <ListLeagues />
                 <OpenLeagueFormButton />
               </div>

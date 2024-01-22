@@ -32,7 +32,7 @@ export default async function Page({
 
     return (
         <>
-            <div className='flex flex-col w-full text-t-dark-blue rounded-md bg-t'>
+            <div className='flex flex-col h-full w-full text-t-dark-blue rounded-md bg-t'>
                 {(bets.length > 0) && bets.map((bet) => (
                     <div key={bet.id} className="flex border-b border-t-grey ml-3 mr-1 border-spacing-2 p-4">
                     
@@ -53,9 +53,9 @@ export default async function Page({
                     </div>
                 ))}
                 {(bets.length == 0) && (
-                    <div className="flex w-full h-full justify-center pt-11">
-                        <div className="w-[400px] h-[400px] rounded bg-t-grey">
-                            <div className="flex h-full justify-center items-center text-2xl">
+                    <div className="flex w-full justify-center pt-11">
+                        <div className="w-[400px] rounded-lg bg-t-grey p-4">
+                            <div className="flex justify-center items-center text-2xl">
                                 No bets for {params.id} today!
                             </div>
                         </div>
