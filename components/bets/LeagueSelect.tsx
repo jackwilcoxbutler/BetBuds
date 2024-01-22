@@ -1,20 +1,62 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import prisma from '@/lib/prisma';
+import { BetContext } from '@/app/context/bet-provider';
+import { Bet_Choice } from '@/lib/betTypes';
+import toast, { Toaster } from 'react-hot-toast';
+
+
+
+interface leagueName {
+    id : string,
+    league_name : string
+}
 
 const LeagueSelector: React.FC = () => {
+    const [leagueChoices,setLeagueChoices] = useState<leagueName[]>([]);
   const [selectedLeagues, setSelectedLeagues] = useState<string[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
-  const [countLeagues, setCount] = useState(0);
+  const context = useContext(BetContext);
+  const [bet, setBet] = useState<Bet_Choice | null>();
 
-  const toggleLeague = (league: string) => {
-    setSelectedLeagues(prevSelectedLeagues => {
-      if (prevSelectedLeagues.includes(league)) {
-        return prevSelectedLeagues.filter(l => l !== league);
-      } else {
-        return [...prevSelectedLeagues, league];
+
+
+//   const toggleLeague = (league: string) => {
+//     setSelectedLeagues(prevSelectedLeagues => {
+//       if (prevSelectedLeagues.includes(league)) {
+//         return prevSelectedLeagues.filter(l => l !== league);
+//       } else {
+//         return [...prevSelectedLeagues, league];
+//       }
+//     });
+//   };
+
+  useEffect(() => {
+    async function fetchLeagues() {
+      try {
+        const response = await fetch('/api/league/geteligible', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ odds: context?.bet?.price }),
+        });
+
+        if (!response.ok) {
+          toast.error(`Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("DATA : ", data);
+        setLeagueChoices(data);
+      } catch (error) {
+        console.error('Failed to fetch leagues:', error);
       }
-    });
-  };
+    }
 
+    if (context?.bet) { // Assuming selectedBet 0 means no bet is selected
+      fetchLeagues();
+    }
+  }, [context?.bet]);
 
   const handleButtonClick = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -22,6 +64,7 @@ const LeagueSelector: React.FC = () => {
 
   return (
     <div className='flex flex-row space-x-4'>
+        <Toaster/>
     <div className="relative inline-block text-left">
       <div>
         <button
@@ -32,7 +75,7 @@ const LeagueSelector: React.FC = () => {
           aria-haspopup="true"
           onClick={handleButtonClick}
         >
-          Select Leagues {selectedLeagues.length}
+          {(leagueChoices.length > 0) ? "Select Leagues " : "Not eligible for any leagues"}
           <svg className={`${isDropdownOpen ? 'transform rotate-180' : ''} -mr-1 ml-2 h-5 w-5`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
             <path fillRule="evenodd" d="M5.292 7.292a1 1 0 011.414 0L10 10.586l3.294-3.294a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
           </svg>
@@ -48,16 +91,16 @@ const LeagueSelector: React.FC = () => {
           tabIndex={-1}
         >
           <div className="py-1" role="none">
-            {['league1', 'league2', 'league3', 'league4'].map((league) => (
-              <label key={league} className="text-gray-700 flex justify-start items-center px-4 py-2 text-sm">
+            {leagueChoices.map((league) => (
+              <label key={league.id} className="text-gray-700 flex justify-start items-center px-4 py-2 text-sm">
                 <input
                   type="checkbox"
                   className="form-checkbox"
-                  value={league}
-                  onChange={() => toggleLeague(league)}
-                  checked={selectedLeagues.includes(league)}
+                  value={league.league_name}
+                  //onChange={() => toggleLeague(league)}
+                  //checked={selectedLeagues.includes(league)}
                 />
-                <span className="ml-2">{league}</span>
+                <span className="ml-2">{league.league_name}</span>
               </label>
             ))}
           </div>
