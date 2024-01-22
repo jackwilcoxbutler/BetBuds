@@ -8,7 +8,7 @@ export default async function Page({
 }: {
     params: { id: string }
 }) {
-
+    //map sport title
     const bets = await prisma.event.findMany({
         where: {
             sportKey: params.id,
