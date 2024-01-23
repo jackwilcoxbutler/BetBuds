@@ -76,14 +76,14 @@ const AddUserFormModal = ({ league_id }: AddUserFormModalProps) => {
             <Toaster />
             <div className="mt-[25px] flex justify-end">
               <button
-                className="bg-t-light-blue text-t-orange hover:bg-t-dark-blue inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none"
+                className="bg-t-light-blue text-t-white hover:bg-t-dark-blue inline-flex h-[35px] items-center justify-center rounded-[4px] px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none"
                 onClick={handleSubmit}>
                 Send Invite
               </button>
             </div>
             <Dialog.Close asChild>
               <button
-                className="text-violet11 hover:bg-violet4 focus:shadow-violet7 absolute top-[10px] right-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none"
+                className="text-t-dark-blue hover:bg-t-orange focus:shadow-t-orange absolute top-[10px] right-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none"
                 aria-label="Close"
               >
                 <Cross2Icon />

@@ -1,10 +1,9 @@
-import BetProvider, { BetContext } from "@/app/context/bet-provider";
+import BetProvider from "@/app/context/bet-provider";
 import { BetSlip } from "@/components/bets/BetSlip";
 import { SportTab } from "@/components/bets/SportTab"
 import DefaultHeader from "@/components/header"
 import OpenLeagueFormButton from "@/components/leagues/CreateLeagueButton"
 import { ListLeagues } from "@/components/leagues/ListLeagues"
-import { Bet_Choice } from "@/lib/betTypes";
 
 
 export default async function ProtectedLayout({
@@ -18,7 +17,7 @@ export default async function ProtectedLayout({
         <div className="h-screen w-screen bg-t-white">
           <DefaultHeader />
           <div className="h-full w-full flex justify-center">
-            <div className="flex flex-row w-full justify-end space-x-4 mx-32">
+            <div className="flex flex-row w-full justify-end space-x-4 mx-40">
               <div className="flex flex-col w-full">
                 <BetProvider>
                   <div className="sticky top-16 -z-0">

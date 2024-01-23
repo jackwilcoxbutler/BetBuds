@@ -2,6 +2,7 @@
 import prisma from '@/lib/prisma';
 import AddUserFormModal from "@/components/Invitations/AddUserFormModal";
 import DefaultHeader from "@/components/header";
+import { Decimal } from '@prisma/client/runtime';
 
 
 export default async function Page({
@@ -25,9 +26,17 @@ export default async function Page({
       }
     }
   });
+  console.log(leagueWithUsersAndBets);
 
   if (!leagueWithUsersAndBets || !leagueWithUsersAndBets.users) {
     throw new Error('League not found');
+  }
+
+  function formatPrice(odds : number) : string{
+    if(odds > 0){
+      return "+" + odds.toString();
+    }
+    else return odds.toString();
   }
 
   const processedData = leagueWithUsersAndBets?.users?.map(user => {
@@ -48,6 +57,7 @@ export default async function Page({
       return total + Number(bet.result); // Assuming 'result' can be converted to a number
     }, 0);
 
+
     return {
       userId: user.id,
       username: user.username,
@@ -67,12 +77,12 @@ export default async function Page({
 
   return (
     <div>
-      <DefaultHeader/>
+      <DefaultHeader />
 
       <div className="flex justify-center pt-8">
         <div className="flex w-5/6 flex-col">
           <div className="flex justify-end mx-6 pb-4">
-                {/*<ViewRules/>*/}
+            {/*<ViewRules/>*/}
           </div>
           <div className="min-w-full overflow-x-auto shadow-md sm:rounded-lg">
             <div className="inline-block min-w-full">
@@ -102,9 +112,22 @@ export default async function Page({
                           <tr key={user.userId} className="hover:bg-gray-100 dark:hover:bg-gray-700">
                             <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{iter}.</td>
                             <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.username}</td>
-                            <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">-4.3u</td>
+                            <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.totalScore}</td>
                             {user.latestBet ? (
-                              <div></div>
+                              (user.latestBet.bet_type === "OVER") && (
+                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">o{user.latestBet.point?.toString()} ({formatPrice(user.latestBet.price)}),{user.latestBet.team_name} vs. {user.latestBet.Opponent}</td>
+
+                              ) ||
+                              (user.latestBet.bet_type === "UNDER") && (
+                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">u{user.latestBet.point?.toString()} ({formatPrice(user.latestBet.price)}),{user.latestBet.team_name} vs. {user.latestBet.Opponent}</td>
+                              ) ||
+                              (user.latestBet.bet_type === "ML") && (
+                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.latestBet.team_name} ({formatPrice(user.latestBet.price)}) vs. {user.latestBet.Opponent}</td>
+                              ) ||
+                              (user.latestBet.bet_type === "SPREAD") && (
+                                <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.latestBet.team_name} ({formatPrice(user.latestBet.point || 0)})({formatPrice(user.latestBet.price)}) vs. {user.latestBet.Opponent}</td>
+
+                              )
                               // <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.latestBet.team_name} {user.latestBet.line.toString()},{user.latestBet.start_date.toDateString()}</td>
                             ) : (
                               <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">No Current Bet</td>
@@ -119,7 +142,7 @@ export default async function Page({
             </div>
           </div>
           <div className="pt-12 flex w-full justify-center">
-            <AddUserFormModal league_id={params.id}/>
+            <AddUserFormModal league_id={params.id} />
           </div>
         </div>
       </div>

@@ -55,9 +55,9 @@ model UserLeagueBet {
   team_name  String?
   Opponent   String?
   bet_type   String
-  price      Decimal
-  point      Decimal?
-  result     Decimal
+  price      Int
+  point      Float?
+  result     Float
   createdAt  DateTime @default(now())
   start_date DateTime
 }
