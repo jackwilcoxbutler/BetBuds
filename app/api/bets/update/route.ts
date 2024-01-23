@@ -33,7 +33,7 @@ async function fetchBetsBySport(sport_key : string ) {
                 //console.log(homeTeam,awayTeam);
 
                 const eventData = {
-                    id: event.id,
+                    gameID: event.id,
                     sportTitle: event.sport_title,
                     sportKey:event.sport_key,
                     homeTeam: homeTeam,
@@ -55,7 +55,7 @@ async function fetchBetsBySport(sport_key : string ) {
 
 
                 const newBet = await prisma.event.create({ data: {
-                    id  : eventData.id,
+                    gameID  : eventData.gameID,
                     sportTitle : eventData.sportTitle,
                     sportKey : eventData.sportKey,
                     homeTeam : eventData.homeTeam,

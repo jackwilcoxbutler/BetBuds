@@ -93,6 +93,7 @@ const LeagueSelector: React.FC = () => {
             aria-expanded={isDropdownOpen}
             aria-haspopup="true"
             onClick={handleButtonClick}
+            disabled={(leagueChoices.length === 0)}
           >
             {(leagueChoices.length > 0) ? "Select Leagues " : "No leagues"}
             <svg className={`${isDropdownOpen ? 'transform rotate-180' : ''} -mr-1 ml-2 h-5 w-5`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

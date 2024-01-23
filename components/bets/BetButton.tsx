@@ -32,7 +32,7 @@ export default function BetButtonGrid({ bet, is_home }: BetButtonGridProps) {
         onClick={() => {
           //console.log(context);
           context?.setBet({
-            event_id: bet.id,
+            id: bet.id,
             team_name: is_home ? bet.homeTeam : bet.awayTeam,
             bet_type: "ML",
             price: is_home ? (bet.homeML ?? 0) : (bet.awayML ?? 0),
@@ -49,7 +49,7 @@ transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"
         onClick={() => {
           //console.log(context);
           context?.setBet({
-            event_id: bet.id,
+            id: bet.id,
             team_name: is_home ? bet.homeTeam : bet.awayTeam,
             bet_type: "SPREAD",
             point: is_home ? (bet.homeSpreadPoint ?? 0) : (bet.awaySpreadPoint ?? 0),
@@ -70,7 +70,7 @@ transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"
         onClick={() => {
           //console.log(context);
           context?.setBet({
-            event_id: bet.id,
+            id: bet.id,
             bet_type: is_home ? ("OVER") : "UNDER",
             point: (bet.totalPoint ?? 0),
             price: is_home ? (bet.overPrice ?? 0) : (bet.underPrice ?? 0),

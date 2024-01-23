@@ -16,7 +16,7 @@ model User {
   email           String          @unique
   password        String
   leagues         League[]
-  user_bets       UserLeagueBet[] 
+  user_bets       UserLeagueBet[]
   receivedInvites Invitation[]    @relation(name: "received") //incoming and outcoming
   sentInvites     Invitation[]    @relation(name: "sent")
   createdAt       DateTime        @default(now())
@@ -46,10 +46,12 @@ model League {
 
 model UserLeagueBet {
   id         String   @id @default(cuid())
-  user       User     @relation(fields: [userID], references: [id])
+  user       User     @relation(fields: [userID], references: [id],onDelete: Cascade)
   userID     String
-  league     League   @relation(fields: [leagueID], references: [id])
+  league     League   @relation(fields: [leagueID], references: [id],onDelete: Cascade)
   leagueID   String
+  event     Event?   @relation(fields: [eventID], references: [id],onDelete: Cascade)
+  eventID   String
   team_name  String?
   Opponent   String?
   bet_type   String
@@ -61,7 +63,8 @@ model UserLeagueBet {
 }
 
 model Event {
-  id              String   @id
+  id              String   @id @default(cuid())
+  gameID          String
   sportTitle      String
   sportKey        String
   homeTeam        String
@@ -80,17 +83,18 @@ model Event {
   homeScore       Int?
   awayScore       Int?
   status          Int      @default(0) //0 not started 1 in progress 2 complete
+  userleaguebets UserLeagueBet[]
 }
 
 // Define the UserLeagues junction table
 
 model Invitation {
   id          String   @id @default(cuid())
-  league      League   @relation(fields: [league_id], references: [id])
+  league      League   @relation(fields: [league_id], references: [id],onDelete: Cascade)
   league_id   String
-  sender      User     @relation(name: "sent", fields: [sender_id], references: [id])
+  sender      User     @relation(name: "sent", fields: [sender_id], references: [id],onDelete: Cascade)
   sender_id   String
-  receiver    User     @relation(name: "received", fields: [receiver_id], references: [id])
+  receiver    User     @relation(name: "received", fields: [receiver_id], references: [id],onDelete: Cascade)
   receiver_id String
   timeSent    DateTime @default(now())
   accepted    Boolean

@@ -47,7 +47,7 @@ export interface Bet_Object {
 }
 
 export interface Bet_Choice {
-  event_id: string,
+  id: string,
   team_name?: string | null;
   other_team?: string | null;
   bet_type:  string;

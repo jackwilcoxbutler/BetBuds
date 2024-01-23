@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]/route";
 import { Bet_Choice } from "@/lib/betTypes";
@@ -18,8 +18,8 @@ export async function POST(req: Request, res: NextApiResponse) {
         const  data = await req.json();
         const betChoice : Bet_Choice= data.betChoice;
         const leagueIDs : string[] = data.leagueIDs;
-        console.log(betChoice);
-        console.log(leagueIDs);
+
+        //if()
 
         // Create a UserLeagueBet for each league ID
         const createdBets = await Promise.all(leagueIDs.map(async (leagueID) => {
@@ -28,6 +28,7 @@ export async function POST(req: Request, res: NextApiResponse) {
                     user: { connect: { id: userID } },
                     league: { connect: { id: leagueID } },
                     // Map other fields from betChoice to the create operation
+                    event:{connect : {id : betChoice.id}},
                     team_name: betChoice.team_name,
                     Opponent: betChoice.other_team,
                     bet_type: betChoice.bet_type,
