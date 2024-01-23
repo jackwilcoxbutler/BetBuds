@@ -4,6 +4,7 @@ import { SportTab } from "@/components/bets/SportTab"
 import DefaultHeader from "@/components/header"
 import OpenLeagueFormButton from "@/components/leagues/CreateLeagueButton"
 import { ListLeagues } from "@/components/leagues/ListLeagues"
+import NavigationMenuDemo from "@/components/test_header";
 
 
 export default async function ProtectedLayout({
@@ -15,7 +16,7 @@ export default async function ProtectedLayout({
     <html lang="en">
       <body>
         <div className="h-screen w-screen bg-t-white">
-          <DefaultHeader />
+          <DefaultHeader/>
           <div className="h-full w-full flex justify-center">
             <div className="flex flex-row w-full justify-end space-x-4 mx-40">
               <div className="flex flex-col w-full">
