@@ -27,7 +27,7 @@ export default function BetButtonGrid({ bet, is_home }: BetButtonGridProps) {
   return (
     <div className="flex flex-row space-x-5" >
       {bet.homeML && bet.awayML && (<button
-        className="border w-20 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-dark-blue hover:text-t-white
+        className="border w-20 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-orange hover:text-t-white
                                     transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"
         onClick={() => {
           //console.log(context);
@@ -44,7 +44,7 @@ export default function BetButtonGrid({ bet, is_home }: BetButtonGridProps) {
         {is_home ? formatOdds(bet.homeML) : formatOdds(bet.awayML)}
       </button>)}
       {bet.awaySpreadPoint && bet.awaySpreadPrice && bet.homeSpreadPoint && bet.homeSpreadPrice && (<button
-        className="border w-20 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-dark-blue hover:text-t-white
+        className="border w-20 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-orange hover:text-t-white
 transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"
         onClick={() => {
           //console.log(context);
@@ -65,7 +65,7 @@ transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"
         </div>
       </button>)}
       {bet.totalPoint && bet.overPrice && bet.underPrice && (<button
-        className="border w-20 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-dark-blue hover:text-t-white
+        className="border w-20 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-orange hover:text-t-white
 transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"
         onClick={() => {
           //console.log(context);

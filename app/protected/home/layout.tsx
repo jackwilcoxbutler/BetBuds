@@ -1,24 +1,15 @@
-import BetProvider from "@/app/context/bet-provider";
-import { BetSlip } from "@/components/bets/BetSlip";
+import BetProvider from "@/app/context/bet-provider"
+import { BetSlip } from "@/components/bets/BetSlip"
 import { SportTab } from "@/components/bets/SportTab"
-import DefaultHeader from "@/components/header"
 import OpenLeagueFormButton from "@/components/leagues/CreateLeagueButton"
 import { ListLeagues } from "@/components/leagues/ListLeagues"
-import NavigationMenuDemo from "@/components/test_header";
-
 
 export default async function ProtectedLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <html lang="en">
-      <body>
-        <div className="h-screen w-screen bg-t-white">
-          <DefaultHeader/>
-          <div className="h-full w-full flex justify-center">
-            <div className="flex flex-row w-full justify-end space-x-4 mx-40">
+    children,
+  }: {
+    children: React.ReactNode
+  }) {
+  return(<div className="flex flex-row w-full justify-end space-x-4 mx-40">
               <div className="flex flex-col w-full">
                 <BetProvider>
                   <div className="sticky top-16 -z-0">
@@ -35,9 +26,4 @@ export default async function ProtectedLayout({
                 <OpenLeagueFormButton />
               </div>
             </div>
-          </div>
-        </div>
-      </body>
-    </html>
-  )
-}
+            )}
