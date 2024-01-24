@@ -9,7 +9,7 @@ export default async function ProtectedLayout({
   return (
     <html lang="en">
       <body>
-        <div className="sticky h-screen w-screen bg-t-white pt-4">
+        <div className="h-full w-screen bg-t-white pb-4">
           <NavigationMenuDemo/>
           <div className="h-full w-full flex justify-center">
             {children}

@@ -88,7 +88,7 @@ const LeagueSelector: React.FC = () => {
         <div>
           <button
             type="button"
-            className="inline-flex justify-center w-full border hover:bg-t-orange-200 rounded-md shadow-mg px-4 py-2 text-sm font-medium"
+            className="inline-flex justify-center w-full border bg-t-light-blue hover:bg-t-dark-blue rounded-md shadow-mg px-4 py-2 text-sm font-medium"
             id="menu-button"
             aria-expanded={isDropdownOpen}
             aria-haspopup="true"
@@ -96,9 +96,9 @@ const LeagueSelector: React.FC = () => {
             disabled={(leagueChoices.length === 0)}
           >
             {(leagueChoices.length > 0) ? "Select Leagues " : "No leagues"}
-            <svg className={`${isDropdownOpen ? 'transform rotate-180' : ''} -mr-1 ml-2 h-5 w-5`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            {(leagueChoices.length > 0) && <svg className={`${isDropdownOpen ? 'transform rotate-180' : ''} -mr-1 ml-2 h-5 w-5`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fillRule="evenodd" d="M5.292 7.292a1 1 0 011.414 0L10 10.586l3.294-3.294a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-            </svg>
+            </svg>}
           </button>
         </div>
 
