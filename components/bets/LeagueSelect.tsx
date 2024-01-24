@@ -104,7 +104,7 @@ const LeagueSelector: React.FC = () => {
 
         {isDropdownOpen && (
           <div
-            className="origin-bottom-right absolute right-0 bottom-full mb-2 w-56 rounded-md shadow-lg bg-t-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+            className="text-t-dark-blue origin-bottom-right absolute right-0 bottom-full mb-2 w-56 rounded-md shadow-lg bg-t-white ring-1 ring-black ring-opacity-5 focus:outline-none"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="menu-button"

@@ -28,7 +28,7 @@ export const SportTab: React.FC = async () => {
             const url = "/protected/home/" + tab.sportKey
             return(
             <div key={tab.sportTitle}
-            className='flex  text-t-white w-full justify-center rounded-lg bg-t-light-blue border-4 border-t-white hover:border-t-dark-blue   px-5 mt-4 mx-2 data-[state=active]:shadow-current data-[state=active]:focus:relative data-[state=active]:focus:shadow-[0_0_0_2px] data-[state=active]:focus:shadow-black '>
+            className='flex  text-t-white w-full justify-center rounded-lg bg-t-light-blue border-4 border-opacity-0 hover:border-opacity-80 hover:border-t-dark-blue   px-5 mt-4 mx-2 data-[state=active]:shadow-current data-[state=active]:focus:relative data-[state=active]:focus:shadow-[0_0_0_2px] data-[state=active]:focus:shadow-black '>
                 <Link
                     className=" px-5 h-[45px] flex-1 flex items-center justify-center text-[15px] leading-noneselect-none data-[state=active]:text-t-dark-blue  cursor-default"
                     href={url}

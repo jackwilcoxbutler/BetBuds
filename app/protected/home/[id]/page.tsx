@@ -34,7 +34,7 @@ export default async function Page({
         <>
             <div className='flex flex-col w-full text-t-dark-blue rounded-md pt-2 bg-t-grey mt-4 '>
                 {(bets.length > 0) && bets.map((bet) => (
-                    <div key={bet.id} className="flex border-b border-t-light-blue ml-3 mr-1 border-spacing-2 p-4">
+                    <div key={bet.id} className="flex border-b border-t-light- ml-3 mr-1 border-spacing-2 p-4">
                     
                         <div
                             className="flex w-full flex-col ml-4 space-y-5 text-xl">
