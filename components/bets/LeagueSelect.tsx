@@ -45,6 +45,7 @@ const LeagueSelector: React.FC = () => {
     if (response.ok) {
       setIsDropdownOpen(false);
       setSelectedLeagues([]);
+      
     }
 
   }
