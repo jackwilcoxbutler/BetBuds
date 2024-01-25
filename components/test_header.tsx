@@ -6,7 +6,7 @@ const NavigationMenuDemo = () => {
 
   return (
     <NavigationMenu.Root className="sticky top-2 z-[1] flex w-screen justify-center py-4">
-      <NavigationMenu.List className="center shadow-blackA4 m-0 flex list-none rounded-[6px] bg-t-orange p-1 shadow-[0_2px_10px]">
+      <NavigationMenu.List className="center shadow-blackA4 space-x-4 m-0 flex list-none rounded-[6px] bg-t-orange p-1 shadow-lg">
         <NavigationMenu.Item>
         <NavigationMenu.Link
             className="text-t-white hover:bg-t-orange-200 focus:shadow-t-orange block select-none rounded-[4px] px-3 py-2 text-[20px] font-medium leading-none no-underline outline-none focus:shadow-[0_0_0_2px]"
