@@ -1,4 +1,4 @@
-import NavigationMenuDemo from "@/components/test_header";
+import NavBar from "@/components/NavBar";
 
 
 export default async function ProtectedLayout({
@@ -10,7 +10,7 @@ export default async function ProtectedLayout({
     <html lang="en">
       <body>
         <div className="h-full w-screen bg-t-white pb-4">
-          <NavigationMenuDemo/>
+          <NavBar/>
           <div className="h-full w-full flex justify-center">
             {children}
           </div>

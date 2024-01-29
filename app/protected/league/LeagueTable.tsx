@@ -1,30 +1,19 @@
-import BetProvider from "@/app/context/bet-provider";
+'use client';
 import AddUserFormModal from "@/components/Invitations/AddUserFormModal";
-import BetButtonGrid from "@/components/bets/BetButton";
-import { Bet_Object } from "@/lib/betTypes";
 import prisma from "@/lib/prisma";
+import { getLeague } from "@/lib/server/getLeague";
 
 interface leagueTableProps{
     leagueID : string
 }
 
+
+
 export default async function LeagueTable({leagueID} : leagueTableProps) {
   
   
     // First, get the league and extract user IDs
-    const leagueWithUsersAndBets = await prisma.league.findUnique({
-      where: {
-        id: leagueID,
-      },
-      include: {
-        users: {
-          include: {
-            user_bets: true
-          }
-        }
-      }
-    });
-    console.log(leagueWithUsersAndBets);
+    const leagueWithUsersAndBets = await getLeague(leagueID);
   
     if (!leagueWithUsersAndBets || !leagueWithUsersAndBets.users) {
       throw new Error('League not found');
@@ -74,9 +63,8 @@ export default async function LeagueTable({leagueID} : leagueTableProps) {
     let iter = 0;
   
     return (
-      <div>
- 
-            <div className="min-w-full overflow-x-auto shadow-md sm:rounded-lg">
+      <div className="w-full">
+            <div className="min-w-5/6 overflow-x-auto shadow-md sm:rounded-lg">
               <div className="inline-block min-w-full">
                 <div className="overflow-hidden ">
                   {leagueWithUsersAndBets && (

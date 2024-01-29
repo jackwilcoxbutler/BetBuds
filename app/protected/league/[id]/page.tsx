@@ -1,10 +1,6 @@
 
 import prisma from '@/lib/prisma';
 import AddUserFormModal from "@/components/Invitations/AddUserFormModal";
-import DefaultHeader from "@/components/header";
-import { Decimal } from '@prisma/client/runtime';
-import NavigationMenuDemo from '@/components/test_header';
-
 
 export default async function Page({
   params,
@@ -12,13 +8,25 @@ export default async function Page({
   params: { id: string }
 }) {
 
-  const leagueId = params.id; // Replace with the actual league ID
+  if(params.id === '0'){
+    
+  }
+  const leagueId = (params.id === '0') ? params.id : prisma.league.findFirst; // Replace with the actual league ID
 
   // First, get the league and extract user IDs
-  const leagueWithUsersAndBets = await prisma.league.findUnique({
+  const leagueWithUsersAndBets = (params.id != '0') ? await prisma.league.findUnique({
     where: {
-      id: leagueId,
+      id: params.id,
     },
+    include: {
+      users: {
+        include: {
+          user_bets: true
+        }
+      }
+    }
+  }) : await prisma.league.findFirst({
+
     include: {
       users: {
         include: {
@@ -77,14 +85,7 @@ export default async function Page({
   let iter = 0;
 
   return (
-    <div>
-      <DefaultHeader />
-
-      <div className="flex justify-center pt-8">
-        <div className="flex w-5/6 flex-col">
-          <div className="flex justify-end mx-6 pb-4">
-            {/*<ViewRules/>*/}
-          </div>
+        <div className="flex w-full flex-col">
           <div className="min-w-full overflow-x-auto shadow-md sm:rounded-lg">
             <div className="inline-block min-w-full">
               <div className="overflow-hidden ">
@@ -146,7 +147,5 @@ export default async function Page({
             <AddUserFormModal league_id={params.id} />
           </div>
         </div>
-      </div>
-    </div>
   );
 }
