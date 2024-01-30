@@ -34,7 +34,7 @@ export const BetSlip: React.FC = () => {
 
   return (
     <>{bet && (
-      <div className="flex flex-row w-full border rounded-md h-14 border-t-orange justify-between items-center bg-t-light-blue text-2xl font-bold text-t-orange p-3">
+      <div className="flex flex-row w-full border rounded-md h-14 border-t-orange justify-between items-center bg-t-light-blue text-lg xl:text-xl font-semibold text-t-orange p-3">
         <div
           className="flex flex-row justify-center space-x-8">
           {!bet && (<div>
@@ -60,9 +60,9 @@ export const BetSlip: React.FC = () => {
               {bet.team_name} vs. {bet.other_team} u{bet.point}
             </div>
           )}
-          <button type="button" className="text-white bg-t-dark-blue hover:outline hover:outline-2 hover:outline-t-orange font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2"
+          <button type="button" className="text-white bg-t-dark-blue hover:outline hover:outline-t-orange rounded-full text-sm text-center inline-flex items-center me-2 px-1"
           onClick={() => {setBet(null);}}>
-            <svg className="h-[12px] w-[12px]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="red">
+            <svg className="h-[16px] w-[16px]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="red">
               <line x1="4" y1="4" x2="20" y2="20" stroke="orange" stroke-width="2" />
               <line x1="20" y1="4" x2="4" y2="20" stroke="orange" stroke-width="2" />
             </svg>

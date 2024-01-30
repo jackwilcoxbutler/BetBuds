@@ -13,7 +13,7 @@ export const DefaultHeader = () => {
           href="/protected/home/americanfootball_nfl"
           className="text-2xl font-bold text-t-grey"
         >
-          Wager Wars
+         BetBuds
         </a>
         <div className="flex space-x-8 items-center">
           <AuthButton />

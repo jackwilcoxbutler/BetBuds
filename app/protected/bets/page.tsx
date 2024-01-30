@@ -12,22 +12,11 @@ export default async function Page() {
 
   const bets = await getUserBets(userID ? userID : "");
 
-  const eventLeagueMap = new Map();
-
-  if(bets){for (const bet of bets) {
-      if (eventLeagueMap.has(bet.eventID)) {
-          eventLeagueMap.get(bet.eventID).add(bet.league.league_name);
-      } else {
-          eventLeagueMap.set(bet.eventID, new Set([bet.league.league_name]));
-      }
-  }}
-
   const dateArray = getDates();
 
   //const bets = 
   return (<>
-    {userID !== "clr8b1ak600002xecq939kohd" && (<div> Page Under Construction</div>) } 
-    {userID === "clr8b1ak600002xecq939kohd" && bets && (<div>
+    {bets && (<div>
       {dateArray.map((day) => {
         const today = new Date();
         const tomorrow = new Date();
@@ -42,7 +31,7 @@ export default async function Page() {
         }
 
         return (
-          <div>
+          <div key={dateString}>
             <div className="sticky top-24">
             <div className="text-t-white bg-t-dark-blue block select-none rounded-[4px] px-3 py-2 text-[20px] font-medium leading-none no-underline outline-none focus:bg-t-dark-blue focus:shadow-[0_0_0_2px]">
             {dateString}

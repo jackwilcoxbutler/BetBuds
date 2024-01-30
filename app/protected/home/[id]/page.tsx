@@ -1,7 +1,8 @@
-import BetProvider from "@/app/context/bet-provider";
 import BetButtonGrid from "@/components/bets/BetButton";
 import { Bet_Object } from "@/lib/betTypes";
+import { formatPrismaDateToLocale } from "@/lib/dateHelpers";
 import prisma from "@/lib/prisma";
+
 
 export default async function Page({
     params,
@@ -18,17 +19,6 @@ export default async function Page({
         },
     }) as Bet_Object[];
 
-    const formatOdds = (a: number | null | undefined): string => {
-        if (a) {
-            if (a > 0) {
-                return ("+" + a.toString())
-            } else {
-                return a.toString()
-            }
-        } else {
-            return "-"
-        }
-    }
 
     return (
         <>
@@ -37,13 +27,14 @@ export default async function Page({
                     <div key={bet.id} className="flex border-b border-t-light- ml-3 mr-1 border-spacing-2 p-4">
                     
                         <div
-                            className="flex w-full flex-col ml-4 space-y-5 text-xl">
-                            <div className="flex flex-row justify-between items-center">
+                            className="flex w-full flex-col ml-1 space-y-5 text-md">
+                                {formatPrismaDateToLocale(bet.startDate.toISOString())}
+                            <div className="flex w-18 flex-row justify-between items-center ml-4 text-xl">
                                 <div>{bet.homeTeam}</div>
                                 {/* Button bar */}
                                 <BetButtonGrid bet={bet} is_home={true}/>
                             </div>
-                            <div className="flex  w-18 content-center flex-row justify-between items-center">
+                            <div className="flex  w-18 content-center flex-row justify-between items-center ml-4 text-xl">
                                 <div>{bet.awayTeam}</div>
                                 {/* Button bar */}
                                 <BetButtonGrid bet={bet} is_home={false}/>

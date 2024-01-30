@@ -66,8 +66,8 @@ const InboxModal = () => {
     return (
         <Dialog.Root>
             <Dialog.Trigger asChild>
-                <button className=''>
-                    <EnvelopeClosedIcon className='text-t-grey' />
+                <button className='text-t-white bg-t-orange hover:bg-t-orange-200 p-4 rounded-full'>
+                    <EnvelopeClosedIcon className='h-[20px] w-[20px]' />
                 </button>
             </Dialog.Trigger>
             <Dialog.Portal>

@@ -4,10 +4,9 @@ import { signOut } from "next-auth/react";
 
 export default function SignOut() {
   return (
-    <div className="rounded-sm bg-blue">
     <button
-      className="text-t-grey hover:text-stone-800 "
-      onClick={() => {
+            className="text-t-white hover:bg-t-orange-200 focus:shadow-t-orange block select-none rounded-[4px] px-3 py-2 text-[20px] font-medium leading-none no-underline outline-none focus:shadow-[0_0_0_2px]"
+            onClick={() => {
         //console.log("Signing out");
         signOut({callbackUrl: 'http://localhost:3000/'});
       }
@@ -15,6 +14,5 @@ export default function SignOut() {
     >
       Sign Out
     </button>
-    </div>
   );
 }

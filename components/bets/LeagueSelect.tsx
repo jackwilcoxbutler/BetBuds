@@ -3,6 +3,7 @@ import prisma from '@/lib/prisma';
 import { BetContext } from '@/app/context/bet-provider';
 import { Bet_Choice } from '@/lib/betTypes';
 import toast, { Toaster } from 'react-hot-toast';
+import LoadingDots from '../loading-dots';
 
 
 
@@ -15,6 +16,7 @@ const LeagueSelector: React.FC = () => {
   const [leagueChoices, setLeagueChoices] = useState<leagueName[]>([]);
   const [selectedLeagues, setSelectedLeagues] = useState<leagueName[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const context = useContext(BetContext);
 
 
@@ -30,7 +32,7 @@ const LeagueSelector: React.FC = () => {
   };
 
   async function handlePlaceBet() {
-
+    setLoading(true);
     const response = await fetch('/api/bets/place', {
       method: 'POST',
       headers: {
@@ -47,6 +49,7 @@ const LeagueSelector: React.FC = () => {
       setSelectedLeagues([]);
       
     }
+    setLoading(false);
 
   }
 
@@ -133,14 +136,14 @@ const LeagueSelector: React.FC = () => {
       <button
         onClick={handlePlaceBet}
         className="inline-flex justify-center w-full  bg-t-dark-blue hover:outline hover:outline-2 text-t-orange hover:outline-t-orange rounded-md shadow-mg px-4 py-2 text-sm font-medium"
-
+        disabled={loading}
       //1. check if bet is valid for each league
       //  min odds max odds
       //  league is still active
       //  no bet for that league today
       //2. write to db user league bet
       >
-        Place Bet
+        {!loading ? "Place Bet" : <LoadingDots color='t-orange'/>}
       </button>
       </div>
 
