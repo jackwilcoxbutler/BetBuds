@@ -85,7 +85,10 @@ export default async function Page({
   let iter = 0;
 
   return (
-        <div className="flex w-full flex-col">
+        <div className="flex w-full flex-col ">
+          <div className='flex w-full justify-start py-4 text-4xl m-2'>
+            {leagueWithUsersAndBets.league_name}
+          </div>
           <div className="min-w-full overflow-x-auto shadow-md sm:rounded-lg">
             <div className="inline-block min-w-full">
               <div className="overflow-hidden ">

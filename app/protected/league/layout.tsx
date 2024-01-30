@@ -40,12 +40,11 @@ export default async function LeagueLayout({
   return (
     <>
     {leagues && (
-    <div className="w-full flex flex-row justify-between space-x-8 mx-32 my-16">
-
-      <div className="w-64">
-      <LeagueDropdown leagues={leagueTabs}/>
+    <div className="flex w-screen h-screen mx-16">
+      <div className="w-1/5  text-white mt-16">
+        <LeagueDropdown leagues={leagueTabs}/>
       </div>
-      <div className="w-full">
+      <div className="flex-1 p-10 w-full">
       {children}
       </div>
     </div>

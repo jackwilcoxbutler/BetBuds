@@ -6,7 +6,7 @@ const NavBar = () => {
 
 
   return (
-    <NavigationMenu.Root className="sticky top-2 z-[1] flex w-screen justify-center py-4">
+    <NavigationMenu.Root className="sticky top-0 z-[1] flex w-screen justify-center py-4 bg-t-white">
       <NavigationMenu.List className="center shadow-blackA4 space-x-4 m-0 flex list-none rounded-[6px] bg-t-orange p-1 shadow-lg">
         <NavigationMenu.Item>
         <NavigationMenu.Link

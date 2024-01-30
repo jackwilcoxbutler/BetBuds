@@ -17,7 +17,7 @@ export const LeagueDropdown: React.FC<LeagueDropdownProps> = ({ leagues }: Leagu
       {leagues.map((league) => {
         return (<div key={league.leagueID}>
           <Link
-          className="text-t-white hover:bg-t-dark-blue block select-none rounded-[4px] px-3 py-2 text-[20px] font-medium leading-none no-underline outline-none focus:shadow-[0_0_0_2px]"
+          className="text-t-white hover:bg-t-dark-blue block select-none rounded-[4px] px-3 py-2 text-[20px] font-medium leading-none no-underline outline-none focus:bg-t-dark-blue focus:shadow-[0_0_0_2px]"
           href={"/protected/league/" + league.leagueID}
           >
             {league.leagueName}
