@@ -56,6 +56,9 @@ dependencies:
   bcrypt:
     specifier: ^5.1.0
     version: 5.1.0
+  date-fns:
+    specifier: ^3.3.1
+    version: 3.3.1
   db:
     specifier: ^5.0.0
     version: 5.0.0
@@ -2153,6 +2156,10 @@ packages:
   /damerau-levenshtein@1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
     dev: true
+
+  /date-fns@3.3.1:
+    resolution: {integrity: sha512-y8e109LYGgoQDveiEBD3DYXKba1jWf5BA8YU1FL5Tvm0BTdEfy54WLCwnuYWZNnzzvALy/QQ4Hov+Q9RVRv+Zw==}
+    dev: false
 
   /db@5.0.0:
     resolution: {integrity: sha512-f2l3/8BA4tneFP3Pbom6neUfflyJoAvaoyl/wzqPbexivO1M7A/dJSYHt9ZvgseKowkDVfQqq8zcZ/hQDaeIYg==}
