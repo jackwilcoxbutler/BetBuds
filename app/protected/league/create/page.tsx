@@ -1,5 +1,5 @@
 import CreateLeagueForm from "@/components/leagues/CreateLeagueForm";
-import DefaultHeader from "@/components/header";
+import DefaultHeader from "@/components/noUserHeader";
 
 export default function Home() {
   return (

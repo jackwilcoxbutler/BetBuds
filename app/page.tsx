@@ -1,5 +1,4 @@
-import NavBar from "@/components/NavBar";
-import DefaultHeader from "@/components/Header";
+import DefaultHeader from "@/components/noUserHeader";
 import { TrophyLogo } from "@/components/ui/logo";
 import Link from "next/link";
 
