@@ -12,7 +12,11 @@ interface leagueName {
   league_name: string
 }
 
-const LeagueSelector: React.FC = () => {
+interface LeagueSelectorProps{
+  clearBet : () => void
+}
+
+const LeagueSelector: React.FC<LeagueSelectorProps> = ({clearBet} : LeagueSelectorProps) => {
   const [leagueChoices, setLeagueChoices] = useState<leagueName[]>([]);
   const [selectedLeagues, setSelectedLeagues] = useState<leagueName[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
@@ -47,7 +51,7 @@ const LeagueSelector: React.FC = () => {
     if (response.ok) {
       setIsDropdownOpen(false);
       setSelectedLeagues([]);
-      
+      clearBet();
     }
     setLoading(false);
 
@@ -62,7 +66,7 @@ const LeagueSelector: React.FC = () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ odds: context?.bet?.price ,date : context?.bet?.start_date.toISOString() }),
+          body: JSON.stringify({ odds: context?.bet?.price, date: context?.bet?.start_date.toISOString() }),
         });
 
         if (!response.ok) {
@@ -92,7 +96,7 @@ const LeagueSelector: React.FC = () => {
         <div>
           <button
             type="button"
-            className="inline-flex justify-center w-full  bg-t-dark-blue hover:outline hover:outline-2 text-t-orange hover:outline-t-orange rounded-md shadow-mg px-4 py-2 text-sm font-medium"
+            className={`inline-flex justify-center w-full  bg-t-dark-blue ${(leagueChoices.length > 0) ? ' hover:outline hover:outline-2 hover:outline-t-white ' : ''} text-t-white rounded-md shadow-mg px-4 py-2 text-sm font-medium`}
             id="menu-button"
             aria-expanded={isDropdownOpen}
             aria-haspopup="true"
@@ -132,19 +136,14 @@ const LeagueSelector: React.FC = () => {
         )}
       </div>
       <div
-            className="relative inline-block text-left">
-      <button
-        onClick={handlePlaceBet}
-        className="inline-flex justify-center w-full  bg-t-dark-blue hover:outline hover:outline-2 text-t-orange hover:outline-t-orange rounded-md shadow-mg px-4 py-2 text-sm font-medium"
-        disabled={loading || (selectedLeagues.length==0)}
-      //1. check if bet is valid for each league
-      //  min odds max odds
-      //  league is still active
-      //  no bet for that league today
-      //2. write to db user league bet
-      >
-        {!loading ? "Place Bet" : <LoadingDots color='t-orange'/>}
-      </button>
+        className="inline-block text-left">
+          {selectedLeagues.length > 0 && (<button
+            onClick={handlePlaceBet}
+            className={` bg-t-dark-blue text-t-white ${(selectedLeagues.length > 0) ? ' hover:outline hover:outline-2 hover:outline-t-white ' : ''} rounded-md shadow-mg px-4 py-2 text-sm font-medium`}
+            disabled={loading || (selectedLeagues.length == 0)}
+          >
+            {!loading ? "Place Bet" : <LoadingDots color='t-orange' />}
+          </button>)}
       </div>
 
     </div>
