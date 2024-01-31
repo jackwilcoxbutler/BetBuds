@@ -136,7 +136,7 @@ const LeagueSelector: React.FC = () => {
       <button
         onClick={handlePlaceBet}
         className="inline-flex justify-center w-full  bg-t-dark-blue hover:outline hover:outline-2 text-t-orange hover:outline-t-orange rounded-md shadow-mg px-4 py-2 text-sm font-medium"
-        disabled={loading}
+        disabled={loading || (selectedLeagues.length==0)}
       //1. check if bet is valid for each league
       //  min odds max odds
       //  league is still active
