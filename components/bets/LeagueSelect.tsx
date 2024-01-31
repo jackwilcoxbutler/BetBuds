@@ -62,7 +62,7 @@ const LeagueSelector: React.FC = () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ odds: context?.bet?.price }),
+          body: JSON.stringify({ odds: context?.bet?.price ,date : context?.bet?.start_date.toISOString() }),
         });
 
         if (!response.ok) {
