@@ -4,6 +4,8 @@ import axios from 'axios';
 import prisma from "@/lib/prisma";
 import { Bet,Outcome,Market } from "@/lib/betTypes";
 import { getSports } from "@/lib/betService";
+import { subHours } from "date-fns";
+import { start } from "repl";
 
 
 
@@ -31,6 +33,8 @@ async function fetchBetsBySport(sport_key : string ) {
                 const totalOver = totalsMarket?.outcomes.find((o : Outcome) => o.name === 'Over');
                 const totalUnder = totalsMarket?.outcomes.find((o : Outcome) => o.name === 'Under');
                 //console.log(homeTeam,awayTeam);
+                const commence_time = new Date(event.commence_time);
+                const startTime = subHours(commence_time,5)
 
                 const eventData = {
                     gameID: event.id,
@@ -47,7 +51,7 @@ async function fetchBetsBySport(sport_key : string ) {
                     totalPoint: totalOver?.point || totalUnder?.point,
                     overPrice: totalOver?.price,
                     underPrice: totalUnder?.price,
-                    startDate: new Date(event.commence_time),
+                    startDate: startTime,
                 };
 
 
