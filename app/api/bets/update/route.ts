@@ -57,23 +57,23 @@ async function fetchBetsBySport(sport_key : string ) {
 
 
 
-                const newBet = await prisma.event.create({ data: {
-                    gameID  : eventData.gameID,
-                    sportTitle : eventData.sportTitle,
-                    sportKey : eventData.sportKey,
-                    homeTeam : eventData.homeTeam,
-                    awayTeam : eventData.awayTeam,
-                    awayML : eventData.awayML || null,
-                    homeML : eventData.homeML || null,
-                    awaySpreadPoint : eventData.awaySpreadPoint || null,
-                    awaySpreadPrice : eventData.awaySpreadPrice || null,
-                    homeSpreadPoint : eventData.homeSpreadPoint || null,
-                    homeSpreadPrice : eventData.homeSpreadPrice || null,
-                    totalPoint : eventData.totalPoint || null,
-                    underPrice : eventData.underPrice || null,
-                    overPrice : eventData.overPrice || null,
-                    startDate : eventData.startDate
-                } })
+                const upsertData = {
+                    where: { gameID: eventData.gameID },
+                    update: {awayML: awayH2h?.price,
+                        homeML: homeH2h?.price,
+                        awaySpreadPoint: awaySpread?.point,
+                        homeSpreadPoint: homeSpread?.point,
+                        awaySpreadPrice: awaySpread?.price,
+                        homeSpreadPrice: homeSpread?.price,
+                        totalPoint: totalOver?.point || totalUnder?.point,
+                        overPrice: totalOver?.price,
+                        underPrice: totalUnder?.price},
+                    create: eventData
+                };
+
+                // Only include fields in update object if they are not null
+
+                const newBet = await prisma.event.upsert(upsertData);
             }else{
                 console.log("can't find bookmaker");
             }

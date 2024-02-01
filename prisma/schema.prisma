@@ -64,7 +64,7 @@ model UserLeagueBet {
 
 model Event {
   id              String   @id @default(cuid())
-  gameID          String
+  gameID          String  @unique
   sportTitle      String
   sportKey        String
   homeTeam        String
