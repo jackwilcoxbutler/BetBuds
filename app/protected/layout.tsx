@@ -10,12 +10,14 @@ export default async function ProtectedLayout({
   return (
     <html lang="en">
       <body>
-        <div className="h-screen w-screen bg-endless-constelation pb-4">
+        <div className="bg-endless-constelation pb-4">
           <NavBar/>
           <div className="h-full w-full flex justify-center">
             {children}
           </div>
-          <Footer/>
+          <footer>
+            <Footer/>
+          </footer>
         </div>
       </body>
     </html>
