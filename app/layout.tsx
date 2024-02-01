@@ -14,9 +14,9 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const title = "Next.js Prisma Postgres Auth Starter";
+const title = "BetBuds - Bet with friends";
 const description =
-  "This is a Next.js starter kit that uses Next-Auth for simple email + password login and a Postgres database to persist the data.";
+  "Your favorite betting app to compete with friends in making daily picks";
 
 export const metadata: Metadata = {
   title,
@@ -39,7 +39,6 @@ export default async function RootLayout({
     <html lang="en">
       <body>
         <Provider session={session}>
-        
       {children}
       </Provider>
       </body>
