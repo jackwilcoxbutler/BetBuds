@@ -4,6 +4,7 @@ import { BetContext } from '@/app/context/bet-provider';
 import { Bet_Choice } from '@/lib/betTypes';
 import toast, { Toaster } from 'react-hot-toast';
 import LoadingDots from '../loading-dots';
+import TooltipDemo from '../ui/tooltip';
 
 
 
@@ -137,13 +138,16 @@ const LeagueSelector: React.FC<LeagueSelectorProps> = ({clearBet} : LeagueSelect
       </div>
       <div
         className="inline-block text-left">
-          {selectedLeagues.length > 0 && (<button
+          {selectedLeagues.length > 0 && (
+          <button
             onClick={handlePlaceBet}
             className={` bg-t-dark-blue text-t-white ${(selectedLeagues.length > 0) ? ' hover:outline hover:outline-2 hover:outline-t-white ' : ''} rounded-md shadow-mg px-4 py-2 text-sm font-medium`}
             disabled={loading || (selectedLeagues.length == 0)}
           >
             {!loading ? "Place Bet" : <LoadingDots color='t-orange' />}
-          </button>)}
+          </button>
+          // <TooltipDemo/>
+          )}
       </div>
 
     </div>

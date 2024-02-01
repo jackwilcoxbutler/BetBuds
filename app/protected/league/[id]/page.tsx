@@ -46,10 +46,6 @@ export default async function Page({
     }
   }) as League;
 
-  if (!leagueWithUsersAndBets || !leagueWithUsersAndBets.users) {
-    throw new Error('League not found');
-  }
-
   function formatPrice(odds: number): string {
     if (odds > 0) {
       return "+" + odds.toString();
@@ -57,7 +53,7 @@ export default async function Page({
     else return odds.toString();
   }
 
-  const processedData = leagueWithUsersAndBets.users.map(user => {
+  const processedData = leagueWithUsersAndBets?.users.map(user => {
     console.log(user.user_bets);
     if (user.user_bets.length === 0) {
       return {
@@ -110,7 +106,9 @@ export default async function Page({
   let iter = 0;
 
   return (
-    <div className="flex w-full flex-col ">
+    <>
+    {leagueWithUsersAndBets && (
+      <div className="flex w-full flex-col ">
       <div className='flex w-full justify-start text-4xl mt-28 m-2'>
         <div className='bg-t-light-blue border-2 border-t-dark-blue p-2 rounded-lg text-t-white shadow-md shadow-t-dark-blue'>
         {leagueWithUsersAndBets.league_name}
@@ -175,6 +173,11 @@ export default async function Page({
       <div className="pt-12 flex w-full justify-center">
         <AddUserFormModal league_id={params.id} />
       </div>
-    </div>
+    </div>)}
+    {!leagueWithUsersAndBets && (
+      <div>
+          You have no leagues!
+      </div>)}
+                  </>
   );
 }

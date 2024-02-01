@@ -1,23 +1,22 @@
 'use client';
 
+import { PlusIcon } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
 
 
-export default function OpenLeagueFormButton() {
-  const router = useRouter();
 
-  return (
-    <div>
-    <button
-      className="border-t-grey bg-t-light-blue hover:bg-t-dark-blue text-t-white flex h-10 w-full items-center justify-center rounded-md border text-lg transition-all focus:outline-none"
+export const CreateLeagueButton: React.FC = () => {
+    const router = useRouter();
+    return (
+      <>
+      <button className='text-t-white bg-t-orange hover:bg-t-orange-200 p-4 rounded-full'
       onClick={() => {
         //console.log("Signing out");
         router.push("/protected/league/create");
       }
-      }
-    >
-      Create New League
-    </button>
-    </div>
-  );
-}
+      }>
+        <PlusIcon className="h-[16px] w-[16px] font-bold"/>
+      </button>
+      </>
+    );
+  };

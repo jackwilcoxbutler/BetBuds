@@ -3,6 +3,7 @@ import React from 'react';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import SignOut from './signout_button';
 import InboxModal from './Invitations/InboxModal';
+import { CreateLeagueButton } from './leagues/CreateLeagueButton';
 
 const NavBar = () => {
   return (
@@ -54,6 +55,7 @@ const NavBar = () => {
     <SignOut/>
     </div>
     <InboxModal />
+    <CreateLeagueButton/>
     </div>
   );
 };
