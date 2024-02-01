@@ -133,7 +133,7 @@ export default async function Page({
                       {leagueWithUsersAndBets.scoring_type === "UNITS" ? (<div>Units</div>) : (<div>Record</div>)}
                     </th>
                     <th scope="col" className="text-center py-3 px-6 text-lg font-medium tracking-wider text-t-white uppercase dark:text-gray-400">
-                      Today's Bet
+                      {"Today's Bet"}
                     </th>
                   </tr>
                 </thead>
