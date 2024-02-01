@@ -7,7 +7,7 @@ settings:
 dependencies:
   '@auth/prisma-adapter':
     specifier: ^1.0.12
-    version: 1.1.0(@prisma/client@4.16.2)
+    version: 1.2.0(@prisma/client@4.16.2)
   '@next-auth/prisma-adapter':
     specifier: ^1.0.7
     version: 1.0.7(@prisma/client@4.16.2)(next-auth@4.24.5)
@@ -35,6 +35,9 @@ dependencies:
   '@radix-ui/react-toolbar':
     specifier: ^1.0.4
     version: 1.0.4(@types/react-dom@18.2.18)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
+  '@radix-ui/react-tooltip':
+    specifier: ^1.0.7
+    version: 1.0.7(@types/react-dom@18.2.18)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
   '@radix-ui/themes':
     specifier: ^2.0.3
     version: 2.0.3(@types/react-dom@18.2.18)(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
@@ -122,8 +125,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /@auth/core@0.24.0:
-    resolution: {integrity: sha512-wwTyapljg4ydyvtQRXSeOaj6nBVSvPkVoXws6i+/vPfINxz4lo9UuLifPLqW7iO72/f4Ttaez0g3XA42VtKQ8A==}
+  /@auth/core@0.25.0:
+    resolution: {integrity: sha512-UxENsD+WNlY1NOFsr3Ygc7F1Ypbia8VCd9NU8cbAhSJ0Z8dtyZ0xmssRo1G3ZW50QnW0AaAMuYzY5oumnPMQzA==}
     peerDependencies:
       nodemailer: ^6.8.0
     peerDependenciesMeta:
@@ -139,12 +142,12 @@ packages:
       preact-render-to-string: 5.2.3(preact@10.11.3)
     dev: false
 
-  /@auth/prisma-adapter@1.1.0(@prisma/client@4.16.2):
-    resolution: {integrity: sha512-FSHnAmdrrW7b87pKjtnSCOgEthNK9ZAdZJDfncuG3YpXr4whiDfFhqg4UXgmnn/nEXuCIAY6wL3eZIa044vIOQ==}
+  /@auth/prisma-adapter@1.2.0(@prisma/client@4.16.2):
+    resolution: {integrity: sha512-yn1ZHX/a57x8hhU+rwi+GL1IHx8k92Fhqk5w9R5toAtO9PxAr9xD+sNjD0OgrAMrO7GttKyW/mac6t8G0NYDEg==}
     peerDependencies:
       '@prisma/client': '>=2.26.0 || >=3 || >=4 || >=5'
     dependencies:
-      '@auth/core': 0.24.0
+      '@auth/core': 0.25.0
       '@prisma/client': 4.16.2(prisma@4.16.2)
     transitivePeerDependencies:
       - nodemailer
@@ -164,7 +167,7 @@ packages:
       debug: 4.3.4
       espree: 9.6.1
       globals: 13.24.0
-      ignore: 5.3.0
+      ignore: 5.3.1
       import-fresh: 3.3.0
       js-yaml: 4.1.0
       minimatch: 3.1.2
@@ -2055,7 +2058,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001581
-      electron-to-chromium: 1.4.652
+      electron-to-chromium: 1.4.653
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.22.3)
     dev: true
@@ -2321,8 +2324,8 @@ packages:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
     dev: true
 
-  /electron-to-chromium@1.4.652:
-    resolution: {integrity: sha512-XvQaa8hVUAuEJtLw6VKQqvdOxTOfBLWfI10t2xWpezx4XXD3k8bdLweEKeItqaa0+OkJX5l0mP1W+JWobyIDrg==}
+  /electron-to-chromium@1.4.653:
+    resolution: {integrity: sha512-wA2A2LQCqnEwQAvwADQq3KpMpNwgAUBnRmrFgRzHnPhbQUFArTR32Ab46f4p0MovDLcg4uqd4nCsN2hTltslpA==}
     dev: true
 
   /emoji-regex@8.0.0:
@@ -2672,7 +2675,7 @@ packages:
       functional-red-black-tree: 1.0.1
       glob-parent: 6.0.2
       globals: 13.24.0
-      ignore: 5.3.0
+      ignore: 5.3.1
       import-fresh: 3.3.0
       imurmurhash: 0.1.4
       is-glob: 4.0.3
@@ -2969,7 +2972,7 @@ packages:
       array-union: 2.1.0
       dir-glob: 3.0.1
       fast-glob: 3.3.2
-      ignore: 5.3.0
+      ignore: 5.3.1
       merge2: 1.4.1
       slash: 3.0.0
     dev: true
@@ -3051,8 +3054,8 @@ packages:
       safer-buffer: 2.1.2
     dev: false
 
-  /ignore@5.3.0:
-    resolution: {integrity: sha512-g7dmpshy+gD7mh88OC9NwSGTKoc3kyLAZQRU1mt53Aw/vnvfXnbC+F/7F7QoYVKbV+KNvJx8wArewKy1vXMtlg==}
+  /ignore@5.3.1:
+    resolution: {integrity: sha512-5Fytz/IraMjqpwfd34ke28PTVMjZjJG2MPn5t7OE4eUCUNf8BAa7b5WUS9/Qvr6mwOQS7Mk6vdsMno5he+T8Xw==}
     engines: {node: '>= 4'}
     dev: true
 

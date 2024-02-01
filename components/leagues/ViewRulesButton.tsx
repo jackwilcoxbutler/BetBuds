@@ -1,8 +1,5 @@
 'use client';
 
-import { signOut } from "next-auth/react";
-import { InfoLogo } from "public/info";
-
 export default function ViewRules() {
   return (
     <div className="rounded-sm bg-blue">

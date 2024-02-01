@@ -1,10 +1,6 @@
 'use client'
-import { getSportNames } from '@/lib/betService';
-import * as Tabs from '@radix-ui/react-tabs';
-import { SportTabContent } from './SportTabContent';
-import { Bet, Bet_Choice, Bet_Object } from '@/lib/betTypes';
+import { Bet_Choice, Bet_Object } from '@/lib/betTypes';
 import {  useState } from 'react';
-import { BetSlip } from './BetSlip';
 import BetButtonGrid from './BetButton';
 
 

@@ -1,7 +1,6 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
-import { subDays, addDays, isSameDay } from 'date-fns';
+import { isSameDay } from 'date-fns';
 import { getDates, getUserBets } from "./betViewService";
 
 

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import LoadingDots from "@/components/loading-dots";
-import toast, { ToastBar, Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 

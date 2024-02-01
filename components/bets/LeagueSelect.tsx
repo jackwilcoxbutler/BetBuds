@@ -1,10 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
-import prisma from '@/lib/prisma';
 import { BetContext } from '@/app/context/bet-provider';
-import { Bet_Choice } from '@/lib/betTypes';
 import toast, { Toaster } from 'react-hot-toast';
 import LoadingDots from '../loading-dots';
-import TooltipDemo from '../ui/tooltip';
 
 
 

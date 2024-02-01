@@ -1,6 +1,5 @@
 'use client';
 import AddUserFormModal from "@/components/Invitations/AddUserFormModal";
-import prisma from "@/lib/prisma";
 import { getLeague } from "@/lib/server/getLeague";
 
 interface leagueTableProps{

@@ -1,0 +1,239 @@
+"use client";
+
+import { useState } from "react";
+import { signIn } from "next-auth/react";
+import LoadingDots from "@/components/loading-dots";
+import toast, { Toaster } from "react-hot-toast";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
+export default function LeagueForm() {
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    
+    e.preventDefault();
+    setLoading(true);
+    console.log(is_private);
+    
+    if(!allow_ml && !allow_spread && !allow_total){
+      setError('At least one bet type must be allowed');
+      setLoading(false);
+      return;
+    }else if(number_bets <= 0 || number_periods <= 0 || max_users <= 0){
+      setError('Number of bets, periods, and max users must be greater than 0');
+      setLoading(false);
+      return;
+    }else if(max_odds < min_odds){
+      setError('Max odds must be greater than minimum');
+      setLoading(false);
+      return;
+    }else if(end_date <= start_date){
+      setError('Invalid Start and end date');
+      setLoading(false);
+      return;
+    }else if(record_type === 'none'){
+      setError('Please choose a scoring type');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/league', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          league_name : league_name ,
+          scoring_type : record_type,
+          number_bets : number_bets,
+          number_periods : number_periods,
+          period_type : period_type,
+          is_private : is_private,
+          max_number_users : max_users,
+          max_odds : max_odds,
+          min_odds : min_odds,
+          allow_ml : allow_ml,
+          allow_spread : allow_spread,
+          allow_total : allow_total,
+          startDate : start_date.toISOString(),
+          endDate : end_date.toISOString()
+        },),
+      });
+      if (response.ok) {
+        // League created successfully
+        setLeagueName('');
+        setError(null);
+        setLoading(false);
+
+      } else {
+        const data = await response.json();
+        setError(data.error || 'Failed to create league');
+        setLoading(false);
+        router.push("/protected");
+      }
+    } catch (error) {
+      console.error('Error creating league:', error);
+      setError('Internal Server Error');
+      setLoading(false);
+    }
+  };
+
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+    setLoading(true);
+    console.log(is_private);
+    
+    if(!allow_ml && !allow_spread && !allow_total){
+      setError('At least one bet type must be allowed');
+      setLoading(false);
+      return;
+    }else if(number_bets <= 0 || number_periods <= 0 || max_users <= 0){
+      setError('Number of bets, periods, and max users must be greater than 0');
+      setLoading(false);
+      return;
+    }else if(max_odds < min_odds){
+      setError('Max odds must be greater than minimum');
+      setLoading(false);
+      return;
+    }else if(end_date <= start_date){
+      setError('Invalid Start and end date');
+      setLoading(false);
+      return;
+    }else if(record_type === 'none'){
+      setError('Please choose a scoring type');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response =  fetch('/api/league', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          league_name : league_name ,
+          scoring_type : record_type,
+          number_bets : number_bets,
+          number_periods : number_periods,
+          period_type : period_type,
+          is_private : is_private,
+          max_number_users : max_users,
+          max_odds : max_odds,
+          min_odds : min_odds,
+          allow_ml : allow_ml,
+          allow_spread : allow_spread,
+          allow_total : allow_total,
+          startDate : start_date.toISOString(),
+          endDate : end_date.toISOString()
+        },),
+      });
+      if (response.ok) {
+        // League created successfully
+        setLeagueName('');
+        setError(null);
+        setLoading(false);
+
+      } else {
+        const data = response.json();
+        setError(data.error || 'Failed to create league');
+        setLoading(false);
+        router.push("/protected");
+      }
+    } catch (error) {
+      console.error('Error creating league:', error);
+      setError('Internal Server Error');
+      setLoading(false);
+    }}}
+      className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 sm:px-16"
+    >
+      {type === 'register' && (
+        <div>
+        <label
+          htmlFor="username"
+          className="block text-xs text-t-white uppercase"
+        >
+          Username
+        </label>
+        <input
+          id="username"
+          name="username"
+          type="username"
+          placeholder="username"
+          required
+          className="mt-1 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
+        />
+      </div>
+      )}
+      <div>
+        <label
+          htmlFor="email"
+          className="block text-xs text-t-white uppercase"
+        >
+          Email Address
+        </label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="panic@thedis.co"
+          autoComplete="email"
+          required
+          className="mt-1 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
+        />
+      </div>
+      <div>
+        <label
+          htmlFor="password"
+          className="block text-xs text-t-white uppercase"
+        >
+          Password
+        </label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          required
+          className="mt-1 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
+        />
+      </div>
+      <button
+        disabled={loading}
+        className={`${
+          loading
+            ? "cursor-not-allowed border-gray-200 bg-gray-100"
+            : "border-black bg-black text-t-white hover:bg-white hover:text-black"
+        } flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none`}
+      >
+        {loading ? (
+          <LoadingDots color="#808080" />
+        ) : (
+          <p>{type === "login" ? "Sign In" : "Sign Up"}</p>
+        )}
+      </button>
+      {type === "login" ? (
+        <p className="text-center text-sm text-t-white">
+          Don&apos;t have an account?{" "}
+          <Link href="/register" className="font-semibold text-gray-800">
+            Sign up
+          </Link>{" "}
+          for free.
+        </p>
+      ) : (
+        <p className="text-center text-sm text-t-white">
+          Already have an account?{" "}
+          <Link href="/login" className="font-semibold text-gray-800">
+            Sign in
+          </Link>{" "}
+          instead.
+        </p>
+      )}
+      <Toaster/>
+    </form>
+  );
+}

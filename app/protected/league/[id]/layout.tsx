@@ -1,9 +1,7 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
-import { leagueTabs } from "../LeagueDropDown";
-import { LeagueDropdown } from "../LeagueDropDown";
-import { League } from "@/lib/types";
+import { LeagueDropdown, leagueTabs } from "../LeagueDropDown";
 
 
 export default async function LeagueLayout({
@@ -35,7 +33,8 @@ export default async function LeagueLayout({
       }
     });
 
-    const leagueTabs : leagueTabs[] = leagues.map((league : League) => ({leagueID : league.id, leagueName : league.league_name}))
+  //@ts-nocheck
+    const leagueTabs : leagueTabs[] = leagues.map((league) => ({leagueID : league.id, leagueName : league.league_name}))
 
   return (
     <>

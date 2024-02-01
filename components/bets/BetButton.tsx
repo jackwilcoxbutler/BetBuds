@@ -1,7 +1,7 @@
 'use client';
 
 import { BetContext } from "@/app/context/bet-provider";
-import { Bet, Bet_Choice, Bet_Object } from "@/lib/betTypes";
+import {Bet_Object } from "@/lib/betTypes";
 import { useContext } from "react";
 
 const formatOdds = (a: number | null | undefined): string => {
@@ -15,6 +15,8 @@ const formatOdds = (a: number | null | undefined): string => {
     return "-"
   }
 }
+
+
 
 interface BetButtonGridProps {
   bet: Bet_Object,
