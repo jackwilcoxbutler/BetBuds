@@ -1,7 +1,6 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
-import LeagueTable from "./LeagueTable";
 import { leagueTabs } from "./LeagueDropDown";
 import { LeagueDropdown } from "./LeagueDropDown";
 
@@ -40,8 +39,8 @@ export default async function LeagueLayout({
   return (
     <>
     {leagues && (
-    <div className="flex w-screen h-screen mx-16">
-      <div className="w-1/5  text-white mt-16">
+    <div className="flex w-screen h-screen mx-32">
+      <div className="w-1/5  text-white mt-32">
         <LeagueDropdown leagues={leagueTabs}/>
       </div>
       <div className="flex-1 p-10 w-full">

@@ -13,7 +13,7 @@ export const LeagueDropdown: React.FC<LeagueDropdownProps> = ({ leagues }: Leagu
 
   return (
     <div className="sticky left-2 z-[1] flex w-full justify-center">
-      <div className="center shadow-blackA4 space-y-4 m-0 flex flex-col rounded-[6px] bg-t-light-blue p-1 shadow-lg">
+      <div className="center shadow-blackA4 space-y-4 m-0 flex flex-col rounded-[6px] bg-t-light-blue p-1 shadow-lg border-2 border-t-dark-blue">
       {leagues.map((league) => {
         return (<div key={league.leagueID}>
           <Link

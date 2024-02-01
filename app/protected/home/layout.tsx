@@ -9,10 +9,10 @@ export default async function ProtectedLayout({
   }: {
     children: React.ReactNode
   }) {
-  return(<div className="flex flex-row w-full justify-end space-x-4 mx-40">
+  return(<div className="flex flex-row w-full justify-end space-x-4 mx-32">
               <div className="flex flex-col w-full">
                 <BetProvider>
-                  <div className="sticky top-16 -z-0">
+                  <div className="sticky top-12 -z-0">
                   <SportTab/>
                   </div>
                 {children}

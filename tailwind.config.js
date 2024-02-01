@@ -16,8 +16,8 @@ module.exports = {
         'squares-2' : "url('/light-squares.svg')",
         'squares-3' : "url('/white-square.svg')",
         'min' : "url('/minimal.svg')",
-        'min-blue' : "url('/minimal-blue.svg')"
-      }
+        'min-blue' : "url('/minimal-blue.svg')",
+        'endless-constelation' : "url('/endless-constellation.svg')"}
     },
     colors:{
       't-grey' : '#BFC0C0',
@@ -26,11 +26,8 @@ module.exports = {
       't-white' : '#FFFFFF',
       't-orange' : '#EF8354',
       't-orange-200' : '#D5602E',
-      ...mauve,
-        ...violet,
-        ...green,
-        ...blackA,
-        ...red,
+      ...green,
+      ...red
     },
     keyframes: {
       overlayShow: {

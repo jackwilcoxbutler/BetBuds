@@ -1,6 +1,7 @@
 
 import prisma from '@/lib/prisma';
 import AddUserFormModal from "@/components/Invitations/AddUserFormModal";
+import { ScoreText } from '@/components/leagues/ScoreText';
 
 export default async function Page({
   params,
@@ -106,56 +107,57 @@ export default async function Page({
 
   return (
     <div className="flex w-full flex-col ">
-      <div className='flex w-full justify-start py-4 text-4xl m-2'>
+      <div className='flex w-full justify-start text-4xl mt-28 m-2'>
+        <div className='bg-t-light-blue border-2 border-t-dark-blue p-2 rounded-lg text-t-white shadow-md shadow-t-dark-blue'>
         {leagueWithUsersAndBets.league_name}
+        </div>
       </div>
-      <div className="min-w-full overflow-x-auto shadow-md sm:rounded-lg">
+      <div className="min-w-full overflow-x-auto shadow-md sm:rounded-lg border-2 border-t-dark-blue bg-t-white">
         <div className="inline-block min-w-full">
           <div className="overflow-hidden ">
             {leagueWithUsersAndBets && (
-              <table className="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
-                <thead className="bg-t-grey dark:bg-gray-700">
+              <table className="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700 bg-t-white cursor-default">
+                <thead className="  bg-t-light-blue dark:bg-gray-700">
                   <tr>
-                    <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                    <th scope="col" className="text-left py-3 px-6 text-lg font-medium tracking-wider text-t-white uppercase dark:text-gray-400">
                       Standing
                     </th>
-                    <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                    <th scope="col" className="text-left py-3 px-6 text-lg font-medium tracking-wider text-t-white uppercase dark:text-gray-400">
                       Username
                     </th>
-                    <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                    <th scope="col" className="text-center py-3 px-6 text-lg font-medium tracking-wider text-t-white uppercase dark:text-gray-400">
                       {leagueWithUsersAndBets.scoring_type === "UNITS" ? (<div>Units</div>) : (<div>Record</div>)}
                     </th>
-                    <th scope="col" className="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                      Current Bet
+                    <th scope="col" className="text-center py-3 px-6 text-lg font-medium tracking-wider text-t-white uppercase dark:text-gray-400">
+                      Today's Bet
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+                <tbody className="bg-t-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                   {processedData.map((user) => {
                     iter++;
                     return (
                       <tr key={user.userId} className="hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{iter}.</td>
-                        <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.username}</td>
-                        <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.totalScore}</td>
+                        <td className="text-left py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">{iter}.</td>
+                        <td className="text-left py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.username}</td>
+                        <td className={`text-center py-2 px-6 text-xl font-medium ${(user.totalScore == 0) ?  ' text-t-dark-blue' : ''} ${user.totalScore > 0 ? ' text-green10 ' : ' text-red10 '} whitespace-nowrap `}>
+                          <ScoreText score={user.totalScore}/>
+                        </td>
                         {user.todayBet ? (
                           (user.todayBet.bet_type === "OVER") && (
-                            <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">o{user.todayBet.point?.toString()} ({formatPrice(user.todayBet.price)}),{user.todayBet.team_name} vs. {user.todayBet.Opponent}</td>
-
+                            <td className="text-center py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">o{user.todayBet.point?.toString()} ({formatPrice(user.todayBet.price)}),{user.todayBet.team_name} vs. {user.todayBet.Opponent}</td>
                           ) ||
                           (user.todayBet.bet_type === "UNDER") && (
-                            <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">u{user.todayBet.point?.toString()} ({formatPrice(user.todayBet.price)}),{user.todayBet.team_name} vs. {user.todayBet.Opponent}</td>
+                            <td className="text-center py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">u{user.todayBet.point?.toString()} ({formatPrice(user.todayBet.price)}),{user.todayBet.team_name} vs. {user.todayBet.Opponent}</td>
                           ) ||
                           (user.todayBet.bet_type === "ML") && (
-                            <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.todayBet.team_name} ({formatPrice(user.todayBet.price)}) vs. {user.todayBet.Opponent}</td>
+                            <td className="text-center py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.todayBet.team_name} ({formatPrice(user.todayBet.price)}) vs. {user.todayBet.Opponent}</td>
                           ) ||
                           (user.todayBet.bet_type === "SPREAD") && (
-                            <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.todayBet.team_name} ({formatPrice(user.todayBet.point || 0)})({formatPrice(user.todayBet.price)}) vs. {user.todayBet.Opponent}</td>
-
+                            <td className="text-center py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.todayBet.team_name} ({formatPrice(user.todayBet.point || 0)})({formatPrice(user.todayBet.price)}) vs. {user.todayBet.Opponent}</td>
                           )
-                          // <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.todayBet.team_name} {user.todayBet.line.toString()},{user.todayBet.start_date.toDateString()}</td>
                         ) : (
-                          <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">No Current Bet</td>
+                          <td className="text-center py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">No Bet for today!</td>
                         )}
                       </tr>
                     )

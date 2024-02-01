@@ -114,7 +114,7 @@ const CreateLeagueForm: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 sm:px-16"
+      className="flex flex-col space-y-4 bg-t-light-blue px-4 py-8 sm:px-16"
     >
       <div className='justify-left'>
         <button
