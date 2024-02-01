@@ -2,6 +2,7 @@
 import prisma from '@/lib/prisma';
 import AddUserFormModal from "@/components/Invitations/AddUserFormModal";
 import { ScoreText } from '@/components/leagues/ScoreText';
+import { League, User } from '@/lib/types';
 
 export default async function Page({
   params,
@@ -30,17 +31,20 @@ export default async function Page({
         }
       }
     }
-  }) : await prisma.league.findFirst({
+  }) as League : await prisma.league.findFirst({
 
     include: {
       users: {
         include: {
-          user_bets: true
+          user_bets: {
+            where: {
+              leagueID: params.id
+            }
+          }
         }
       }
     }
-  });
-  console.log(leagueWithUsersAndBets);
+  }) as League;
 
   if (!leagueWithUsersAndBets || !leagueWithUsersAndBets.users) {
     throw new Error('League not found');
@@ -53,7 +57,7 @@ export default async function Page({
     else return odds.toString();
   }
 
-  const processedData = leagueWithUsersAndBets?.users?.map(user => {
+  const processedData = leagueWithUsersAndBets.users.map(user => {
     console.log(user.user_bets);
     if (user.user_bets.length === 0) {
       return {
@@ -82,7 +86,7 @@ export default async function Page({
 
       return betDate.getTime() === today.getTime()
     })
-
+  
     const totalScore = user.user_bets.reduce((total, bet) => {
       return total + Number(bet.result); // Assuming 'result' can be converted to a number
     }, 0);
