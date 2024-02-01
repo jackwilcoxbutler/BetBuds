@@ -1,6 +1,7 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import prisma from '@/lib/prisma';
+import { CreateLeagueButton } from "./CreateLeagueButton";
 
 
 interface User{
@@ -50,12 +51,23 @@ export const ListLeagues: React.FC = async () => {
       leagues = [];
     }
 
-    return(
-        <div className="w-full justify-center grid grid-cols-1 justify-items-center gap-x-4 ">
+    return(<>
+        <span className="sticky top-[96px] w-full text-center text-xl font-semibold bg-t-light-blue text-t-white border-2 border-t-dark-blue rounded-md ">
+          Leagues
+        </span>
+        {leagues.length > 0 && (<div className="w-full justify-center grid grid-cols-1 justify-items-center">
             {leagues.map((league) => (
                   <LeagueBox key={league.id} league={league}/>
             ))}
-        </div>
+        </div>)}{leagues.length == 0 && (
+          <div className="py-12 flex flex-col mx-4">
+          <button className="flex justify-center items-center text-center w-full hover:bg-t-dark-blue bg-t-light-blue text-t-white border-2 rounded-md border-t-dark-blue text-xl">
+            You have no leagues, create one now!
+          </button>
+          </div>
+        )
+        }
+        </>
     )
 }
 

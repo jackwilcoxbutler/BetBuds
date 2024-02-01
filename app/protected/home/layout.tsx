@@ -12,10 +12,10 @@ export default async function ProtectedLayout({
   <div className="flex flex-row w-full justify-end space-x-4 mx-32">
   <div className="flex flex-col w-full">
     <BetProvider>
-      <div className="sticky top-12 -z-0">
+      <div className="sticky top-[96px] -z-0">
       <SportTab/>
       </div>
-      <div className="pb-20">{children}</div>
+      <div className="pb-20 pt-4">{children}</div>
     <div className="sticky bottom-24 -z-0 px-12 pt-4">
       <BetSlip/>
     </div>
