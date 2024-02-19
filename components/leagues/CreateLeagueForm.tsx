@@ -111,9 +111,10 @@ const CreateLeagueForm: React.FC = () => {
   };
 
   return (
+    <div className='flex w-full h-max justify-center items-center'>
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col space-y-4 bg-t-light-blue px-4 py-8 sm:px-16"
+      className="flex flex-col space-y-4 bg-t-light-blue px-4 py-8 sm:px-16 rounded-md border-2 border-t-dark-blue"
     >
       <div className='justify-left'>
         <button
@@ -254,6 +255,7 @@ const CreateLeagueForm: React.FC = () => {
         Create League
       </button>
     </form >
+    </div>
   );
 };
 
