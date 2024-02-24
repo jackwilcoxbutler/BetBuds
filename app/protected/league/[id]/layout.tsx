@@ -39,16 +39,16 @@ export default async function LeagueLayout({
   return (
     <>
     {leagues.length > 1 && (
-    <div className="flex w-screen h-screen mx-32">
-      <div className="w-1/5  text-white mt-32">
+    <div className="flex flex-row w-screen h-screen mr-32">
+      <div className="basis-1/6  text-white mt-16">
         <LeagueDropdown leagues={leagueTabs}/>
       </div>
-      <div className="flex-1 p-10 w-full">
+      <div className="basis-5/6 p-10 w-full">
       {children}
       </div>
     </div>
     )}
-    {leagues.length < 1 && (
+    {leagues.length <= 1 && (
     <div className="flex w-screen h-screen mx-32">
       <div className="flex-1 px-10 w-full">
       {children}

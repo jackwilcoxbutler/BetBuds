@@ -50,6 +50,8 @@ export default async function Page({
       }
     }
   }) as League;
+  console.log(leagueWithUsersAndBets);
+  
   function formatPrice(odds: number): string {
     if (odds > 0) {
       return "+" + odds.toString();
@@ -58,7 +60,6 @@ export default async function Page({
   }
 
   const processedData = leagueWithUsersAndBets?.users.map(user => {
-    console.log(user.user_bets);
     if (user.user_bets.length === 0) {
       return {
         userId: user.id,
