@@ -1,10 +1,9 @@
-import { format, isToday, isTomorrow, parseISO } from 'date-fns';
+import { format, isToday, isTomorrow, parseISO,add } from 'date-fns';
 
 export function formatPrismaDateToLocale(prismaDateTime : string) {
     console.log(prismaDateTime);
     const date = parseISO(prismaDateTime); // Convert the ISO string to a Date object
-
-    const formattedTime = format(date, 'hh:mm a'); // Format time as "11:00 pm"
+    const formattedTime = format(add(date,{hours : 5}), 'hh:mm a'); // Format time as "11:00 pm"
 
     let formattedDate;
     if (isToday(date)) {

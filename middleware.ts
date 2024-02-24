@@ -15,13 +15,13 @@ export default async function middleware(req: NextRequest) {
   if (path === "/" && !session) {
     return NextResponse.next();
   }else if(path === "/" && session){
-    return NextResponse.redirect(new URL("/protected/home/americanfootball_nfl", req.url));
+    return NextResponse.redirect(new URL("/protected/home/basketball_nba", req.url));
   }
 
-  if (!session && path === "/protected/home/americanfootball_nfl") {
+  if (!session && path === "/protected/home/basketball_nba") {
     return NextResponse.redirect(new URL("/login", req.url));
   } else if (session && (path === "/login" || path === "/register")) {
-    return NextResponse.redirect(new URL("/protected/home/americanfootball_nfl", req.url));
+    return NextResponse.redirect(new URL("/protected/home/basketball_nba", req.url));
   }
   return NextResponse.next();
 }

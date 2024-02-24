@@ -3,18 +3,17 @@ import prisma from '@/lib/prisma';
 import AddUserFormModal from "@/components/Invitations/AddUserFormModal";
 import { ScoreText } from '@/components/leagues/ScoreText';
 import { League, User } from '@/lib/types';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { CreateLeagueButton } from '@/components/leagues/CreateLeagueButton';
 
 export default async function Page({
   params,
 }: {
   params: { id: string }
 }) {
-
-  if (params.id === '0') {
-
-  }
-  const leagueId = (params.id === '0') ? params.id : prisma.league.findFirst; // Replace with the actual league ID
-
+  const session = await getServerSession(authOptions);
+  const userID = session?.user.id;
   // First, get the league and extract user IDs
   const leagueWithUsersAndBets = (params.id != '0') ? await prisma.league.findUnique({
     where: {
@@ -32,7 +31,13 @@ export default async function Page({
       }
     }
   }) as League : await prisma.league.findFirst({
-
+    where : {
+      users : {
+        some : {
+          id : userID
+        }
+      }
+    },
     include: {
       users: {
         include: {
@@ -45,7 +50,6 @@ export default async function Page({
       }
     }
   }) as League;
-
   function formatPrice(odds: number): string {
     if (odds > 0) {
       return "+" + odds.toString();
@@ -99,7 +103,6 @@ export default async function Page({
   if (!processedData) {
     // Handle the case where leagueWithUsersAndBets or leagueWithUsersAndBets.users is null
     console.error("No league or users found");
-    return;
   }
 
   // Now, use these user IDs to filter UserLeagueBet records
@@ -175,9 +178,16 @@ export default async function Page({
       </div>
     </div>)}
     {!leagueWithUsersAndBets && (
-      <div>
-          You have no leagues!
-      </div>)}
+      <div className="flex flex-col space-y-8 w-full items-center justify-center pt-4">
+      <div className="z-10 w-full max-w-md overflow-hidden rounded-2xl border border-t-dark-blue shadow-xl bg-t-dark-blue">
+        <div className="flex flex-col items-center justify-center space-y-3  bg-white px-4 py-6 pt-8 text-center sm:px-16 text-t-white text-xl">
+            You have no Leagues!
+        </div>
+      </div>
+      <CreateLeagueButton expanded={true}/>
+    </div>
+      )}
+                  
                   </>
   );
 }

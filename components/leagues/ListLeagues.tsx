@@ -1,7 +1,6 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import prisma from '@/lib/prisma';
-import { CreateLeagueButton } from "./CreateLeagueButton";
 
 
 interface User{
@@ -52,10 +51,10 @@ export const ListLeagues: React.FC = async () => {
     }
 
     return(<>
-        <span className="sticky top-[96px] w-full text-center text-xl font-semibold bg-t-light-blue text-t-white border-2 border-t-dark-blue rounded-md ">
+        <span className="sticky top-[96px] w-full text-center text-xl font-semibold bg-t-light-blue text-t-white border-2 border-t-dark-blue rounded-md">
           Leagues
         </span>
-        {leagues.length > 0 && (<div className="w-full justify-center grid grid-cols-1 justify-items-center">
+        {leagues.length > 0 && (<div className="w-full justify-center grid grid-cols-1 justify-items-center mt-2">
             {leagues.map((league) => (
                   <LeagueBox key={league.id} league={league}/>
             ))}
@@ -92,13 +91,14 @@ const LeagueBox: React.FC<leagueBoxProps> = ({league}) => {
                 {league.users.map((user) => {
                   iter++;
                   units--;
+                  if(iter < 6){
                   return (
                     <li 
                     key={user.id}
                     className="text-sm text-t-white">
                       {iter}. {user.username}   +{units}u
                     </li>
-                )})}
+                )}})}
                 </ul>
             </div>
           </a>
