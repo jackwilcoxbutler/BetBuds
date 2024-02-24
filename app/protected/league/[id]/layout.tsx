@@ -43,7 +43,7 @@ export default async function LeagueLayout({
       <div className="basis-1/6  text-white mt-16">
         <LeagueDropdown leagues={leagueTabs}/>
       </div>
-      <div className="basis-5/6 p-10 w-full">
+      <div className="flex-1 basis-5/6 px-10">
       {children}
       </div>
     </div>
