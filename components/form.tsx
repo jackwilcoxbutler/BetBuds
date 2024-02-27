@@ -29,7 +29,6 @@ export default function Form({ type }: { type: "login" | "register" }) {
             } else {
               router.push("/protected/home/americanfootball_nfl");
               router.refresh();
-
             }
           });
         } else {
