@@ -27,7 +27,7 @@ export default function Form({ type }: { type: "login" | "register" }) {
               setLoading(false);
               toast.error(error);
             } else {
-              router.push("/protected/home/americanfootball_nfl");
+              router.push("/protected/home/basketball_nba");
               router.refresh();
             }
           });
