@@ -1,0 +1,8 @@
+{
+    "crons": [
+        {
+          "path": "/api/bets/update",
+          "schedule": "0 2 * * *"
+        }
+      ]
+}
