@@ -10,6 +10,7 @@ import { subHours } from "date-fns";
 
 async function fetchBetsBySport(sport_key: string) {
     try {
+        console.log(sport_key);
         const url = "https://api.the-odds-api.com/v4/sports/" + sport_key + "/odds?apiKey=" + process.env.ODDS_API + "&oddsFormat=american&regions=us&markets=h2h,spreads,totals&dateFormat=iso&bookmakers=fanduel"
         const response = await axios.get(url);
 
@@ -72,6 +73,12 @@ async function fetchBetsBySport(sport_key: string) {
                         },
                         create: eventData
                     };
+
+                    const result = await prisma.event.upsert({
+                        where: upsertData.where,
+                        update: upsertData.update,
+                        create: upsertData.create,
+                    });
 
                     // Only include fields in update object if they are not null
 

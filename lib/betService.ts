@@ -10,8 +10,10 @@ export function removeDuplicates(data: string[]): String[] {
 }
 
 export async function getSports(): Promise<string[]> {
-    try {
-        const response = await fetch('https://api.the-odds-api.com/v4/sports/?apiKey=fdbb99959a10b219f4351a17167d7f0e');
+    try {        
+        const url = "https://api.the-odds-api.com/v4/sports/?apiKey=" + process.env.ODDS_API
+
+        const response = await fetch(url);
 
         if (!response.ok) {
             throw new Error(`Error: ${response.status}`);
