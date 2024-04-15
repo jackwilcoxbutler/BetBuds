@@ -10,12 +10,12 @@ import { subHours } from "date-fns";
 
 async function fetchBetsBySport(sport_key: string) {
     try {
-        console.log(sport_key);
         const url = "https://api.the-odds-api.com/v4/sports/" + sport_key + "/odds?apiKey=" + process.env.ODDS_API + "&oddsFormat=american&regions=us&markets=h2h,spreads,totals&dateFormat=iso&bookmakers=fanduel"
         const response = await axios.get(url);
 
         const events: Bet[] = await response.data;
         if (events.length > 0) {
+            console.log("We have ",events.length, " events")
             for (const event of events) {
                 const bookmaker = event.bookmakers[0];
 
@@ -79,6 +79,8 @@ async function fetchBetsBySport(sport_key: string) {
                         update: upsertData.update,
                         create: upsertData.create,
                     });
+
+                    console.log(result)
 
                     // Only include fields in update object if they are not null
 
