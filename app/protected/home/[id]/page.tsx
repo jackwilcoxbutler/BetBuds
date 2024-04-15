@@ -11,7 +11,7 @@ export default async function Page({
     params: { id: string }
 }) {
     var today = new Date()
-    today = add(today,{hours : -4})
+    today = add(today,{hours : -5})
     //map sport title
     const bets = await prisma.event.findMany({
         where: {

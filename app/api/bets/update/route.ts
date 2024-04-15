@@ -94,6 +94,7 @@ async function fetchBetsBySport(sport_key: string) {
         }
     }
 
+export const revalidate = 0
 export async function GET() {
         try {
             const sports = await getSports();
