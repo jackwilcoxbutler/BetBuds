@@ -70,13 +70,13 @@ export default async function Page({
     }
 
 
-    const todayBet = user.user_bets.find(bet => {
+    const todayBet = user.user_bets.find((bet) =>{ 
       const today = new Date();
       today.setHours(0, 0, 0, 0);
 
       // Parse the Prisma date
       const betDate = new Date(bet.start_date);
-      //betDate.setHours(0, 0, 0, 0);
+      betDate.setHours(0, 0, 0, 0);
       console.log(betDate,bet.start_date)
       console.log("Bet date : ", betDate.getMonth(),betDate.getDate(),betDate.getFullYear());
       console.log("Todays date : ", today.getMonth(),today.getDate(),today.getFullYear());
@@ -86,7 +86,7 @@ export default async function Page({
       console.log(today.getTime());
 
       return betDate.getTime() === today.getTime()
-    })
+  })
   
     const totalScore = user.user_bets.reduce((total, bet) => {
       return total + Number(bet.result); // Assuming 'result' can be converted to a number
