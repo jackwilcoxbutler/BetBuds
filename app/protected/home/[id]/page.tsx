@@ -1,8 +1,7 @@
 import BetButtonGrid from "@/components/bets/BetButton";
 import { Bet_Object } from "@/lib/betTypes";
-import { formatPrismaDateToLocale } from "@/lib/dateHelpers";
+import { formatPrismaDateToLocale, getNowInUTC } from "@/lib/dateHelpers";
 import prisma from "@/lib/prisma";
-import { add } from "date-fns";
 
 
 export default async function Page({
@@ -10,14 +9,14 @@ export default async function Page({
 }: {
     params: { id: string }
 }) {
-    var today = new Date()
-    today = add(today,{hours : -5})
+    //function to return two dates that are 
     //map sport title
+    const now = getNowInUTC();
     const bets = await prisma.event.findMany({
         where: {
             sportKey: params.id,
             startDate: {
-                gte: today,
+                gte: now,
             },
         },
     }) as Bet_Object[];
@@ -26,7 +25,7 @@ export default async function Page({
     return (
         <>
          <div>
-            {today.toISOString()}
+            {now}
         </div>
             <div className='flex flex-col w-full text-t-dark-blue rounded-md pt-2 bg-t-grey border-2 border-grey-400 mt-4'>
                 {(bets.length > 0) && bets.map((bet) => (

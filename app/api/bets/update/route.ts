@@ -33,8 +33,8 @@ async function fetchBetsBySport(sport_key: string) {
                     const totalOver = totalsMarket?.outcomes.find((o: Outcome) => o.name === 'Over');
                     const totalUnder = totalsMarket?.outcomes.find((o: Outcome) => o.name === 'Under');
                     //console.log(homeTeam,awayTeam);
-                    const commence_time = new Date(event.commence_time);
-                    const startTime = subHours(commence_time, 5)
+                    //Store dates in UTC
+                    const startTime = new Date(event.commence_time);
 
                     const eventData = {
                         gameID: event.id,
