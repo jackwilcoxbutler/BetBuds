@@ -25,9 +25,9 @@ export default async function Page({
 
     return (
         <>
-        {/* <div>
+         <div>
             {today.toISOString()}
-        </div> */}
+        </div>
             <div className='flex flex-col w-full text-t-dark-blue rounded-md pt-2 bg-t-grey border-2 border-grey-400 mt-4'>
                 {(bets.length > 0) && bets.map((bet) => (
                     <div key={bet.id} className="flex border-b border-t-light- ml-3 mr-1 border-spacing-2 p-4">
