@@ -34,7 +34,8 @@ export default async function Page({
                     <div key={bet.id} className="flex border-b border-t-light- ml-3 mr-1 border-spacing-2 p-4">
                         <div
                             className="flex w-full flex-col ml-1 text-md">
-                            {bet.startDate.toLocaleDateString()}
+                            {bet.startDate.toISOString()}
+                            {`${bet.startDate.getHours()}:${bet.startDate.getMinutes()}, ${bet.startDate.getMonth()} ${bet.startDate.getDay()}`}
                             {format(bet.startDate, 'hh:mm a')}
                             <div className="flex w-18 flex-row justify-between items-center ml-4 text-xl">
                                 <div>{bet.awayTeam}</div>
