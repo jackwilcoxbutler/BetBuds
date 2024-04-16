@@ -9,7 +9,7 @@ interface BetCardProps {
 
 export default function BetCard({bet} : BetCardProps) {
     return (
-        <div key={bet.id} className="flex border-b border-t-light- ml-3 mr-1 border-spacing-2 p-4">
+        <div key={bet.id} className="flex border-b ml-3 mr-1 border-spacing-2 p-4">
                         <div
                             className="flex w-full flex-col ml-1 text-md">
                             {`${bet.startDate.toLocaleTimeString()}, ${bet.startDate.toLocaleDateString()}`}

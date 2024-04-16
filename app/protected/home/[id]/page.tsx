@@ -1,4 +1,3 @@
-import BetButtonGrid from "@/components/bets/BetButton";
 import BetCard from "@/components/bets/BetCard";
 import { Bet_Object } from "@/lib/betTypes";
 import { formatPrismaDateToLocale, getNowInUTC } from "@/lib/dateHelpers";
@@ -25,7 +24,7 @@ export default async function Page({
 
     return (
         <>
-            <div className='flex flex-col w-full text-t-dark-blue rounded-md pt-2 bg-t-grey border-2 border-grey-400 mt-4'>
+            <div className='flex flex-col w-full text-t-dark-blue rounded-md pt-2 bg-t-grey border-2 mt-4'>
                 {(bets.length > 0) && bets.map((bet) => (
                     <BetCard bet={bet} key={bet.id}/>
                 ))}
