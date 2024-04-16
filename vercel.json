@@ -2,7 +2,7 @@
     "crons": [
         {
           "path": "/api/bets/update",
-          "schedule": "21 19 * * *"
+          "schedule": "15 6 * * *"
         }
       ]
 }
