@@ -1,4 +1,3 @@
-import { getSportNames } from "@/lib/betService"
 import Link from "next/link"
 import prisma from "@/lib/prisma"
 

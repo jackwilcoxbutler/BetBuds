@@ -25,7 +25,7 @@ export default async function ProtectedLayout({
           </div>
         </BetProvider>
       </div>
-      <div className="flex flex-col w-1/3 justify-start pl-4 ">
+      <div className="flex flex-col w-1/3 justify-start pl-2 border-l-2 border-dotted">
         <ListLeagues />
       </div>
     </div>

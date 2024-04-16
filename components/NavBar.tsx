@@ -7,7 +7,7 @@ import { CreateLeagueButton } from './leagues/CreateLeagueButton';
 
 const NavBar = () => {
   return (
-    <div  className="sticky top-0 z-[1] flex w-screen justify-center py-4 space-x-4 backdrop-blur-md border-b border-t-orange-200">
+    <div  className="sticky top-0 z-[1] flex w-screen justify-center py-4 space-x-4 backdrop-blur-md border-b-2 border-dotted border-t-dark-blue">
     <div className='flex flex-row items-center rounded-[6px] bg-t-orange p-1 shadow-lg border-4 border-t-orange-200'>
     <NavigationMenu.Root>
       <NavigationMenu.List className="center shadow-blackA4 space-x-4 m-0 flex list-none ">
@@ -19,14 +19,14 @@ const NavBar = () => {
             Home
           </NavigationMenu.Link>
         </NavigationMenu.Item>
-        <NavigationMenu.Item>
+        {/* <NavigationMenu.Item>
         <NavigationMenu.Link
             className="text-t-white hover:bg-t-orange-200 focus:shadow-t-orange block select-none rounded-[4px] px-3 py-2 text-[20px] font-medium leading-none no-underline outline-none focus:shadow-[0_0_0_2px]"
             href="/protected/league/0"
           >
             Leagues
           </NavigationMenu.Link>
-        </NavigationMenu.Item>
+        </NavigationMenu.Item> */}
         {/*Bets page is work in progress*/}
         {/* <NavigationMenu.Item>
         <NavigationMenu.Link
