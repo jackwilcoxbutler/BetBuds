@@ -1,8 +1,6 @@
 import BetCard from "@/components/bets/BetCard";
 import { Bet_Object } from "@/lib/betTypes";
-import { formatPrismaDateToLocale, getNowInUTC } from "@/lib/dateHelpers";
 import prisma from "@/lib/prisma";
-import { format } from 'date-fns';
 
 
 export default async function Page({

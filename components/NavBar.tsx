@@ -7,7 +7,7 @@ import { CreateLeagueButton } from './leagues/CreateLeagueButton';
 
 const NavBar = () => {
   return (
-    <div  className="sticky top-0 z-[1] flex w-screen justify-center py-4 space-x-4 backdrop-blur-md border-b-2 border-dotted border-t-dark-blue">
+    <div  className="sticky top-0 z-[1] flex w-screen justify-center py-4 space-x-4 backdrop-blur-md border-b-2 border border-t-dark-blue">
     <div className='flex flex-row items-center rounded-[6px] bg-t-orange p-1 shadow-lg border-4 border-t-orange-200'>
     <NavigationMenu.Root>
       <NavigationMenu.List className="center shadow-blackA4 space-x-4 m-0 flex list-none ">

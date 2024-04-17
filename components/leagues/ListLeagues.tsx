@@ -12,7 +12,8 @@ interface User {
 }
 
 interface UserBet {
-  result: number
+  result: number,
+  leagueID : string
 }
 
 interface League {
@@ -22,13 +23,7 @@ interface League {
 }
 
 function getUnitsOutput(score: number) {
-  if (score === 0) {
-    return "0u"
-  } else if (score > 0) {
-    return " +" + score + "u"
-  } else {
-    return score + "u"
-  }
+  return score === 0 ? "0u" : score > 0 ? ` +${score}u` : `${score}u`;
 }
 
 export const ListLeagues: React.FC = async () => {
@@ -55,6 +50,7 @@ export const ListLeagues: React.FC = async () => {
             user_bets: {
               select: {
                 result: true,
+                leagueID:true
               },
             }
           },
@@ -70,10 +66,14 @@ export const ListLeagues: React.FC = async () => {
 
     leagues = leagues.map(league => ({
       ...league,
-      users: league.users.map(user => ({
-        ...user,
-        totalResult: user.user_bets.reduce((sum, bet) => sum + bet.result, 0)
-      }))
+      users: league.users.map(user => {
+        const userBetsForThisLeague = user.user_bets.filter(bet => bet.leagueID === league.id);
+        const totalResult = userBetsForThisLeague.reduce((sum, bet) => sum + bet.result, 0);
+        return {
+          ...user,
+          totalResult  // Assign computed totalResult specific to this league
+        };
+      })
     }));
   } else {
     leagues = [];
@@ -81,9 +81,9 @@ export const ListLeagues: React.FC = async () => {
 
   return (<div className="px-4">
     <div
-      className='sticky  left-0 right-0 top-[96px] flex  text-t-white w-full justify-center rounded-lg bg-t-light-blue cursor-pointer hover:bg-t-dark-blue border-2 border-t-dark-blue data-[state=active]:shadow-current data-[state=active]:focus:relative data-[state=active]:focus:shadow-[0_0_0_2px] data-[state=active]:focus:shadow-black '>
+      className='btn-primary sticky  left-0 right-0 top-[96px] flex  w-full justify-center '>
       <span
-        className="px-5 h-[45px] flex-1 flex items-center justify-center text-[15px]">
+        className="px-5 h-[45px] flex-1 flex items-center justify-center">
         Leagues
       </span>
     </div>
@@ -113,13 +113,19 @@ type leagueBoxProps = {
 const LeagueBox: React.FC<leagueBoxProps> = ({ league }) => {
   const url = "/protected/league/" + league.id;
   let iter: number = 0;
+  league.users.sort((a, b) => {
+    // Assuming totalResult is always available; otherwise, consider fallbacks or checks
+    const bNum = b.totalResult !== null && b.totalResult !== undefined ? b.totalResult : 0
+    const aNum = a.totalResult !== null && a.totalResult !== undefined ? a.totalResult : 0
+    return bNum - aNum;
+  });
   return (
     <a
       href={url}
       className="w-full border-2 rounded-tr-lg border-t-dark-blue p-1 lg:p-2 m-3 bg-t-light-grey hover:bg-t-grey text-t-dark-blue">
       <div>
         <h1
-          className="bold text-lg md:text-xl   pb-2">
+          className="bold text-lg md:text-2xl font-bold  pb-2">
           {league.league_name}
         </h1>
         <ul

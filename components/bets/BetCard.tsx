@@ -11,8 +11,8 @@ export default function BetCard({bet} : BetCardProps) {
     return (
         <div key={bet.id} className="flex border-b ml-3 mr-1 border-spacing-2 p-4">
                         <div
-                            className="flex w-full flex-col ml-1 text-md">
-                            {`${bet.startDate.toLocaleTimeString()}, ${bet.startDate.toLocaleDateString()}`}
+                            className="flex w-full flex-col ml-1 text-sm md:text-md">
+                            <text className="">{`${bet.startDate.toLocaleTimeString()}, ${bet.startDate.toLocaleDateString()}`}</text>
                             {/*need to pass utc string into client component and let client convert */}
                             <div className="flex w-18 flex-row justify-between items-center ml-4 text-xl">
                                 <div>{bet.awayTeam}</div>

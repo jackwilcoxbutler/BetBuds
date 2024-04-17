@@ -9,7 +9,7 @@ export default async function ProtectedLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="flex flex-row w-full justify-end space-x-4 mx-32">
+    <div className="flex flex-row w-full justify-end space-x-4 mx-32 relative">
       <div className="flex flex-col w-full">
         <BetProvider>
           <div className="relative">

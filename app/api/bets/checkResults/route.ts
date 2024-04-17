@@ -83,8 +83,6 @@ async function updateBettingResults() {
                     result: newResult
                 }
             });
-        }else{
-            console.log("bet does not exist")
         }
     }
 }
