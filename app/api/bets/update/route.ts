@@ -105,12 +105,9 @@ async function updateEventsBySport(sport_key: string) {
         const response = await axios.get(url);
 
         const gameResults: GameDetails[] = response.data;
-        var status = 0;
         if (gameResults.length > 0) {
             for (const game of gameResults) {
-                if(game.id == 'c0b61bf137d5bf5aafe6ade79b6800a1'){
-                    console.log(game.home_team,game.away_team, game.completed)
-                }
+                let status = 0;
                 if (game.completed === true) {
                     status = 1;
                 }
@@ -132,7 +129,6 @@ async function updateEventsBySport(sport_key: string) {
                         status: status
                     }
                 });
-                //console.log('Event updated successfully:', result);
             }
         }
     }
@@ -150,12 +146,12 @@ export async function GET() {
 
         for (var val of sports) {
             await fetchBetsBySport(val);
-            console.log("Update Events : ",val)
+            console.log("Update Events : ", val)
         }
 
-        for(var val of sports){
+        for (var val of sports) {
             console.log("Update sport : ", val)
-            await updateEventsBySport(val);
+            const result = await updateEventsBySport(val);
         }
 
         return NextResponse.json({ status: 200 });
