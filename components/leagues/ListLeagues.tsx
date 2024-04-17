@@ -123,7 +123,7 @@ const LeagueBox: React.FC<leagueBoxProps> = ({ league }) => {
           {league.league_name}
         </h1>
         <ul
-        className="flex flex-row w-full ">
+        className="flex flex-col w-full ">
           {league.users.map((user) => {
             var color = " text-t-white "
             if (user.totalResult) {
