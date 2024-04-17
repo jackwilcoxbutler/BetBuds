@@ -100,7 +100,7 @@ async function fetchBetsBySport(sport_key: string) {
 
 
 async function updateEventsBySport(sport_key: string) {
-    try {//https://api.the-odds-api.com/v4/sports/basketball_nba/scores/?daysFrom=2&apiKey=ea92dedcbf9b477c898d990ee884b2f9
+    try {
         const url = "https://api.the-odds-api.com/v4/sports/" + sport_key + "/scores/?daysFrom=1&apiKey=" + process.env.ODDS_API
         const response = await axios.get(url);
 
