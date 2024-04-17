@@ -33,7 +33,7 @@ async function updateBettingResults() {
 
     const computeResult = (price: number) => {
         const num = price < 0 ? 1 + (100 / Math.abs(price)) : 1 + (price / 100);
-        return num.toFixed(2);
+        return parseFloat(num.toFixed(2));
     };
 
     for (const bet of bets) {
