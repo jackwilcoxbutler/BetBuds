@@ -48,6 +48,7 @@ export interface UserLeagueBet {
   result: number;
   createdAt: Date;
   start_date: Date;
+  status : Number | null;
 }
 
 export interface Event {

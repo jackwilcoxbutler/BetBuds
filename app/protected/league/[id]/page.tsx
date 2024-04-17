@@ -12,31 +12,11 @@ export default async function Page({
 }: {
   params: { id: string }
 }) {
-  const session = await getServerSession(authOptions);
-  const userID = session?.user.id;
+ 
   // First, get the league and extract user IDs
-  const leagueWithUsersAndBets = (params.id != '0') ? await prisma.league.findUnique({
+  const leagueWithUsersAndBets = await prisma.league.findUnique({
     where: {
       id: params.id,
-    },
-    include: {
-      users: {
-        include: {
-          user_bets: {
-            where: {
-              leagueID: params.id
-            }
-          }
-        }
-      }
-    }
-  }) as League : await prisma.league.findFirst({
-    where : {
-      users : {
-        some : {
-          id : userID
-        }
-      }
     },
     include: {
       users: {

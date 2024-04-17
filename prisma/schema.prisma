@@ -60,6 +60,7 @@ model UserLeagueBet {
   result     Float
   createdAt  DateTime @default(now())
   start_date DateTime
+  status     Int?   //0 means no result 1 means calculated
 }
 
 model Event {

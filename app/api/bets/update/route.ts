@@ -108,7 +108,10 @@ async function updateEventsBySport(sport_key: string) {
         var status = 0;
         if (gameResults.length > 0) {
             for (const game of gameResults) {
-                if (game.completed) {
+                if(game.id == 'c0b61bf137d5bf5aafe6ade79b6800a1'){
+                    console.log(game.home_team,game.away_team, game.completed)
+                }
+                if (game.completed === true) {
                     status = 1;
                 }
                 let homeScore: number = 0;
