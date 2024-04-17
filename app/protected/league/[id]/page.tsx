@@ -30,7 +30,6 @@ export default async function Page({
       }
     }
   }) as League;
-  console.log(leagueWithUsersAndBets);
   
   function formatPrice(odds: number): string {
     if (odds > 0) {
@@ -57,13 +56,7 @@ export default async function Page({
       // Parse the Prisma date
       const betDate = new Date(bet.start_date);
       betDate.setHours(0, 0, 0, 0);
-      console.log(betDate,bet.start_date)
-      console.log("Bet date : ", betDate.getMonth(),betDate.getDate(),betDate.getFullYear());
-      console.log("Todays date : ", today.getMonth(),today.getDate(),today.getFullYear());
-
-      console.log(betDate.getTime());
-      console.log(today)
-      console.log(today.getTime());
+      
 
       return betDate.getTime() === today.getTime()
   })
@@ -98,7 +91,7 @@ export default async function Page({
         {leagueWithUsersAndBets.league_name}
         </div>
       </div>
-      <div className="min-w-full overflow-x-auto shadow-md sm:rounded-lg border-2 border-t-dark-blue bg-t-white">
+      <div className="min-w-full overflow-x-auto shadow-md sm:rounded-lg border-2 border-t-dark-blue bg-t-light-grey">
         <div className="inline-block min-w-full">
           <div className="overflow-hidden ">
             {leagueWithUsersAndBets && (
@@ -119,7 +112,7 @@ export default async function Page({
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-t-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+                <tbody className="bg-t-light-grey divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                   {processedData.map((user) => {
                     iter++;
                     return (

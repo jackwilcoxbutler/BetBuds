@@ -116,33 +116,32 @@ const LeagueBox: React.FC<leagueBoxProps> = ({ league }) => {
   return (
     <a
       href={url}
-      className="w-full border-2 rounded-tr-lg border-t-dark-blue p-1 lg:p-2 m-3 bg-t-light-blue hover:bg-t-dark-blue">
+      className="w-full border-2 rounded-tr-lg border-t-dark-blue p-1 lg:p-2 m-3 bg-t-light-grey hover:bg-t-grey text-t-dark-blue">
       <div>
         <h1
-          className="bold text-lg md:text-xl  text-t-white pb-2">
+          className="bold text-lg md:text-xl   pb-2">
           {league.league_name}
         </h1>
         <ul
         className="flex flex-col w-full ">
           {league.users.map((user) => {
-            var color = " text-t-white "
+            var color = " text-t-dark-blue "
             if (user.totalResult) {
               if (user.totalResult > 0) {
-                color = " text-green10"
+                color = "text-green11"
               } else if (user.totalResult < 0) {
                 color = " text-red10 "
               }
             }
-            console.log(user.totalResult)
             iter++;
             if (iter < 6) {
               return (
                 <li
                   key={user.id}
-                  className={`text-xs lg:text-sm text-t-white`}>
-                  <div className="space-x-2 md:space-x-4">
-                    <span className="basis-2/5">{iter}. {user.username}</span>
-                    <span className={`${color}`}>{getUnitsOutput(user.totalResult ?? 0)}</span>
+                  className={` text-t-dark-blue`}>
+                  <div className="space-x-2 md:space-x-4 align-middle">
+                    <span className="basis-2/5 text-xs lg:text-sm">{iter}. {user.username}</span>
+                    <span className={`${color} text-md`}>{getUnitsOutput(user.totalResult ?? 0)}</span>
                   </div>
                 </li>
               )

@@ -53,7 +53,8 @@ const AddUserFormModal = ({ league_id }: AddUserFormModalProps) => {
     <UsernameContext.Provider value={{username,setUsername}}>
       <Dialog.Root>
         <Dialog.Trigger asChild>
-          <button className="bg-t-white text-t-dark-blue shadow-blackA4 inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black outline outline-t-dark-blue">
+          <button className="bg-t-white text-t-dark-blue shadow-blackA4 inline-flex h-[35px] items-center justify-center rounded-[4px] bg-white px-[15px] font-medium leading-none shadow-[0_2px_10px] focus:shadow-[0_0_0_2px] focus:shadow-black outline outline-t-dark-blue hover:bg-t-light-blue hover:text-t-white
+                                    transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg">
             Add User
           </button>
         </Dialog.Trigger>
