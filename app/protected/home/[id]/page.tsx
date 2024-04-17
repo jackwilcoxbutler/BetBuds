@@ -24,7 +24,7 @@ export default async function Page({
 
     return (
         <>
-            <div className='flex flex-col w-full text-t-dark-blue rounded-md pt-2 bg-t-grey border-2 mt-4'>
+            <div className='flex flex-col w-full text-t-dark-blue rounded-md pt-2 bg-t-light-grey border-2 mt-4'>
                 {(bets.length > 0) && bets.map((bet) => (
                     <BetCard bet={bet} key={bet.id}/>
                 ))}

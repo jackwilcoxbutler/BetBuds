@@ -20,6 +20,7 @@ module.exports = {
         'endless-constelation' : "url('/endless-constellation.svg')"}
     },
     colors:{
+      't-light-grey' : '#ECECEC',
       't-grey' : '#BFC0C0',
       't-light-blue' : '#4F5D75',
       't-dark-blue' : '#2D3142',
