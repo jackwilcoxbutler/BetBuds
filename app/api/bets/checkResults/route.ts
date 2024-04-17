@@ -4,11 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
     try {
-        updateBettingResults().catch(e => {
-            return NextResponse.json({ error: e }, { status: 401 });
-        }).finally(async () => {
-            await prisma.$disconnect();
-        });
+        await updateBettingResults()
 
         return NextResponse.json({ status: 200 });
     } catch (error) {
@@ -80,6 +76,7 @@ async function updateBettingResults() {
                 id: bet.id
             },
             data: {
+                status: 1,
                 result: newResult
             }
         });
