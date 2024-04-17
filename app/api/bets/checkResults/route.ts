@@ -32,7 +32,7 @@ async function updateBettingResults() {
     console.log("api/bets/checkResults number of bets : ", bets.length)
 
     const computeResult = (price: number) => {
-        const num = price < 0 ? 1 + (100 / Math.abs(price)) : 1 + (price / 100);
+        const num = price < 0 ? (100 / Math.abs(price)) : (price / 100);
         return parseFloat(num.toFixed(2));
     };
 
