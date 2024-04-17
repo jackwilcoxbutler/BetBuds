@@ -2,9 +2,10 @@ import { NextResponse } from "next/server";
 
 import axios from 'axios';
 import prisma from "@/lib/prisma";
-import { Bet, Outcome, Market } from "@/lib/betTypes";
+import { Bet, Outcome, Market, GameDetails } from "@/lib/betTypes";
 import { getSports } from "@/lib/betService";
 import { subHours } from "date-fns";
+import { stat } from "fs";
 
 
 
@@ -15,7 +16,7 @@ async function fetchBetsBySport(sport_key: string) {
 
         const events: Bet[] = await response.data;
         if (events.length > 0) {
-            console.log("We have ",events.length, " events")
+            //console.log("We have ",events.length, " events")
             for (const event of events) {
                 const bookmaker = event.bookmakers[0];
 
@@ -80,33 +81,82 @@ async function fetchBetsBySport(sport_key: string) {
                         create: upsertData.create,
                     });
 
-                    console.log(result)
+                    //console.log(result)
 
                     // Only include fields in update object if they are not null
 
                 } else {
-                    console.log("can't find bookmaker");
+                    //console.log("can't find bookmaker");
                 }
             }
-            }else{
-                console.log("No bets for ", sport_key)
+        } else {
+            console.log("No bets for ", sport_key)
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+
+
+async function updateEventsBySport(sport_key: string) {
+    try {//https://api.the-odds-api.com/v4/sports/basketball_nba/scores/?daysFrom=2&apiKey=ea92dedcbf9b477c898d990ee884b2f9
+        const url = "https://api.the-odds-api.com/v4/sports/" + sport_key + "/scores/?daysFrom=1&apiKey=" + process.env.ODDS_API
+        const response = await axios.get(url);
+
+        const gameResults: GameDetails[] = response.data;
+        var status = 0;
+        if (gameResults.length > 0) {
+            for (const game of gameResults) {
+                if (game.completed) {
+                    status = 1;
+                }
+                let homeScore: number = 0;
+                let awayScore: number = 0;
+
+                if (game.scores && game.scores.length === 2) {
+                    homeScore = parseInt(game.scores[0].score);
+                    awayScore = parseInt(game.scores[1].score);
+                }
+
+                const result = await prisma.event.update({
+                    where: {
+                        gameID: game.id
+                    },
+                    data: {
+                        homeScore: homeScore,
+                        awayScore: awayScore,
+                        status: status
+                    }
+                });
+                //console.log('Event updated successfully:', result);
             }
-        } catch (error) {
-            console.error('Error fetching data:', error);
         }
     }
+    catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+
 
 export const revalidate = 0
 export async function GET() {
-        try {
-            const sports = await getSports();
+    try {
+        const sports = await getSports();
 
-            for (var val of sports) {
-                await fetchBetsBySport(val);
-            }
-
-            return NextResponse.json({ status: 200 });
-        } catch (error) {
-            return NextResponse.json({ error: error }, { status: 401 });
+        for (var val of sports) {
+            await fetchBetsBySport(val);
+            console.log("Update Events : ",val)
         }
+
+        for(var val of sports){
+            console.log("Update sport : ", val)
+            await updateEventsBySport(val);
+        }
+
+        return NextResponse.json({ status: 200 });
+    } catch (error) {
+        return NextResponse.json({ error: error }, { status: 401 });
     }
+}
