@@ -79,8 +79,15 @@ export default async function Page({
     console.error("No league or users found");
   }
 
+  let iter: number = 0;
+  processedData.sort((a, b) => {
+    // Assuming totalResult is always available; otherwise, consider fallbacks or checks
+    const bNum = b.totalScore !== null && b.totalScore !== undefined ? b.totalScore : 0
+    const aNum = a.totalScore !== null && a.totalScore !== undefined ? a.totalScore : 0
+    return bNum - aNum;
+  });
+
   // Now, use these user IDs to filter UserLeagueBet records
-  let iter = 0;
 
   return (
     <>
@@ -114,6 +121,7 @@ export default async function Page({
                 </thead>
                 <tbody className="bg-t-light-grey divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                   {processedData.map((user) => {
+                    
                     iter++;
                     return (
                       <tr key={user.userId} className="hover:bg-gray-100 dark:hover:bg-gray-700">
