@@ -36,6 +36,7 @@ export async function POST(req: Request, res: NextApiResponse) {
                     point: betChoice.point,
                     result: 0, // Default value, adjust as necessary
                     start_date: betChoice.start_date,
+                    status : 0
                     // Add other fields if necessary
                 },
             });

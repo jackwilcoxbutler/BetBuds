@@ -84,5 +84,6 @@ export const BetSlip: React.FC = () => {
           </div>
           <LeagueSelector clearBet={clearBet} />
         </div>
-      </div>)}</>)
+      </div>
+      )}</>)
 }

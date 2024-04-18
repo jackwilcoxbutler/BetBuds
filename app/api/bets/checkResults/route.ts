@@ -40,6 +40,7 @@ async function updateBettingResults() {
             const totalScore = bet.event.homeScore + bet.event.awayScore;
             const home = bet.event.homeScore
             const away = bet.event.awayScore
+            const spread = bet.point !== null ? bet.point : 0;
 
             switch (bet.bet_type) {
                 case 'OVER':
@@ -60,9 +61,9 @@ async function updateBettingResults() {
                 case 'SPREAD':
 
                     if (bet.team_name == bet.event.homeTeam) {
-                        newResult = home + bet.price > away ? computeResult(bet.price) : home + bet.price === away ? 0 : -1;
+                        newResult = home + spread  > away ? computeResult(bet.price) : home + spread === away ? 0 : -1;
                     } else if (bet.team_name == bet.event.awayTeam) {
-                        newResult = away + bet.price > home ? computeResult(bet.price) : home + bet.price === away ? 0 : -1;
+                        newResult = away + spread > home ? computeResult(bet.price) : home + spread === away ? 0 : -1;
                     }else {
                         console.log("No matching teams")
                     }
