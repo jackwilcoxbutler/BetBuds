@@ -10,7 +10,10 @@ export default async function ProtectedLayout({
 }) {
   return (
     <div className="flex flex-row w-full justify-end space-x-4 mx-32 relative">
-      <div className="flex flex-col w-full">
+      {/* <div className="w-1/4 bg-t-grey">
+        ad space
+      </div> */}
+      <div className="flex flex-col w-full ml-24">
         <BetProvider>
           <div className="relative">
             <div className="sticky  left-0 right-0 top-[96px] -z-0">
