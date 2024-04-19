@@ -48,15 +48,21 @@ export default async function Page({
       };
     }
 
-
-    const todayBet = user.user_bets.find((bet) =>{ 
+    console.log(user.username);
+    const todayBet = user.user_bets.find((bet) =>{
+      console.log("-- bet.start date : ", bet.start_date);
       const today = new Date();
+      console.log("-- today before new hours: ", today);
+
       today.setHours(0, 0, 0, 0);
+      console.log("-- today after new hours: ", today);
 
       // Parse the Prisma date
       const betDate = new Date(bet.start_date);
+      console.log("-- betDate before: ", betDate);
+
       betDate.setHours(0, 0, 0, 0);
-      
+      console.log("-- betDate  after: ", betDate);
 
       return betDate.getTime() === today.getTime()
   })
