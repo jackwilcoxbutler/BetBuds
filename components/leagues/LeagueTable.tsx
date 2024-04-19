@@ -1,3 +1,4 @@
+'use client';
 import { League } from "@/lib/types";
 import { ScoreText } from "./ScoreText";
 import { formatPrice } from "@/lib/betService";
