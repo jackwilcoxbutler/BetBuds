@@ -9,6 +9,13 @@ export function removeDuplicates(data: string[]): String[] {
     return data.filter((value: string, index: number) => data.indexOf(value) === index);
 }
 
+export function formatPrice(odds: number): string {
+    if (odds > 0) {
+      return "+" + odds.toString();
+    }
+    else return odds.toString();
+  }
+
 export async function getSports(): Promise<string[]> {
     try {        
         const url = "https://api.the-odds-api.com/v4/sports/?apiKey=" + process.env.ODDS_API
