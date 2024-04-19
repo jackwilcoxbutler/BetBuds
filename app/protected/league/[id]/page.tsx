@@ -1,4 +1,5 @@
 
+'use client';
 import prisma from '@/lib/prisma';
 import AddUserFormModal from "@/components/Invitations/AddUserFormModal";
 import { ScoreText } from '@/components/leagues/ScoreText';
