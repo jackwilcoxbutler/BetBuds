@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex h-screen bg-endless-constelation">
+    <div className="flex h-screen bg-endless-constelation overscroll-none">
       <div className="w-screen h-screen">
         <DefaultHeader />
         <div className="h-screen flex flex-col justify-evenly text-t-dark-blue text-center mx-4 sm:mx-32 ">
