@@ -22,14 +22,14 @@ export const SportTab: React.FC = async () => {
     }) as tab[];
 
     return (
-        <div className="flex flex-row w-full">
+        <div className="flex flex-row sm:w-full">
             {tabNames.map((tab) => {
             const url = "/protected/home/" + tab.sportKey
             return(
             <div key={tab.sportTitle}
-            className='btn-primary flex w-full justify-center  px-5 mx-2 '>
+            className='btn-primary flex w-full justify-center px-2 sm:px-5 mx-2 '>
                 <Link
-                    className=" px-5 h-[45px] flex-1 flex items-center justify-center cursor-pointer leading-none select-none"
+                    className="text-xs sm:text-lg sm:px-5 h-[36px] sm:h-[45px] sm:flex-1 flex items-center justify-center cursor-pointer leading-none select-none"
                     href={url}
                 >
                     {tab.sportTitle}

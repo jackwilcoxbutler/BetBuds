@@ -81,7 +81,7 @@ export const ListLeagues: React.FC = async () => {
 
   return (<div className="px-4">
     <div
-      className='btn-primary sticky  left-0 right-0 top-[96px] flex  w-full justify-center '>
+      className='bg-t-light-blue text-t-white rounded-lg border-2 border-t-dark-blue text-sm md:text-lg sticky  left-0 right-0 top-[96px] flex  w-full justify-center '>
       <span
         className="px-5 h-[45px] flex-1 flex items-center justify-center">
         Leagues

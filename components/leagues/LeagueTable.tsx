@@ -18,21 +18,15 @@ export const LeagueTable =  ({league} : LeagueTableProps) => {
           };
         }
     
-        console.log(user.username);
         const todayBet = user.user_bets.find((bet) =>{
-          console.log("-- bet.start date : ", bet.start_date);
           const today = new Date();
-          console.log("-- today before new hours: ", today);
     
           today.setHours(0, 0, 0, 0);
-          console.log("-- today after new hours: ", today);
     
           // Parse the Prisma date
           const betDate = new Date(bet.start_date);
-          console.log("-- betDate before: ", betDate);
     
           betDate.setHours(0, 0, 0, 0);
-          console.log("-- betDate  after: ", betDate);
     
           return betDate.getTime() === today.getTime()
       })
@@ -48,6 +42,12 @@ export const LeagueTable =  ({league} : LeagueTableProps) => {
           todayBet,
           totalScore,
         };
+      });
+      processedData.sort((a, b) => {
+        // Assuming totalResult is always available; otherwise, consider fallbacks or checks
+        const bNum = b.totalScore !== null && b.totalScore !== undefined ? b.totalScore : 0
+        const aNum = a.totalScore !== null && a.totalScore !== undefined ? a.totalScore : 0
+        return bNum - aNum;
       });
     var iter = 0;
 
@@ -65,7 +65,7 @@ export const LeagueTable =  ({league} : LeagueTableProps) => {
                       {league.scoring_type === "UNITS" ? (<div>Units</div>) : (<div>Record</div>)}
                     </th>
                     <th scope="col" className="text-center py-3 px-6 text-lg font-medium tracking-wider text-t-white uppercase dark:text-gray-400">
-                      {"Today's Bet"}
+                      {"Today's Pick"}
                     </th>
                   </tr>
                 </thead>

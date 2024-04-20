@@ -60,11 +60,14 @@ const NavBar = ({ username }: NavBarProps) => {
       </div>
       <InboxModal />
       <CreateLeagueButton expanded={false} />
-      <div className='flex  absolute top-0 right-32 h-full items-center '>
-        <text className='text-t-dark-blue text-3xl font-bold'>
+      <div className='hidden sm:block'>
+      <div className='flex  absolute top-0  right-1 sm:right-8 lg:right-16 h-full items-center '>
+        <text className='text-t-dark-blue text-sm md:text-xl font-bold'>
           {`Welcome,  ${username}`}
         </text>
       </div>
+      </div>
+      
     </div>
   );
 };

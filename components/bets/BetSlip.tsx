@@ -41,11 +41,11 @@ export const BetSlip: React.FC = () => {
     <>{bet && (
       <div className="relative">
         <div className="text-t-white absolute -top-8 left-4 bg-t-light-blue border-t-2 border-l-2 border-r-2 border-t-dark-blue border-l-t-dark-blue border-r-t-dark-blue py-1 px-3 rounded-t-lg">
-          <span className="text-sm font-medium text-blue-500">Bet Slip</span>
+          <span className="text-sm font-medium">Bet Slip</span>
         </div>
-        <div className="flex flex-row w-full border-2 rounded-md h-14 border-t-dark-blue justify-between items-center bg-t-light-blue text-lg lg:text-xl font-semibold text-t-white p-3">
+        <div className="flex flex-row w-full border-2 rounded-md h-14 border-t-dark-blue justify-between items-center bg-t-light-blue text-scale sm:font-semibold text-t-white p-3">
           <div
-            className="flex flex-row justify-center space-x-8 items-center">
+            className="flex flex-row justify-center space-x-2 sm:space-x-6 items-center">
             {!bet && (<div>
               Bet Slip
             </div>)}

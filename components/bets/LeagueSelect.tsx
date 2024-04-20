@@ -94,7 +94,7 @@ const LeagueSelector: React.FC<LeagueSelectorProps> = ({clearBet} : LeagueSelect
         <div>
           <button
             type="button"
-            className={`inline-flex justify-center w-full  bg-t-dark-blue ${(leagueChoices.length > 0) ? ' hover:outline hover:outline-2 hover:outline-t-white ' : ''} text-t-white rounded-md shadow-mg px-4 py-2 text-sm font-medium`}
+            className={`inline-flex justify-center bg-t-dark-blue ${(leagueChoices.length > 0) ? ' hover:outline hover:outline-2 hover:outline-t-white ' : ''} text-t-white rounded-md shadow-mg px-2 py-1 text-sm font-medium`}
             id="menu-button"
             aria-expanded={isDropdownOpen}
             aria-haspopup="true"
@@ -138,7 +138,7 @@ const LeagueSelector: React.FC<LeagueSelectorProps> = ({clearBet} : LeagueSelect
           {selectedLeagues.length > 0 && (
           <button
             onClick={handlePlaceBet}
-            className={` bg-t-dark-blue text-t-white ${(selectedLeagues.length > 0) ? ' hover:outline hover:outline-2 hover:outline-t-white ' : ''} rounded-md shadow-mg px-4 py-2 text-sm font-medium`}
+            className={` inline-flex justify-center bg-t-dark-blue ${(selectedLeagues.length > 0) ? ' hover:outline hover:outline-2 hover:outline-t-white ' : ''} text-t-white rounded-md shadow-mg px-2 py-1 text-sm font-medium`}
             disabled={loading || (selectedLeagues.length == 0)}
           >
             {!loading ? "Place Bet" : <LoadingDots color='t-orange' />}

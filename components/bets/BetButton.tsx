@@ -27,9 +27,9 @@ export default function BetButtonGrid({ bet, is_home }: BetButtonGridProps) {
   const context = useContext(BetContext);
 
   return (
-    <div className="flex flex-row space-x-5" >
+    <div className="flex flex-row space-x-2 sm:space-x-5" >
       {bet.homeML && bet.awayML && (<button
-        className="border w-20 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-orange hover:text-t-white
+        className="border sm:w-20 content-center rounded-md bg-t-grey px-2 py-1 hover:bg-t-orange hover:text-t-white
                                     transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"
         onClick={() => {
           //console.log(context);
@@ -43,10 +43,10 @@ export default function BetButtonGrid({ bet, is_home }: BetButtonGridProps) {
           })
         }}
       >
-        {is_home ? formatOdds(bet.homeML) : formatOdds(bet.awayML)}
+        <div className="text-base sm:text-xl">{is_home ? formatOdds(bet.homeML) : formatOdds(bet.awayML)}</div>
       </button>)}
       {bet.awaySpreadPoint && bet.awaySpreadPrice && bet.homeSpreadPoint && bet.homeSpreadPrice && (<button
-        className="border w-20 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-orange hover:text-t-white
+        className="border sm:w-20 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-orange hover:text-t-white
 transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"
         onClick={() => {
           //console.log(context);
@@ -62,12 +62,12 @@ transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"
         }}
       >
         <div className="flex flex-col">
-          <div className="text-xl">{is_home ? formatOdds(bet.homeSpreadPoint) : formatOdds(bet.awaySpreadPoint)}</div>
-          <div className="text-sm">{is_home ? formatOdds(bet.homeSpreadPrice) : formatOdds(bet.awaySpreadPrice)}</div>
+          <div className="text-base sm:text-xl">{is_home ? formatOdds(bet.homeSpreadPoint) : formatOdds(bet.awaySpreadPoint)}</div>
+          <div className="text-xs sm:text-sm">{is_home ? formatOdds(bet.homeSpreadPrice) : formatOdds(bet.awaySpreadPrice)}</div>
         </div>
       </button>)}
       {bet.totalPoint && bet.overPrice && bet.underPrice && (<button
-        className="border w-20 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-orange hover:text-t-white
+        className="border sm:w-20 content-center rounded-md bg-t-grey px-3 py-1 hover:bg-t-orange hover:text-t-white
 transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"
         onClick={() => {
           //console.log(context);
@@ -84,8 +84,8 @@ transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"
       >
 
         <div className="flex flex-col">
-          <div className="text-xl">{is_home ? "o" : "u"}{bet.totalPoint} </div>
-          <div className="text-sm">{is_home ? formatOdds(bet.overPrice) : formatOdds(bet.underPrice)}</div>
+          <div className="text-base sm:text-xl">{is_home ? "o" : "u"}{bet.totalPoint} </div>
+          <div className=" text-xs sm:text-sm">{is_home ? formatOdds(bet.overPrice) : formatOdds(bet.underPrice)}</div>
         </div>
       </button>)}
     </div>

@@ -10,3 +10,9 @@
         @apply bg-t-light-blue hover:bg-t-dark-blue text-t-white rounded-lg  cursor-pointer border-2 border-t-dark-blue text-sm md:text-lg
     }
   }
+
+  @layer utilities{
+    .text-scale{
+        @apply text-xs sm:text-sm md:text-base lg:text-lg
+    }
+  }
