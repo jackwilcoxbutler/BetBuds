@@ -23,7 +23,8 @@ interface League {
 }
 
 function getUnitsOutput(score: number) {
-  return score === 0 ? "0u" : score > 0 ? ` +${score}u` : `${score}u`;
+  const roundedScore = parseFloat(score.toFixed(2));
+  return roundedScore === 0 ? "0u" : roundedScore > 0 ? ` +${roundedScore}u` : `${roundedScore}u`;
 }
 
 export const ListLeagues: React.FC = async () => {
