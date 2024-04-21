@@ -1,10 +1,7 @@
 
 import prisma from '@/lib/prisma';
 import AddUserFormModal from "@/components/Invitations/AddUserFormModal";
-import { ScoreText } from '@/components/leagues/ScoreText';
-import { League, User } from '@/lib/types';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { League } from '@/lib/types';
 import { CreateLeagueButton } from '@/components/leagues/CreateLeagueButton';
 import { LeagueTable } from '@/components/leagues/LeagueTable';
 
@@ -45,19 +42,19 @@ export default async function Page({
 
     console.log(user.username);
     const todayBet = user.user_bets.find((bet) =>{
-      console.log("-- bet.start date : ", bet.start_date);
+      // console.log("-- bet.start date : ", bet.start_date);
       const today = new Date();
-      console.log("-- today before new hours: ", today);
+      // console.log("-- today before new hours: ", today);
 
       today.setHours(0, 0, 0, 0);
-      console.log("-- today after new hours: ", today);
+      // console.log("-- today after new hours: ", today);
 
       // Parse the Prisma date
       const betDate = new Date(bet.start_date);
-      console.log("-- betDate before: ", betDate);
+      // console.log("-- betDate before: ", betDate);
 
       betDate.setHours(0, 0, 0, 0);
-      console.log("-- betDate  after: ", betDate);
+      // console.log("-- betDate  after: ", betDate);
 
       return betDate.getTime() === today.getTime()
   })
@@ -94,14 +91,14 @@ export default async function Page({
   return (
     <>
     {leagueWithUsersAndBets && (
-      <div className="flex w-full flex-col ">
-      <div className='flex w-full justify-start text-4xl mt-28 m-2'>
+      <div className="flex sm:w-full flex-col ">
+      <div className='flex w-full justify-center sm:justify-start sm:text-4xl sm:mt-28 m-2'>
         <div className='bg-t-light-blue border-2 border-t-dark-blue p-2 rounded-lg text-t-white shadow-md shadow-t-dark-blue'>
         {leagueWithUsersAndBets.league_name}
         </div>
       </div>
-      <div className="min-w-full overflow-x-auto shadow-md sm:rounded-lg border-2 border-t-dark-blue bg-t-light-grey">
-        <div className="inline-block min-w-full">
+      <div className="sm:min-w-full overflow-x-auto shadow-md sm:rounded-lg border-2 border-t-dark-blue bg-t-light-grey">
+        <div className="inline-block sm:min-w-full">
           <div className="overflow-hidden ">
             {leagueWithUsersAndBets && (
               <LeagueTable league={leagueWithUsersAndBets}/>
@@ -109,7 +106,7 @@ export default async function Page({
           </div>
         </div>
       </div>
-      <div className="pt-12 flex w-full justify-center">
+      <div className="pt-12 flex sm:w-full justify-center">
         <AddUserFormModal league_id={params.id} />
       </div>
     </div>)}

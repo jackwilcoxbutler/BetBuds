@@ -71,14 +71,14 @@ export const LeagueTable =  ({league} : LeagueTableProps) => {
                 </thead>
                 <tbody className="bg-t-light-grey divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                   {processedData.map((user) => {
-                    
+                    const score = parseFloat(user.totalScore.toFixed(2))
                     iter++;
                     return (
                       <tr key={user.userId} className="hover:bg-gray-100 dark:hover:bg-gray-700">
                         <td className="text-left py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">{iter}.</td>
                         <td className="text-left py-4 px-6 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.username}</td>
                         <td className={`text-center py-2 px-6 text-xl font-medium ${(user.totalScore == 0) ?  ' text-t-dark-blue' : ''} ${user.totalScore > 0 ? ' text-green10 ' : ' text-red10 '} whitespace-nowrap `}>
-                          <ScoreText score={user.totalScore}/>
+                          <ScoreText score={score}/>
                         </td>
                         {user.todayBet ? (
                           (user.todayBet.bet_type === "OVER") && (
