@@ -104,6 +104,7 @@ export const LeagueTable = ({ league, isMobile }: LeagueTableProps) => {
     </table>)}
       {isMobile && (<>
         <div className="flex flex-col space-y-2 rounded-md">
+          
           <table className="min-w-full divide-y divide-t-dark-blue  table-fixed  cursor-default rounded-md">
             <thead className="bg-t-light-blue p-2">
               <tr>
