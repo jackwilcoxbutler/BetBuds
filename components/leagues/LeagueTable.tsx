@@ -126,7 +126,6 @@ export const LeagueTable = ({ league, isMobile }: LeagueTableProps) => {
             {processedData.map((user) => {
                 const score = parseFloat(user.totalScore.toFixed(2))
                 iter++; return (
-                <>
                 <tr key={user.userId} className="bg-t-light-grey hover:bg-t-grey">
                   <td>{iter}.</td>
                   <td className="mobile-table-row">{user.username}</td>
@@ -148,7 +147,7 @@ export const LeagueTable = ({ league, isMobile }: LeagueTableProps) => {
                 <td className="mobile-table-row text-center">--</td>
               )}
                 </tr>
-                </>)
+                )
               })}
             </tbody>
           </table>
