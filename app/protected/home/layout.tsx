@@ -32,7 +32,7 @@ export default async function ProtectedLayout({
       </div>
       <div className="hidden sm:block sm:w-1/3">
       <div className="flex flex-col  justify-start pl-2 border-l-2 border-dotted">
-        <ListLeagues />
+        <ListLeagues isMobile={false}/>
       </div>
       </div>
     </div>

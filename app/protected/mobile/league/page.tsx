@@ -4,7 +4,7 @@ export default function MobileLeagueList() {
     return (
         <>
             <div className="mt-4 w-full mx-8">
-                <ListLeagues />
+                <ListLeagues isMobile={true}/>
             </div>
         </>)
 }

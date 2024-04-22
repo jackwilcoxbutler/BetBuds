@@ -27,7 +27,11 @@ function getUnitsOutput(score: number) {
   return roundedScore === 0 ? "0u" : roundedScore > 0 ? ` +${roundedScore}u` : `${roundedScore}u`;
 }
 
-export const ListLeagues: React.FC = async () => {
+interface ListLeaguesProps{
+  isMobile : boolean
+}
+
+export const ListLeagues: React.FC<ListLeaguesProps> = async ({isMobile}) => {
   let user_id: string;
   const session = await getServerSession(authOptions);
   let leagues: League[]
@@ -91,7 +95,7 @@ export const ListLeagues: React.FC = async () => {
     <div className="pb-20 pt-4">
       {leagues.length > 0 && (<div className="w-full justify-center grid grid-cols-1 justify-items-center">
         {leagues.map((league) => (
-          <LeagueBox key={league.id} league={league} />
+          <LeagueBox key={league.id} league={league} isMobile={isMobile} />
         ))}
       </div>)}
     </div>
@@ -109,10 +113,11 @@ export const ListLeagues: React.FC = async () => {
 
 type leagueBoxProps = {
   league: League,
+  isMobile: boolean
 }
 
-const LeagueBox: React.FC<leagueBoxProps> = ({ league }) => {
-  const url = "/protected/league/" + league.id;
+const LeagueBox: React.FC<leagueBoxProps> = ({ league,isMobile }) => {
+  const url = (isMobile ? "/protected/mobile/league/" : "/protected/league/") + league.id;
   let iter: number = 0;
   league.users.sort((a, b) => {
     // Assuming totalResult is always available; otherwise, consider fallbacks or checks
