@@ -101,7 +101,7 @@ export default async function Page({
         <div className="inline-block sm:min-w-full">
           <div className="overflow-hidden ">
             {leagueWithUsersAndBets && (
-              <LeagueTable league={leagueWithUsersAndBets} isMobile={false}/>
+              <LeagueTable league={leagueWithUsersAndBets}/>
             )}
           </div>
         </div>
