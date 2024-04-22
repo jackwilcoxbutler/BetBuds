@@ -12,7 +12,7 @@ export default function Home() {
             <div className="flex w-full justify-center">
             <TrophyLogo height={64} weight={64}/>
             </div>
-            <h1 className="text-2xl sm:text-5xl font-bold mb-6 bg-t-white ">Join the Ultimate Sports Betting Experience</h1>
+            <h1 className="text-2xl sm:text-5xl font-bold mb-6 bg-t-white ">Join BetBuds and compete with friends by making daily picks!</h1>
             <p className="text-lg mb-8">Compete with friends. Make daily picks. Win big.</p>
             <Link href={"/register"} className="bg-t-orange hover:bg-t-orange-200 text-t-white font-bold py-2 px-4 rounded text-2xl">Sign Up Now</Link>
           </div>
